@@ -13,31 +13,50 @@ import {
 import React from 'react'
 import { Color, w } from '../../util/CStyle';
 
-type Props = {
-    title: string,
+/**
+ * 按钮属性
+ */
+interface ButtonProps {
+    /** 是否有边框 */
     isBorder: boolean,
+    /** 样式 */
     style: any,
+    /** 按钮样式 */
     btnStyle: any,
+    /** 右边按钮文本 */
     buttonRightText: string,
+    /** 右边按钮文本样式 */
+    btnRightTextStyle: any,
+    /** 左边按钮文本 */
     buttonLeftText: string,
-    btnTextStyle: any,
+    /** 左边按钮文本样式 */
     btnLeftTextStyle: any,
+    /** 右边按钮点击回调函数 */
     onRightPress: Function,
+    /** 左边按钮点击回调函数 */
     onLeftPress: Function,
 }
 
 /**
- * 按钮文本 buttonText
- * 按钮事件 onPress
- * 按钮样式 btnStyle
- * 文本样式 btnTextStyle
- * 总体样式 style
+ * === 自定义按钮 ===
+ * 
+ * 【buttonLeftText】 左边按钮文本 ----【buttonRightText】右边按钮文本
+ * 
+ * 【onLeftPress】 左边按钮点击回调 ---【onRightPress】 右边按钮点击回调函数
+ * 
+ * 【style】 总体样式 ---------------------【btnStyle】 按钮样式
+ * 
+ * 【btnLeftTextStyle】 左边文本样式 ----【btnRightTextStyle】 右边文本样式
+ * 
  */
-export default class Button extends React.Component<Props> {
+export default class Button extends React.Component<ButtonProps> {
 
     static defaultProps = {
+        /** 按钮文案 */
         buttonText: 'Confirm',     //默认按钮文案
+        /** 是否有边框 */
         isBorder: true,
+        /** 样式 */
         style: undefined
     };
 
@@ -56,7 +75,7 @@ export default class Button extends React.Component<Props> {
                     style={[btnContainer, { backgroundColor: Color.blue, flex: this.props.buttonLeftText ? 0.66 : 1 }, this.props.btnStyle]}
                     activeOpacity={0.8}
                     onPress={() => this.props.onRightPress && this.props.onRightPress()}>
-                    <Text style={[styles.white, { fontSize: 24 * w }, this.props.btnTextStyle]}>{this.props.buttonRightText}</Text>
+                    <Text style={[styles.white, { fontSize: 24 * w }, this.props.btnRightTextStyle]}>{this.props.buttonRightText}</Text>
                 </TouchableOpacity>
             </View>
         )

@@ -1,3 +1,8 @@
+/**
+ * 自定义弹框控件
+ * Created by ykl
+ * on 16/6/17.
+ */
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -9,22 +14,48 @@ import {
 import { w } from '../../util/CStyle';
 import Button from '../button';
 
-type Props = {
+/**
+ * 弹框属性
+ */
+type AlertProps = {
+    /** 是否显示弹框 */
     show: boolean,
+    /** 弹框关闭时回调，必加属性，关闭后设为不显示 */
     onClose: Function,
+    /** 弹框内容 */
     title: string,
+    /** 左边按钮点击回调 */
     onLeftPress: Function,
+    /** 右边按钮点击回调 */
     onRightPress: Function,
 }
 
+/**
+ * 操作可刷新属性
+ */
 type State = {
+    /** 是否显示 */
     isVisible: boolean,
+    /** 弹框内容 */
     title: string
 }
 
-export default class Alert extends Component<Props, State> {
+/**
+ * === 自定义弹框 ===
+ *  
+ * 【show】: boolean 是否显示弹框 
+ * 
+ * 【onClose】: Function 弹框关闭时回调，必加属性，关闭后设为不显示
+ * 
+ * 【title】: string 弹框内容
+ * 
+ * 【onLeftPress】: Function 左边按钮点击回调
+ * 
+ * 【onRightPress】: Function 右边按钮点击回调
+ */
+export default class Alert extends Component<AlertProps, State> {
 
-    constructor(props: Props) {
+    constructor(props: AlertProps) {
         super(props);
         this.state = {
             isVisible: this.props.show || false,
@@ -32,13 +63,13 @@ export default class Alert extends Component<Props, State> {
         };
     }
 
-    //刷新控制显示和关闭
-    UNSAFE_componentWillReceiveProps(nextProps: Props) {
+    /** 刷新控制显示和关闭 */
+    UNSAFE_componentWillReceiveProps(nextProps: AlertProps) {
         if (nextProps.show != this.state.isVisible)
             this.setState({ isVisible: nextProps.show });
     }
 
-    //关闭弹框
+    /** 关闭弹框 */
     closeModal() {
         this.setState({
             isVisible: false
@@ -47,6 +78,7 @@ export default class Alert extends Component<Props, State> {
         this.props.onClose && this.props.onClose();
     }
 
+    /** 弹框内容 */
     renderDialog() {
         return (
             <View style={styles.modalStyle}>
@@ -66,9 +98,8 @@ export default class Alert extends Component<Props, State> {
                             if (this.props.onRightPress && !this.props.onRightPress())
                                 this.closeModal()
                         }}
-                        title={this.state.title}
                         btnLeftTextStyle={{ color: '#303030', fontSize: 24 * w }}
-                        btnTextStyle={{ color: '#1592A3', fontSize: 24 * w }}
+                        btnRightTextStyle={{ color: '#1592A3', fontSize: 24 * w }}
                         btnStyle={{ flex: 1, backgroundColor: '#00000000', alignItems: 'flex-start', paddingTop: 10 * w }}
                     />
                 </View>

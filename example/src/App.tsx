@@ -1,18 +1,31 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-yunexpress-ui';
+import { Button, Alert } from 'react-native-yunexpress-ui';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Button
+        buttonLeftText={"取消"}
+        buttonRightText={"确认"}
+        isBorder={false}
+        onLeftPress={() => {
+          //...
+        }}
+        onRightPress={() => {
+          //...
+        }}
+        title={this.state.title}
+        btnLeftTextStyle={{ color: '#303030', fontSize: 24 }}
+        btnTextStyle={{ color: '#1592A3', fontSize: 24 }}
+        btnStyle={{ flex: 1, backgroundColor: '#00000000', alignItems: 'flex-start', paddingTop: 10 }}
+      />
     </View>
   );
 }

@@ -5,20 +5,24 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
 //UI设计图的宽度
-const designWidth = 750
+const designWidth: number = 750
 //UI设计图的高度
-const designHeight = 1624
+const designHeight: number = 1624
 
 //手机屏幕的宽度
-export const width = Dimensions.get('window').width;
+export const width: number = Dimensions.get('window').width;
 //手机屏幕的高度
-export const height = Dimensions.get('window').height;
+export const height: number = Dimensions.get('window').height;
 //计算手机屏幕宽度对应设计图宽度的单位宽度
-export const w1 = width / designWidth; //unitWidth 750
-export const w = width / 480; //unitWidth 480
+export const w1: number = width / designWidth; // unitWidth 750
+/** UI适配单位，用一个数乘以w */
+export const w: number = width / 480; // unitWidth 480
 //计算手机屏幕高度对应设计图高度的单位高度
-export const h = height / designHeight; //unitHeight
+export const h: number = height / designHeight; // unitHeight
 
+/**
+ * 常用基本样式
+ */
 export const CommonStyle = StyleSheet.create({
   //界面背景
   baseBackgrand: {
@@ -72,7 +76,7 @@ export const CommonStyle = StyleSheet.create({
 
 })
 
-//通用颜色
+/** 通用颜色 */
 export const Color = {
   blue: '#1693A4',
   blue_1693A4: '#1693A4',
@@ -85,15 +89,24 @@ export const Color = {
   red: '#E43737'
 }
 
-
+/**
+ * 格式化弹框
+ * @param data1 
+ * @param data2 
+ */
 export function myAlert(data1: any, data2: any) {
   if (__DEV__)
     alert(JSON.stringify(data1, null, 2) + (data2 ? JSON.stringify(data2, null, 2) : ''))
 }
 
+/**
+ * 格式化日志打印
+ * @param data1 
+ * @param data2 
+ */
 export function myLog(data1: any, data2: any) {
-  let str1 = (data1 && (typeof (data1) == 'object')) ? JSON.stringify(data1, null, 2) : data1
-  let str2 = (data2 && (typeof (data2) == 'object')) ? JSON.stringify(data2, null, 2) : ''
+  let str1: string = (data1 && (typeof (data1) == 'object')) ? JSON.stringify(data1, null, 2) : data1
+  let str2: string = (data2 && (typeof (data2) == 'object')) ? JSON.stringify(data2, null, 2) : ''
   if (__DEV__ && str1)
     console.log(str1 + str2)
 }
