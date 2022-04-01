@@ -1,0 +1,22 @@
+{
+  "name": "react-native-yunexpress-ui-example",
+  "displayName": "YunexpressUi Example",
+  "expo": {
+    "name": "react-native-yunexpress-ui-example",
+    "slug": "react-native-yunexpress-ui-example",
+    "description": "Example app for react-native-yunexpress-ui",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
