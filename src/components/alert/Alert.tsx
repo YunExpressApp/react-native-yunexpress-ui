@@ -37,7 +37,9 @@ type State = {
     /** 是否显示 */
     isVisible: boolean,
     /** 弹框内容 */
-    title: string
+    title: string,
+    onLeftPress: Function,
+    onRightPress: Function,
 }
 
 /**
@@ -60,6 +62,8 @@ export default class Alert extends Component<AlertProps, State> {
         this.state = {
             isVisible: this.props.show || false,
             title: '',
+            onLeftPress: () => { },
+            onRightPress: () => { },
         };
     }
 
@@ -78,12 +82,21 @@ export default class Alert extends Component<AlertProps, State> {
         this.props.onClose && this.props.onClose();
     }
 
+    show(title: string, onRightPress: Function, onLeftPress: Function) {
+        this.setState({
+            title,
+            onLeftPress,
+            onRightPress,
+            isVisible: true,
+        });
+    }
+
     /** 弹框内容 */
     renderDialog() {
         return (
             <View style={styles.modalStyle}>
                 <View style={{ paddingTop: 46 * w, paddingHorizontal: 32 * w }}>
-                    <Text style={{ fontSize: 25 * w, color: '#111', fontWeight: '500' }}>{this.props.title ? this.props.title : ""}</Text>
+                    <Text style={{ fontSize: 25 * w, color: '#111', fontWeight: '500' }}>{this.state.title || this.props.title || ""}</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                     <Button
@@ -93,9 +106,14 @@ export default class Alert extends Component<AlertProps, State> {
                         onLeftPress={() => {
                             if ((this.props.onLeftPress && !this.props.onLeftPress()) || !this.props.onLeftPress)
                                 this.closeModal()
+                            else if ((this.state.onLeftPress && !this.state.onLeftPress()) || !this.state.onLeftPress) {
+                                this.closeModal()
+                            }
                         }}
                         onRightPress={() => {
                             if (this.props.onRightPress && !this.props.onRightPress())
+                                this.closeModal()
+                            else if (this.state.onRightPress && !this.state.onRightPress())
                                 this.closeModal()
                         }}
                         btnLeftTextStyle={{ color: '#303030', fontSize: 24 * w }}

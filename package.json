@@ -1,6 +1,6 @@
 {
   "name": "react-native-yunexpress-ui",
-  "version": "0.1.13",
+  "version": "0.1.16",
   "description": "YunExpress Component Library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
