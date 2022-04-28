@@ -1,0 +1,6 @@
+rootProject.name = 'YunexpressUiExample'
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'
+
+include ':reactnativeyunexpressui'
+project(':reactnativeyunexpressui').projectDir = new File(rootProject.projectDir, '../../android')
