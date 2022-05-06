@@ -5,6 +5,7 @@ import { Button, Alert } from 'react-native-yunexpress-ui';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
+  const [show, setShow] = React.useState<boolean | undefined>(false)
 
   React.useEffect(() => {
   }, []);
@@ -17,14 +18,22 @@ export default function App() {
         isBorder={false}
         onLeftPress={() => {
           //...
+          setShow(true)
         }}
         onRightPress={() => {
           //...
         }}
-        title={this.state.title}
+        title={'标题'}
         btnLeftTextStyle={{ color: '#303030', fontSize: 24 }}
         btnTextStyle={{ color: '#1592A3', fontSize: 24 }}
         btnStyle={{ flex: 1, backgroundColor: '#00000000', alignItems: 'flex-start', paddingTop: 10 }}
+      />
+      <Alert
+        show={show}
+        title={'弹框'}
+        onClose={() => {
+          setShow(false)
+        }}
       />
     </View>
   );
