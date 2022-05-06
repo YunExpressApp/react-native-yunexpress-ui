@@ -1,25 +1,24 @@
-import * as React from 'react';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import { StyleSheet, View } from 'react-native';
-import { YunexpressUiView } from 'react-native-yunexpress-ui';
+import Home from './views/Home';
+const Stack = createStackNavigator();
+import ComponentMenu from './views/Menu';
+
+const pages: Array<any> = ComponentMenu;
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <YunexpressUiViewManager color="#32a852" style={styles.box} />
-    </View>
-  );
+	return (
+		<NavigationContainer>
+			<Stack.Navigator>
+				<Stack.Screen name="Home" component={Home} />
+				{
+					pages.map(item => (
+						<Stack.Screen key={item.name} name={item.name} component={item.page} />
+					))
+				}
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});

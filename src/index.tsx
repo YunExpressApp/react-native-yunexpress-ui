@@ -1,26 +1,35 @@
-import {
-  requireNativeComponent,
-  UIManager,
-  Platform,
-  ViewStyle,
-} from 'react-native';
+export { default as YTDatePicker } from './components/picker';
+/**
+ * 按钮
+ */
+export { default as Button } from './components/button/index'
+/**
+ * 弹框
+ */
+export { default as Alert } from './components/alert/index'
 
-const LINKING_ERROR =
-  `The package 'react-native-yunexpress-ui' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+/**
+ * 子项组件
+ */
+export { default as Item } from './components/item/index'
 
-type YunexpressUiProps = {
-  color: string;
-  style: ViewStyle;
-};
+/** 
+ * 公共样式
+ */
+export { Color, CommonStyle, myAlert, myLog, w } from './util/CStyle';
 
-const ComponentName = 'YunexpressUiView';
+/**
+ * 标题组件
+ */
+export { default as YTTitle } from './components/title/index'
 
-export const YunexpressUiView =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<YunexpressUiProps>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };
+
+/**
+ * Cell组件
+ */
+export { default as YTCell } from './components/cell/index'
+
+/**
+ * card卡片
+ */
+export { default as YTCard } from './components/card/index'
