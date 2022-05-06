@@ -38,6 +38,8 @@ type State = {
     isVisible: boolean,
     /** 弹框内容 */
     title: string,
+    leftText: string,
+    rightText: string,
     onLeftPress: Function,
     onRightPress: Function,
 }
@@ -62,6 +64,8 @@ export default class Alert extends Component<AlertProps, State> {
         this.state = {
             isVisible: this.props.show || false,
             title: '',
+            leftText: '',
+            rightText: '',
             onLeftPress: () => { },
             onRightPress: () => { },
         };
@@ -69,8 +73,11 @@ export default class Alert extends Component<AlertProps, State> {
 
     /** 刷新控制显示和关闭 */
     UNSAFE_componentWillReceiveProps(nextProps: AlertProps) {
-        if (nextProps.show != this.state.isVisible)
-            this.setState({ isVisible: nextProps.show });
+        if (nextProps.show === true || nextProps.show === false) {
+            if (nextProps.show !== this.state.isVisible) {
+                this.setState({ isVisible: nextProps.show });
+            }
+        }
     }
 
     /** 关闭弹框 */
@@ -82,10 +89,12 @@ export default class Alert extends Component<AlertProps, State> {
         this.props.onClose && this.props.onClose();
     }
 
-    show(title: string, onRightPress: Function, onLeftPress: Function) {
+    show(title: string, onRightPress: Function, rightText: string, onLeftPress: Function, leftText: string) {
         this.setState({
             title,
+            leftText,
             onLeftPress,
+            rightText,
             onRightPress,
             isVisible: true,
         });
@@ -100,8 +109,8 @@ export default class Alert extends Component<AlertProps, State> {
                 </View>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                     <Button
-                        buttonLeftText={"取消"}
-                        buttonRightText={"确认"}
+                        buttonLeftText={this.state.leftText || "取消"}
+                        buttonRightText={this.state.rightText || "确认"}
                         isBorder={false}
                         onLeftPress={() => {
                             if ((this.props.onLeftPress && !this.props.onLeftPress()) || !this.props.onLeftPress)
