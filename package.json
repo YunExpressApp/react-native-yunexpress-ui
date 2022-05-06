@@ -1,6 +1,6 @@
 {
 	"name": "react-native-yunexpress-ui",
-	"version": "1.0.0",
+	"version": "0.1.19",
 	"description": "yunexpress-ui",
 	"main": "lib/commonjs/index",
 	"module": "lib/module/index",
@@ -39,7 +39,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/YunExpressApp/react-native-yunexpress-ui.git"
+		"url": "git+https://e.coding.net/yuntuapp/react-native-yunexpress-ui/react-native-yunexpress-ui.git"
 	},
 	"author": "康乐 <a522a@sohu.com> (https://github.com/ykl522)",
 	"license": "MIT",

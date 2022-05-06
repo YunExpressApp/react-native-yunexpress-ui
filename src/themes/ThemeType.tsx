@@ -6,7 +6,7 @@ export type ThemeType = {
 	fitIPhoneX?: boolean,
 	isLandscape?: boolean,
 	statusBarHeight?: number | undefined,
-	screenInset?: number | undefined,
+	screenInset?: any | undefined,
 	screenColor: string,
 	primaryColor: string,
 	secondaryColor: string,

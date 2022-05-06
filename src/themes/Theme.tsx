@@ -47,7 +47,6 @@ const isIPad = (() => {
 
 
 const Theme: ThemeType = {
-
 	themes: {
 		default: ThemeDefault,
 	},
@@ -68,10 +67,13 @@ const Theme: ThemeType = {
 
 	get statusBarHeight() {
 		if (Platform.OS === 'ios') {
-			if (this.isIPhoneX) return this.isLandscape ? 0 : (this.fitIPhoneX ? 44 : 20);
-			if (this.isPad) return 20;
+			if (this.isIPhoneX)
+				return this.isLandscape ? 0 : (this.fitIPhoneX ? 44 : 20);
+			if (this.isPad)
+				return 20;
 		} else if (Platform.OS === 'android') {
-			if (Platform.Version > 20) return StatusBar.currentHeight; //translucent StatusBar is required
+			if (Platform.Version > 20)
+				return StatusBar.currentHeight; //translucent StatusBar is required
 			return 0;
 		}
 		return this.isLandscape ? 0 : 20;
@@ -88,9 +90,24 @@ const Theme: ThemeType = {
 			bottom: isIPhoneX && fitIPhoneX ? (isLandscape ? 24 : 34) : 0,
 		});
 	},
-
+	screenColor: '',
+	primaryColor: '',
+	secondaryColor: '',
+	defaultColor: '',
+	defaultTextColor: '',
+	defaultTitleSize: 0,
+	defaultSubTitleSize: 0,
+	defaultCellLineHeight: 0,
+	pageColor: '',
+	defaultMargin10: undefined,
+	cardRadius: 0,
+	cardBorderWith: undefined,
+	cardBorderColor: '',
+	cardPaddingHorizontal: undefined,
+	cardPaddingVertical: undefined,
+	cellTitleColor: undefined
 };
 
-Theme.set(ThemeDefault);
+Theme.set!(ThemeDefault);
 
 export default Theme;
