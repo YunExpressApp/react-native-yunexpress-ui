@@ -38,7 +38,8 @@ const ThemeDefault: ThemeType = {
 	cardPaddingVertical: 16 * w,
 	// border: 1px solid #D4D4D4;
 	//Cell
-	cellTitleColor: '#999999'
+	cellTitleColor: '#999999',
+	w,
 }
 
 export default ThemeDefault;

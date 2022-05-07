@@ -90,22 +90,7 @@ const Theme: ThemeType = {
 			bottom: isIPhoneX && fitIPhoneX ? (isLandscape ? 24 : 34) : 0,
 		});
 	},
-	screenColor: '',
-	primaryColor: '',
-	secondaryColor: '',
-	defaultColor: '',
-	defaultTextColor: '',
-	defaultTitleSize: 0,
-	defaultSubTitleSize: 0,
-	defaultCellLineHeight: 0,
-	pageColor: '',
-	defaultMargin10: undefined,
-	cardRadius: 0,
-	cardBorderWith: undefined,
-	cardBorderColor: '',
-	cardPaddingHorizontal: undefined,
-	cardPaddingVertical: undefined,
-	cellTitleColor: undefined
+	w: 0
 };
 
 Theme.set!(ThemeDefault);

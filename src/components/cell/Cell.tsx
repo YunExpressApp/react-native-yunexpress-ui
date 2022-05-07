@@ -25,18 +25,17 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		flexWrap: 'wrap'
+		flexWrap: 'wrap',
+		paddingVertical: 8 * Theme.w
 	},
 	ltitle: {
 		color: Theme.cellTitleColor,
 		fontSize: Theme.defaultSubTitleSize,
-		minHeight: Theme.defaultCellLineHeight,
 		flex: 1
 	},
 	rtitle: {
 		color: Theme.cellTitleColor,
 		fontSize: Theme.defaultSubTitleSize,
-		minHeight: Theme.defaultCellLineHeight,
 		flex: 1,
 		textAlign: 'right'
 	}

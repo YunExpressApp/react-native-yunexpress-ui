@@ -16,12 +16,21 @@ import { YTCard } from 'react-native-yunexpress-ui';
 ## Demo
 
 ```js
-<YTCard title='标题文字' onPress={() => {}}>
+<YTCard style={styles.card} onPress={() => { }}>
+	<YTTitle style={{ marginBottom: 10 * w }}>标题文字</YTTitle>
 	<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
 	<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
 	<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
 	<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
 </YTCard>
+
+
+const styles = StyleSheet.create({
+	card: {
+		paddingHorizontal: Theme.cardPaddingHorizontal,
+		paddingVertical: Theme.cardPaddingVertical
+	}
+});
 ```
 
 ## Props
