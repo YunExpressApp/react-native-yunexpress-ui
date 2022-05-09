@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
 		borderWidth: Theme.cardBorderWith,
 		borderColor: Theme.cardBorderColor,
 		width: '100%',
-
+		backgroundColor: '#FFFFFF',
+		overflow: 'hidden'
 	},
 	title: {
 		marginBottom: Theme.defaultMargin10
