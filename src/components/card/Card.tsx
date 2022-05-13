@@ -2,17 +2,12 @@
 import React from "react";
 import { StyleProp, StyleSheet, TextStyle, TouchableOpacity, ViewStyle } from "react-native";
 import Theme from '../../themes/Theme'
-import Title from "../title/Title";
 
 type CardType = {
 	/**
 	 * 卡片里面的内容
 	 */
 	children?: JSX.Element | JSX.Element[] | never[],
-	/**
-	 * 卡片标题
-	 */
-	title?: string,
 	/**
 	 * 卡片样式
 	 */
@@ -30,15 +25,12 @@ type CardType = {
 
 export default function Card(props: CardType) {
 
-	let { children, title, style, titleStyle, onPress } = props;
+	let { children, style, onPress } = props;
 
 	return (
 		<TouchableOpacity style={[styles.container, style]} activeOpacity={1} onPress={() => {
 			onPress != null && onPress();
 		}}>
-			{
-				!!title && <Title style={[styles.title, titleStyle]}>{title || ""}</Title>
-			}
 			{children}
 		</TouchableOpacity>
 	)
@@ -50,8 +42,8 @@ const styles = StyleSheet.create({
 		borderWidth: Theme.cardBorderWith,
 		borderColor: Theme.cardBorderColor,
 		width: '100%',
-		paddingHorizontal: Theme.cardPaddingHorizontal,
-		paddingVertical: Theme.cardPaddingVertical
+		backgroundColor: '#FFFFFF',
+		overflow: 'hidden'
 	},
 	title: {
 		marginBottom: Theme.defaultMargin10

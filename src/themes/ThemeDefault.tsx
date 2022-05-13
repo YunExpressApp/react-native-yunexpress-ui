@@ -14,7 +14,7 @@ const defaultColor = '#fff';
 //default text color
 const defaultTextColor = '#111111';
 //默认的圆角
-const defaultRadius = 16 * w;
+const defaultRadius = 10 * w;
 
 const margin10 = 10 * w;
 
@@ -38,7 +38,8 @@ const ThemeDefault: ThemeType = {
 	cardPaddingVertical: 16 * w,
 	// border: 1px solid #D4D4D4;
 	//Cell
-	cellTitleColor: '#999999'
+	cellTitleColor: '#999999',
+	w,
 }
 
 export default ThemeDefault;

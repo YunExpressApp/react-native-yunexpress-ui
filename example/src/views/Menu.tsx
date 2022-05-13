@@ -3,6 +3,7 @@ import CardExample from "./CardExample";
 import CellExample from "./CellExample";
 import DatePickerExample from "./DatePickerExample";
 import TitleExample from "./TitleExample";
+import RefreshExample from "./RefreshExample";
 import CheckBoxExample from "./CheckBoxExample";
 import ButtonExample from "./ButtonExample";
 
@@ -36,6 +37,11 @@ export default [
 		page: CardExample,
 		name: 'CardExample',
 		descr: 'Card卡片组件'
+	},
+	{
+		page: RefreshExample,
+		name: 'RefreshExample',
+		descr: 'Refresh上拉加载下拉刷新组件'
 	},
 	{
 		page: CheckBoxExample,

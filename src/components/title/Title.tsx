@@ -19,6 +19,6 @@ const styles = StyleSheet.create({
 	title: {
 		color: Theme.defaultTextColor,
 		fontSize: Theme.defaultTitleSize,
-		fontWeight: 'bold'
+		fontWeight: '400'
 	}
 })

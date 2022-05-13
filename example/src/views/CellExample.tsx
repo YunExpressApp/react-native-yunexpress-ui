@@ -6,6 +6,10 @@ export default function CellExample() {
 	return (
 		<View style={styles.container}>
 			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
 		</View>
 	);
 }
