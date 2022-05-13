@@ -33,3 +33,8 @@ export { default as YTCell } from './components/cell/index'
  * card卡片
  */
 export { default as YTCard } from './components/card/index'
+
+/**
+ * 单选组件
+ */
+export { default as CheckBox } from './components/checkbox/index'

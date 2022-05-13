@@ -9,6 +9,9 @@ import {
     TouchableOpacity,
     Text,
     StyleSheet,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
 } from 'react-native'
 import React from 'react'
 import { Color, w } from '../../util/CStyle';
@@ -18,23 +21,23 @@ import { Color, w } from '../../util/CStyle';
  */
 interface ButtonProps {
     /** 是否有边框 */
-    isBorder: boolean,
+    isBorder?: boolean,
     /** 样式 */
-    style: any,
+    style?: StyleProp<ViewStyle>,
     /** 按钮样式 */
-    btnStyle: any,
-    /** 右边按钮文本 */
+    btnStyle?: StyleProp<ViewStyle>,
+    /** 右边按钮文本,如果只要一个按钮不设置buttonLeftText */
     buttonRightText: string,
     /** 右边按钮文本样式 */
-    btnRightTextStyle: any,
+    btnRightTextStyle?: StyleProp<TextStyle>,
     /** 左边按钮文本 */
-    buttonLeftText: string,
+    buttonLeftText?: string,
     /** 左边按钮文本样式 */
-    btnLeftTextStyle: any,
+    btnLeftTextStyle?: StyleProp<TextStyle>,
     /** 右边按钮点击回调函数 */
     onRightPress: Function,
     /** 左边按钮点击回调函数 */
-    onLeftPress: Function,
+    onLeftPress?: Function,
 }
 
 /**
