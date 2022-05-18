@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Theme } from 'react-native-yunexpress-ui';
 import ComponentMenu from './Menu';
 
 interface ItemType {
@@ -14,6 +15,10 @@ export default function Home({ navigation }: any) {
 	const DATA = ComponentMenu.map(item => (
 		{ name: item.name, descr: item.descr }
 	))
+
+	useEffect(() => {
+		Theme.setI18n("en");
+	}, []);
 
 	const renderItem = ({ item }: ItemType) => {
 		return (

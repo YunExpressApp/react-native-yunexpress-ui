@@ -13,7 +13,7 @@ export default function CardExample() {
 					<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
 					<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
 				</View>
-				<YTCardButtons btns={[{ title: "查看详情", style: { color: 'blue' } }, { title: "查看详情", style: { color: 'blue' } }]}></YTCardButtons>
+				<YTCardButtons btns={[{ title: "查看详情" }, { title: "查看详情", style: { color: '#1592A3' } }]}></YTCardButtons>
 			</YTCard>
 		</View>
 	);

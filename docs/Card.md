@@ -17,23 +17,27 @@ import { YTCard } from 'react-native-yunexpress-ui';
 
 ```js
 <YTCard style={styles.card} onPress={() => { }}>
-	<YTTitle style={{ marginBottom: 10 * w }}>标题文字</YTTitle>
-	<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
-	<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
-	<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
-	<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+	<View style={styles.content}>
+		<YTTitle style={{ marginBottom: 10 * w }}>标题文字</YTTitle>
+		<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+		<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+		<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+		<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+	</View>
+	<YTCardButtons btns={[{ title: "查看详情" }, { title: "查看详情", style: { color: '#1592A3' } }]}></YTCardButtons>
 </YTCard>
 
 
 const styles = StyleSheet.create({
-	card: {
+	card: {},
+	content: {
 		paddingHorizontal: Theme.cardPaddingHorizontal,
 		paddingVertical: Theme.cardPaddingVertical
 	}
 });
 ```
 
-## Props
+## YTCard Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
 | children | JSX.Element | JSX.Element[] | never[] |  | 卡片里面的内容
@@ -41,6 +45,15 @@ const styles = StyleSheet.create({
 | style | ViewStyle |  | 卡片样式
 | titleStyle | TextStyle | {} | 卡片标题文字样式
 | onPress | Function |  | 卡片点击事件
+ 
+ 
+## YTCardButtons Props
+| Prop | Type | Default | Note |
+|---|---|---|---|
+| btns | [] | '' | 按钮数组列表
+| --style | TextStyle |  | 按钮文字样式
+| --title | String |  | 按钮文案
+| --onPress | Function |  | 按钮点击事件
  
 ## Contributing
 

@@ -4,6 +4,7 @@ import { Platform, Dimensions, StatusBar } from 'react-native';
 
 import ThemeDefault from './ThemeDefault';
 import type { ThemeType } from './ThemeType';
+import { i18n } from '../i18n';
 
 const X_WIDTH = 375;
 const X_HEIGHT = 812;
@@ -63,6 +64,13 @@ const Theme: ThemeType = {
 
 	get isLandscape() {
 		return Dimensions.get('window').width > Dimensions.get('window').height;
+	},
+
+	setI18n(locale?: string) {
+
+		console.log("***************************" + locale)
+		//设置国际化
+		i18n.locale = locale;
 	},
 
 	get statusBarHeight() {

@@ -11,6 +11,8 @@ import {
 	ViewStyle
 } from 'react-native'
 
+import { i18n } from '../../i18n';
+
 export const RefreshState = {
 	Idle: 0,
 	HeaderRefreshing: 1,
@@ -55,11 +57,12 @@ type State = {
 class Refresh extends PureComponent<Props | any, State> {
 
 	static defaultProps = {
-		footerRefreshingText: '数据加载中…',
-		footerFailureText: '加载失败,点击重新加载',
-		footerNoMoreDataText: '已加载全部数据',
-		footerEmptyDataText: '暂时没有相关数据',
+		// footerRefreshingText: i18n.t("Refresh.FooterRefreshingText"),
+		// footerFailureText: i18n.t("Refresh.FooterFailureText"),
+		// footerNoMoreDataText: i18n.t("Refresh.FooterNoMoreDataText"),
+		// footerEmptyDataText: i18n.t("Refresh.FooterEmptyDataText"),
 	}
+
 
 	// componentWillReceiveProps(nextProps: Props) {
 	//     log('[RefreshListView]  RefreshListView componentWillReceiveProps ' + nextProps.refreshState)
@@ -151,17 +154,19 @@ class Refresh extends PureComponent<Props | any, State> {
 	renderFooter = () => {
 		let footer = null
 
+
 		let {
-			footerRefreshingText,
-			footerFailureText,
-			footerNoMoreDataText,
-			footerEmptyDataText,
+			footerRefreshingText = i18n.t("Refresh.FooterRefreshingText"),
+			footerFailureText = i18n.t("Refresh.FooterFailureText"),
+			footerNoMoreDataText = i18n.t("Refresh.FooterNoMoreDataText"),
+			footerEmptyDataText = i18n.t("Refresh.FooterEmptyDataText"),
 
 			footerRefreshingComponent,
 			footerFailureComponent,
 			footerNoMoreDataComponent,
 			footerEmptyDataComponent,
 		} = this.props
+
 
 		switch (this.props.refreshState) {
 			case RefreshState.Idle:
