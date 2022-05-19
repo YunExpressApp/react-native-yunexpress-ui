@@ -4,12 +4,19 @@ import CellExample from "./CellExample";
 import DatePickerExample from "./DatePickerExample";
 import TitleExample from "./TitleExample";
 import RefreshExample from "./RefreshExample";
+import CheckBoxExample from "./CheckBoxExample";
+import ButtonExample from "./ButtonExample";
 
 export default [
 	{
 		page: AlertExample,
 		name: 'Alert',
 		descr: "Alert弹框"
+	},
+	{
+		page: ButtonExample,
+		name: 'Button',
+		descr: "Button按钮"
 	},
 	{
 		page: DatePickerExample,
@@ -35,5 +42,10 @@ export default [
 		page: RefreshExample,
 		name: 'RefreshExample',
 		descr: 'Refresh上拉加载下拉刷新组件'
+	},
+	{
+		page: CheckBoxExample,
+		name: 'CheckBoxExample',
+		descr: 'CheckBox组件'
 	},
 ]

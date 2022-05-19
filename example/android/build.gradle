@@ -7,9 +7,15 @@ buildscript {
         targetSdkVersion = 29
     }
     repositories {
-        google()
-        mavenCentral()
-        jcenter()
+      jcenter()
+      mavenLocal()
+      google()
+      maven { url "https://repo1.maven.org/maven2" }
+      // hms
+      maven { url 'http://developer.huawei.com/repo/'}
+      // fcm
+      maven { url "https://maven.google.com" }
+      maven { url "https://jitpack.io" }
     }
     dependencies {
       classpath 'com.android.tools.build:gradle:4.1.0'

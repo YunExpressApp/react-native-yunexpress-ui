@@ -68,7 +68,7 @@ const Theme: ThemeType = {
 
 	setI18n(locale?: string) {
 
-		console.log("***************************" + locale)
+		// console.log("***************************" + locale)
 		//设置国际化
 		i18n.locale = locale;
 	},

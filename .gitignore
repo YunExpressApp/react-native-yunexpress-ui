@@ -66,3 +66,4 @@ lib/
 src/.umi/*
 *.lock
 .npmrc
+package-lock.json

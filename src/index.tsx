@@ -34,7 +34,7 @@ export { default as YTCell } from './components/cell/index'
  */
 export { default as YTCard } from './components/card/index'
 
-/**
+/*
  * card卡片底部按钮
  */
 export { default as YTCardButtons } from './components/cardbuttons/index'
@@ -52,3 +52,7 @@ export { default as YTRefresh } from './components/refresh/index';
  */
 export { RefreshState as YTRefreshState } from './components/refresh/Refresh';
 
+/**
+ * 单选组件
+ */
+export { default as CheckBox } from './components/checkbox/index'

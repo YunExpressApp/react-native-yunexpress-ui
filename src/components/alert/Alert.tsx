@@ -9,7 +9,9 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Modal
+    Modal,
+    StyleProp,
+    TextStyle
 } from 'react-native';
 import { w } from '../../util/CStyle';
 import Button from '../button';
@@ -19,15 +21,19 @@ import Button from '../button';
  */
 type AlertProps = {
     /** 是否显示弹框 */
-    show: boolean,
+    show?: boolean,
     /** 弹框关闭时回调，必加属性，关闭后设为不显示 */
-    onClose: Function,
+    onClose?: Function,
     /** 弹框内容 */
-    title: string,
+    title?: string,
     /** 左边按钮点击回调 */
-    onLeftPress: Function,
+    onLeftPress?: Function,
     /** 右边按钮点击回调 */
-    onRightPress: Function,
+    onRightPress?: Function,
+    /** 子组件 */
+    children?: any,
+    /** 弹框文字样式 */
+    titleStyle?: StyleProp<TextStyle>
 }
 
 /**
@@ -38,9 +44,9 @@ type State = {
     isVisible: boolean,
     /** 弹框内容 */
     title: string,
-    leftText: string,
-    rightText: string,
-    onLeftPress: Function,
+    leftText: string | undefined,
+    rightText: string | undefined,
+    onLeftPress: Function | undefined,
     onRightPress: Function,
 }
 
@@ -89,7 +95,7 @@ export default class Alert extends Component<AlertProps, State> {
         this.props.onClose && this.props.onClose();
     }
 
-    show(title: string, onRightPress: Function, rightText: string, onLeftPress: Function, leftText: string) {
+    show(title: string, onRightPress: Function, rightText?: string, onLeftPress?: Function, leftText?: string) {
         this.setState({
             title,
             leftText,
@@ -105,7 +111,8 @@ export default class Alert extends Component<AlertProps, State> {
         return (
             <View style={styles.modalStyle}>
                 <View style={{ paddingTop: 46 * w, paddingHorizontal: 32 * w }}>
-                    <Text style={{ fontSize: 25 * w, color: '#111', fontWeight: '500' }}>{this.state.title || this.props.title || ""}</Text>
+                    <Text style={[{ fontSize: 25 * w, color: '#111', fontWeight: '500' }, this.props.titleStyle]}>{this.state.title || this.props.title || ""}</Text>
+                    {this.props.children}
                 </View>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                     <Button

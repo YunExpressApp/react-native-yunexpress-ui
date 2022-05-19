@@ -6,14 +6,14 @@ import zh from './zh/zh';
 
 import fr from './fr/fr';
 
-i18n.defaultLocale = 'fr';
+// i18n.defaultLocale = 'fr';
 
-i18n.fallbacks = true;
+// i18n.fallbacks = true;
 
-i18n.translations = {
-	en,
-	zh,
-	fr
-};
+// i18n.translations = {
+// 	en,
+// 	zh,
+// 	fr
+// };
 
 export { i18n };

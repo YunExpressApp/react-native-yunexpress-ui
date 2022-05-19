@@ -9,8 +9,11 @@ import {
     TouchableOpacity,
     Text,
     StyleSheet,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
 } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Color, w } from '../../util/CStyle';
 
 /**
@@ -18,23 +21,23 @@ import { Color, w } from '../../util/CStyle';
  */
 interface ButtonProps {
     /** 是否有边框 */
-    isBorder: boolean,
+    isBorder?: boolean,
     /** 样式 */
-    style: any,
+    style?: StyleProp<ViewStyle>,
     /** 按钮样式 */
-    btnStyle: any,
-    /** 右边按钮文本 */
+    btnStyle?: StyleProp<ViewStyle>,
+    /** 右边按钮文本,如果只要一个按钮不设置buttonLeftText */
     buttonRightText: string,
     /** 右边按钮文本样式 */
-    btnRightTextStyle: any,
+    btnRightTextStyle?: StyleProp<TextStyle>,
     /** 左边按钮文本 */
-    buttonLeftText: string,
+    buttonLeftText?: string | undefined,
     /** 左边按钮文本样式 */
-    btnLeftTextStyle: any,
+    btnLeftTextStyle?: StyleProp<TextStyle>,
     /** 右边按钮点击回调函数 */
     onRightPress: Function,
     /** 左边按钮点击回调函数 */
-    onLeftPress: Function,
+    onLeftPress?: Function,
 }
 
 /**
@@ -49,37 +52,47 @@ interface ButtonProps {
  * 【btnLeftTextStyle】 左边文本样式 ----【btnRightTextStyle】 右边文本样式
  * 
  */
-export default class Button extends React.Component<ButtonProps> {
+export default function Button(props: ButtonProps) {
 
-    static defaultProps = {
-        /** 按钮文案 */
-        buttonText: 'Confirm',     //默认按钮文案
-        /** 是否有边框 */
-        isBorder: true,
-        /** 样式 */
-        style: undefined
-    };
+    const [buttonLeftText, setButtonLeftText] = useState(props.buttonLeftText)
+    const [buttonRightText, setButtonRightText] = useState(props.buttonRightText)
 
-    render() {
-        let borderStyle = this.props.isBorder ? { borderRadius: 42 * w, borderWidth: 1, margin: 10 * w } : null
-        let btnContainer = { ...styles.btnContainerAll, ...borderStyle }
-        return (
-            <View style={[btnContainer, styles.btnParent, this.props.style]}>
-                {this.props.buttonLeftText ? <TouchableOpacity
-                    style={[btnContainer, { backgroundColor: Color.c555, flex: 0.34 }, this.props.btnStyle]}
-                    activeOpacity={0.8}
-                    onPress={() => this.props.onLeftPress && this.props.onLeftPress()}>
-                    <Text style={[styles.white, { fontSize: 24 * w }, this.props.btnLeftTextStyle]}>{this.props.buttonLeftText}</Text>
-                </TouchableOpacity> : null}
-                <TouchableOpacity
-                    style={[btnContainer, { backgroundColor: Color.blue, flex: this.props.buttonLeftText ? 0.66 : 1 }, this.props.btnStyle]}
-                    activeOpacity={0.8}
-                    onPress={() => this.props.onRightPress && this.props.onRightPress()}>
-                    <Text style={[styles.white, { fontSize: 24 * w }, this.props.btnRightTextStyle]}>{this.props.buttonRightText}</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    }
+    useEffect(() => {
+        setButtonLeftText(props.buttonLeftText)
+    }, [props.buttonLeftText])
+
+    useEffect(() => {
+        setButtonRightText(props.buttonRightText)
+    }, [props.buttonRightText])
+
+    // static defaultProps = {
+    //     /** 按钮文案 */
+    //     buttonText: 'Confirm',     //默认按钮文案
+    //     /** 是否有边框 */
+    //     isBorder: true,
+    //     /** 样式 */
+    //     style: undefined
+    // };
+
+
+    let borderStyle = props.isBorder ? { borderRadius: 42 * w, borderWidth: 1, margin: 10 * w } : null
+    let btnContainer = { ...styles.btnContainerAll, ...borderStyle }
+    return (
+        <View style={[btnContainer, styles.btnParent, props.style]}>
+            {buttonLeftText ? <TouchableOpacity
+                style={[btnContainer, { backgroundColor: Color.c555, flex: 0.34 }, props.btnStyle]}
+                activeOpacity={0.8}
+                onPress={() => props.onLeftPress && props.onLeftPress()}>
+                <Text style={[styles.white, { fontSize: 24 * w }, props.btnLeftTextStyle]}>{buttonLeftText}</Text>
+            </TouchableOpacity> : null}
+            <TouchableOpacity
+                style={[btnContainer, { backgroundColor: Color.blue, flex: buttonLeftText ? 0.66 : 1 }, props.btnStyle]}
+                activeOpacity={0.8}
+                onPress={() => props.onRightPress && props.onRightPress()}>
+                <Text style={[styles.white, { fontSize: 24 * w }, props.btnRightTextStyle]}>{buttonRightText}</Text>
+            </TouchableOpacity>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
