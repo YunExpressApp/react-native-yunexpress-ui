@@ -40,6 +40,7 @@ const ThemeDefault: ThemeType = {
 	//Cell
 	cellTitleColor: '#999999',
 	w,
+	locale: 'en'
 }
 
 export default ThemeDefault;
