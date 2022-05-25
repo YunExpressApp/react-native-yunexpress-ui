@@ -11,8 +11,6 @@ import {
 	ViewStyle
 } from 'react-native'
 
-import { i18n } from '../../i18n';
-
 export const RefreshState = {
 	Idle: 0,
 	HeaderRefreshing: 1,
