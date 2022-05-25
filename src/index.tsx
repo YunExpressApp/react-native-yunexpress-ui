@@ -53,3 +53,8 @@ export { RefreshState as YTRefreshState } from './components/refresh/Refresh';
  * 单选组件
  */
 export { default as CheckBox } from './components/checkbox/index'
+
+/**
+ * 状态微章
+ */
+export { default as YTStatusBages } from './components/statusbages/index'

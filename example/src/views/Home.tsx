@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
-// import { Theme } from 'react-native-yunexpress-ui';
+import { Theme } from 'react-native-yunexpress-ui';
 import ComponentMenu from './Menu';
 
 interface ItemType {
@@ -16,9 +16,10 @@ export default function Home({ navigation }: any) {
 		{ name: item.name, descr: item.descr }
 	))
 
-	// useEffect(() => {
-	// 	Theme.setI18n("en");
-	// }, []);
+	useEffect(() => {
+		// Theme.setI18n("en");
+		Theme.locale = "en";
+	}, []);
 
 	const renderItem = ({ item }: ItemType) => {
 		return (
@@ -37,7 +38,7 @@ export default function Home({ navigation }: any) {
 				data={DATA}
 				renderItem={renderItem}
 				ItemSeparatorComponent={() => <View style={styles.line}></View>}
-				keyExtractor={(_item, index) => `${index}`}
+				keyExtractor={(item, index) => `${index}`}
 			/>
 		</View>
 	);

@@ -6,6 +6,7 @@ import TitleExample from "./TitleExample";
 import RefreshExample from "./RefreshExample";
 import CheckBoxExample from "./CheckBoxExample";
 import ButtonExample from "./ButtonExample";
+import StatusBadgeExample from "./StatusBadgeExample";
 
 export default [
 	{
@@ -48,4 +49,9 @@ export default [
 		name: 'CheckBoxExample',
 		descr: 'CheckBox组件'
 	},
+	{
+		page: StatusBadgeExample,
+		name: 'StatusBadgeExample',
+		descr: 'StatusBadge状态徽章组件'
+	}
 ]

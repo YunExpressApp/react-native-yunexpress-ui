@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './views/Home';
 const Stack = createStackNavigator();
 import ComponentMenu from './views/Menu';
-import { Theme } from 'react-native-yunexpress-ui';
 
 const pages: Array<any> = ComponentMenu;
 

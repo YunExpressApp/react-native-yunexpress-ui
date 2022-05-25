@@ -1,3 +1,4 @@
+import i18n from '../../i18n'
 import React, { PureComponent } from 'react'
 import {
 	View,
@@ -10,6 +11,7 @@ import {
 	StyleProp,
 	ViewStyle
 } from 'react-native'
+
 
 export const RefreshState = {
 	Idle: 0,
@@ -154,15 +156,15 @@ class Refresh extends PureComponent<Props | any, State> {
 
 
 		let {
-			// footerRefreshingText = i18n.t("Refresh.FooterRefreshingText"),
-			// footerFailureText = i18n.t("Refresh.FooterFailureText"),
-			// footerNoMoreDataText = i18n.t("Refresh.FooterNoMoreDataText"),
-			// footerEmptyDataText = i18n.t("Refresh.FooterEmptyDataText"),
+			footerRefreshingText = i18n.t("FooterRefreshingText"),
+			footerFailureText = i18n.t("FooterFailureText"),
+			footerNoMoreDataText = i18n.t("FooterNoMoreDataText"),
+			footerEmptyDataText = i18n.t("FooterEmptyDataText"),
 
-			footerRefreshingText = '数据加载中…',
-			footerFailureText = '加载失败,点击重新加载',
-			footerNoMoreDataText = '已加载全部数据',
-			footerEmptyDataText = '暂时没有相关数据',
+			// footerRefreshingText = '数据加载中…',
+			// footerFailureText = '加载失败,点击重新加载',
+			// footerNoMoreDataText = '已加载全部数据',
+			// footerEmptyDataText = '暂时没有相关数据',
 
 			footerRefreshingComponent,
 			footerFailureComponent,

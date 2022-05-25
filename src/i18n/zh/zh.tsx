@@ -8,11 +8,8 @@
  */
 
 export default {
-	Common: {},
-	Refresh: {
-		FooterRefreshingText: '数据加载中…',
-		FooterFailureText: '加载失败,点击重新加载',
-		FooterNoMoreDataText: '已加载全部数据',
-		FooterEmptyDataText: '暂时没有相关数据',
-	}
+	FooterRefreshingText: '数据加载中…',
+	FooterFailureText: '加载失败,点击重新加载',
+	FooterNoMoreDataText: '已加载全部数据',
+	FooterEmptyDataText: '暂时没有相关数据',
 }

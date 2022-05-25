@@ -27,5 +27,5 @@ export type ThemeType = {
 	cellTitleColor?: string | undefined,
 	padding?: Function,
 	w: number,
-	setI18n?: Function | any
+	locale?: string,
 };
