@@ -37,7 +37,6 @@ const Remark = (props: RemarkProps, ref: Ref<RemarkRef>) => {
 	}))
 
 	const save = () => {
-		console.log(cBack);
 		if (cBack) {
 			cBack(value);
 		}
