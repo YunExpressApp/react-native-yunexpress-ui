@@ -2,7 +2,7 @@
 	"name": "react-native-yunexpress-ui-example",
 	"description": "Example app for react-native-yunexpress-ui",
 	"version": "0.0.1",
-	"private": true,
+	"private": false,
 	"scripts": {
 		"android": "react-native run-android",
 		"ios": "react-native run-ios",

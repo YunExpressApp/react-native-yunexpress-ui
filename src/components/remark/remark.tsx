@@ -3,19 +3,21 @@ import {
 	Modal,
 	StyleSheet,
 	Text,
-	View, TouchableOpacity, TextInput, ScrollView
+	View, TouchableOpacity, TextInput, ScrollView, Dimensions
 } from "react-native";
-import { w } from '../../util/CStyle';
+// import { w } from '../../util/CStyle';
 import Theme from '../../themes/Theme'
 import i18n from '../../i18n'
 
+let width: number = Dimensions.get('window').width;
+let w: number = width / 480;  //效果是基于480设计的
 
 export type RemarkRef = {
 	show: (val?: string, callback?: Function) => void
 }
 
 export type RemarkProps = {
-	maxLength?: number,
+	maxLength?: number,  //备注最大长度
 	placeholder?: string
 }
 
