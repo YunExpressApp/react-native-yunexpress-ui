@@ -47,9 +47,6 @@ export { default as Theme } from './themes/Theme'
  */
 export { default as YTRefresh } from './components/refresh/index';
 
-/**
- * 刷新组件的各种状态
- */
 export { RefreshState as YTRefreshState } from './components/refresh/Refresh';
 
 /**

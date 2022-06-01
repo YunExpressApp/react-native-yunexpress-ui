@@ -97,8 +97,11 @@ export const Color = {
 export function myAlert(data1: any, data2: any) {
 	console.log(data1);
 	console.log(data2);
-	//   if (__DEV__)
-	//     alert(JSON.stringify(data1, null, 2) + (data2 ? JSON.stringify(data2, null, 2) : ''))
+	if (__DEV__) {
+		// @ts-ignore
+		alert(JSON.stringify(data1, null, 2) + (data2 ? JSON.stringify(data2, null, 2) : ''))
+	}
+
 }
 
 /**

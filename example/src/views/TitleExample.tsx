@@ -1,11 +1,13 @@
 import React from 'react'
-import { StyleSheet, View } from "react-native";
-import { YTTitle } from 'react-native-yunexpress-ui';
+import { StyleSheet, Text, View } from "react-native";
+// import { myAlert } from 'react-native-yunexpress-ui';
 export default function TitleExample() {
 
 	return (
 		<View style={styles.container}>
-			<YTTitle>标题组件</YTTitle>
+			<Text onPress={() => {
+				// myAlert("1")
+			}}>标题组件</Text>
 		</View>
 	);
 }

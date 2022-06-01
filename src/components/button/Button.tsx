@@ -89,7 +89,7 @@ export default function Button(props: ButtonProps) {
                 style={[btnContainer, { backgroundColor: Color.blue, flex: buttonLeftText ? 0.66 : 1 }, props.btnStyle]}
                 activeOpacity={0.8}
                 onPress={() => props.onRightPress && props.onRightPress()}>
-                <Text style={[styles.white, { fontSize: 24 * w }, props.btnRightTextStyle]}>{buttonRightText}</Text>
+                <Text style={[styles.white, { fontSize: 24 * w }, props.btnRightTextStyle]}>{buttonRightText}11</Text>
             </TouchableOpacity>
         </View>
     )
