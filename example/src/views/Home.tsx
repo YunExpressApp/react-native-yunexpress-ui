@@ -18,7 +18,7 @@ export default function Home({ navigation }: any) {
 
 	useEffect(() => {
 		// Theme.setI18n("en");
-		Theme.locale = "en";
+		Theme.locale = "zh";
 	}, []);
 
 	const renderItem = ({ item }: ItemType) => {

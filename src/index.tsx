@@ -61,3 +61,10 @@ export { default as CheckBox } from './components/checkbox/index'
  * 状态微章
  */
 export { default as YTStatusBages } from './components/statusbages/index'
+
+/**
+ * 备注组件
+ */
+export { default as YTRemark } from './components/remark/index'
+export { RemarkProps as YTRemarkProps } from './components/remark/remark'
+export { RemarkRef as YTRemarkRef } from './components/remark/remark'

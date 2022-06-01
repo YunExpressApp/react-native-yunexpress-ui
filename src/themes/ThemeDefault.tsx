@@ -6,7 +6,7 @@ import type { ThemeType } from './ThemeType';
 
 
 //primary color
-const primaryColor = '#337ab7';
+const primaryColor = '#1592A3';
 //secondary color
 const secondaryColor = '#5bc0de';
 //default color

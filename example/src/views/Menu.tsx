@@ -7,6 +7,7 @@ import RefreshExample from "./RefreshExample";
 import CheckBoxExample from "./CheckBoxExample";
 import ButtonExample from "./ButtonExample";
 import StatusBadgeExample from "./StatusBadgeExample";
+import RemarkExample from "./RemarkExample";
 
 export default [
 	{
@@ -53,5 +54,12 @@ export default [
 		page: StatusBadgeExample,
 		name: 'StatusBadgeExample',
 		descr: 'StatusBadge状态徽章组件'
+	},
+	{
+		page: RemarkExample,
+		name: 'RemarkExample',
+		descr: 'RemarkExample备注输入框组件'
 	}
+
+	
 ]
