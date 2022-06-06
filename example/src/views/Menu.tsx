@@ -8,6 +8,7 @@ import CheckBoxExample from "./CheckBoxExample";
 import ButtonExample from "./ButtonExample";
 import StatusBadgeExample from "./StatusBadgeExample";
 import RemarkExample from "./RemarkExample";
+import FormExample from "./FormExample";
 
 export default [
 	{
@@ -59,7 +60,12 @@ export default [
 		page: RemarkExample,
 		name: 'RemarkExample',
 		descr: 'RemarkExample备注输入框组件'
+	},
+	{
+		page: FormExample,
+		name: 'FormExample',
+		descr: 'FormExample表单组件'
 	}
 
-	
+
 ]

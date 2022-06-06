@@ -1,3 +1,3 @@
-import Remark from './remark'
+import RemarkItem from './RemarkItem'
 
-export default Remark
+export default RemarkItem

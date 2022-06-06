@@ -1,25 +1,12 @@
-import React, { useRef, useState } from 'react'
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { YTRemark, YTRemarkRef, YTTitle } from 'react-native-yunexpress-ui';
+import React, { useState } from 'react'
+import { StyleSheet, View } from "react-native";
+import { YTRemarkItem } from 'react-native-yunexpress-ui';
 
 export default function RemarkExample() {
-
-	const ytRemarkRef = useRef<YTRemarkRef | null>();
-	const [value, setValue] = useState<string | null>('');
+	const [value, setValue] = useState<string | undefined>('');
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity onPress={() => {
-				ytRemarkRef.current?.show("", (val?: string) => {
-					console.log(val || "")
-					setValue(val || "");
-				});
-			}}>
-				<YTTitle>显示</YTTitle>
-
-			</TouchableOpacity>
-			{!!value && <YTTitle>{"结果：" + value}</YTTitle>}
-
-			<YTRemark ref={r => ytRemarkRef.current = r}></YTRemark>
+			<YTRemarkItem label='备注' value={value} onChange={(val: string) => { setValue(val) }}></YTRemarkItem>
 		</View>
 	);
 }
@@ -29,7 +16,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: 'white',
 		justifyContent: 'center',
-		alignItems: 'center',
 		padding: 24
 	}
 });
