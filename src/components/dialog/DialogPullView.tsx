@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from 'prop-types';
-import { Animated, View, ViewPropTypes } from 'react-native';
+import { Animated, ViewPropTypes } from 'react-native';
 
 import Theme from '../../themes/Theme';
 import DialogView from './DialogView';
@@ -79,7 +79,6 @@ export default class DialogPullView extends DialogSuperView {
 		if (!rootTransform || rootTransform === 'none') {
 			return [];
 		}
-		let transform;
 		switch (rootTransform) {
 			case 'translate':
 				switch (side) {
@@ -88,7 +87,6 @@ export default class DialogPullView extends DialogSuperView {
 					case 'right': return [{ translateX: -this.viewLayout.width }];
 					default: return [{ translateY: -this.viewLayout.height }];
 				}
-				break;
 			case 'scale':
 				return [{ scaleX: 0.93 }, { scaleY: 0.93 }];
 			default:

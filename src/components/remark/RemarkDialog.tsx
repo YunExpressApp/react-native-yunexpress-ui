@@ -1,10 +1,9 @@
 
 import React, { Component } from "react";
 import {
-	Modal,
 	StyleSheet,
 	Text,
-	View, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView
+	View, TouchableOpacity, TextInput, ScrollView
 } from "react-native";
 import { w } from '../../util/CStyle';
 import Theme from '../../themes/Theme'

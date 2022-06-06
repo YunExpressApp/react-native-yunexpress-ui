@@ -120,8 +120,7 @@ export default class DialogView extends Component<any, any> {
 		this.setState({ elements });
 	}
 
-	removeAll(e: any) {
-		let { elements } = this.state;
+	removeAll() {
 		this.setState({ elements: [] });
 	}
 
@@ -208,7 +207,7 @@ export default class DialogView extends Component<any, any> {
 						{this.props.children}
 					</PureView>
 				</Animated.View>
-				{elements.map((item: { key: string; element: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, index: any) => {
+				{elements.map((item: { key: string; element: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
 					return (
 						<View key={'topView' + item.key} style={styles.overlay} pointerEvents='box-none'>
 							{item.element}

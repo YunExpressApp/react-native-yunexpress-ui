@@ -35,9 +35,9 @@ export default class DialogSuperView extends Component<any, any> {
 	constructor(props: any) {
 		super(props);
 		this.panResponder = PanResponder.create({
-			onStartShouldSetPanResponder: (e, gestureState) => true,
-			onPanResponderGrant: (e, gestureState) => this.touchStateID = gestureState.stateID,
-			onPanResponderRelease: (e, gestureState) => this.touchStateID == gestureState.stateID ? this.closeRequest() : null,
+			onStartShouldSetPanResponder: () => true,
+			onPanResponderGrant: (_e, gestureState) => this.touchStateID = gestureState.stateID,
+			onPanResponderRelease: (_e, gestureState) => this.touchStateID == gestureState.stateID ? this.closeRequest() : null,
 		});
 		this.state = {
 			overlayOpacity: new Animated.Value(0),
@@ -111,7 +111,7 @@ export default class DialogSuperView extends Component<any, any> {
 
 		if (animated) {
 			this.state.overlayOpacity.setValue(0);
-			Animated.parallel(this.appearAnimates.concat(additionAnimates || [])).start(e => this.appearCompleted());
+			Animated.parallel(this.appearAnimates.concat(additionAnimates || [])).start(() => this.appearCompleted());
 		} else {
 			this.state.overlayOpacity.setValue(this.overlayOpacity);
 			this.appearCompleted();
@@ -120,7 +120,7 @@ export default class DialogSuperView extends Component<any, any> {
 
 	disappear(animated = this.props.animated, additionAnimates = null) {
 		if (animated) {
-			Animated.parallel(this.disappearAnimates.concat(additionAnimates || [])).start(e => this.disappearCompleted());
+			Animated.parallel(this.disappearAnimates.concat(additionAnimates || [])).start(() => this.disappearCompleted());
 			this.state.overlayOpacity.addListener((e: any) => {
 				if (e.value < 0.01) {
 					this.state.overlayOpacity.stopAnimation();
@@ -167,7 +167,6 @@ export default class DialogSuperView extends Component<any, any> {
 	}
 
 	render() {
-		let { autoKeyboardInsets } = this.props;
 		return (
 			<View style={styles.screen} pointerEvents={this.overlayPointerEvents}>
 				<Animated.View

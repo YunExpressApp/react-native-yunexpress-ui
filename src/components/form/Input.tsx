@@ -1,8 +1,6 @@
 import React from "react";
 import { Text, TextInput, View, StyleSheet } from "react-native";
 import { w } from '../../util/CStyle';
-import Theme from '../../themes/Theme'
-import i18n from '../../i18n'
 
 const Input = () => {
 
