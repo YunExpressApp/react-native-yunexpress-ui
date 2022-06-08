@@ -9,6 +9,7 @@ import ButtonExample from "./ButtonExample";
 import StatusBadgeExample from "./StatusBadgeExample";
 import RemarkExample from "./RemarkExample";
 import FormExample from "./FormExample";
+import SegmentExample from "./SegmentExample";
 
 export default [
 	{
@@ -65,6 +66,11 @@ export default [
 		page: FormExample,
 		name: 'FormExample',
 		descr: 'FormExample表单组件'
+	},
+	{
+		page: SegmentExample,
+		name: 'SegmentExample',
+		descr: 'SegmentExample表单组件'
 	}
 
 

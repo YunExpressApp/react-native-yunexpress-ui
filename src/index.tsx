@@ -72,3 +72,8 @@ export { default as YTDialogView } from './components/dialog/index'
  */
 export { default as YTForm } from './components/form/index'
 
+/**
+ * 分段组件
+ */
+export { default as YTSegment } from './components/segment/index'
+
