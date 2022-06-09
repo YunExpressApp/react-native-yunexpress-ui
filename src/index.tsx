@@ -65,7 +65,10 @@ export { default as YTStatusBages } from './components/statusbages/index'
 export { default as YTRemarkItem } from './components/remark/index'
 
 
-export { default as YTDialogView } from './components/dialog/index'
+/**
+ * Modal 弹框组件
+ */
+export { default as YTDialog } from './components/dialog/index'
 
 /**
  * 表单组件

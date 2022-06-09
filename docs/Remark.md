@@ -1,8 +1,8 @@
 ---
-title: Remark组件
+title: Remark备注组件
 ---
 
-# Title组件
+# Remark备注组件
 
 ## Screenshots
 <img src="/assets/remark.gif" width="20%" height="20%"> 
@@ -10,25 +10,28 @@ title: Remark组件
 ## Usage
 
 ```js
-import { YTRemark, YTRemarkRef } from 'react-native-yunexpress-ui';
+import { YTRemarkItem } from 'react-native-yunexpress-ui';
 ```
 
 ## Demo
 
 ```js
-const ytRemarkRef = useRef<YTRemarkRef | null>();
-<YTRemark ref={r => ytRemarkRef.current = r}></YTRemark>
 
-ytRemarkRef.current?.show("", (val?: string) => {
-	
-});
+const [value, setValue] = useState<string | undefined>('');
+
+<YTRemarkItem label='备注' value={value} onChange={(val: string) => { setValue(val) }}></YTRemarkItem>
 ```
 
 ## Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
-| maxLength | number | 255 | 备注最大限制字数
-| placeholder | string | 请输入备注 | 
+| value | string | '' | 变量值
+| label | string | '' | 左边标题文案
+| style | ViewStyle | {} | 样式 
+| require | boolean | {} | 前面是否带红色 * 必填样式 
+| onChange | Function | (val: string) => {} | 回调事件 
+
+
 
 
 

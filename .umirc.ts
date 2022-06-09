@@ -7,7 +7,7 @@ export default defineConfig({
 	logo: '/assets/logo.png',
 	outputPath: 'docs-dist',
 	mode: 'doc',
-	publicPath: '/',
+	publicPath: './',
 	// more config: https://d.umijs.org/config
 	// 单语言配置方式如下
 	navs: [

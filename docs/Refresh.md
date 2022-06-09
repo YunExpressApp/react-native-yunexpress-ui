@@ -2,7 +2,7 @@
 title: Refresh组件
 ---
 
-# Card组件
+# Refresh组件
 
 ## Screenshots
 <img src="/assets/refresh.jpg" width="20%" height="20%"> 

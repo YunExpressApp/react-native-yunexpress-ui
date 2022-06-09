@@ -1,7 +1,9 @@
-import React from 'react'
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from 'react'
+import { StyleSheet, View } from "react-native";
 import { w, YTForm } from 'react-native-yunexpress-ui';
 export default function FormExample() {
+
+	const [value, setValue] = useState("JJJJJJJJJJ");
 
 	return (
 		<View style={styles.container}>
@@ -9,6 +11,9 @@ export default function FormExample() {
 			<YTForm.Input label='必选项' require numberOfLines={1} />
 			<YTForm.Input label='选择项' numberOfLines={1} />
 			<YTForm.Input label='输入项' numberOfLines={1} />
+			<YTForm.InputItem label='选择项' defaultValue={value} onClick={() => {
+				setValue("XXXXXXXX")
+			}} />
 		</View>
 	);
 }

@@ -1,6 +1,6 @@
 {
 	"name": "react-native-yunexpress-ui",
-	"version": "0.1.33",
+	"version": "0.1.36",
 	"description": "yunexpress-ui",
 	"main": "lib/commonjs/index",
 	"module": "lib/module/index",
@@ -30,6 +30,7 @@
 		"example": "npm run -C example start",
 		"pods": "cd example && pod-install --quiet",
 		"docs": "dumi dev",
+		"docs:build": "dumi build",
 		"docs:start": "dumi dev"
 	},
 	"keywords": [

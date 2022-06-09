@@ -9,11 +9,12 @@ type RemarkItemProps = {
 	value?: string | undefined,
 	label?: string,
 	style?: StyleProp<ViewStyle>,
-	onChange?: Function
+	onChange?: Function,
+	require?: boolean
 }
 
 const RemarkItem = (props: RemarkItemProps) => {
-	const { value, label, style, onChange } = props;
+	const { value, label, style, onChange, require } = props;
 	const [val, setVal] = useState<string | undefined>(value);
 	return (
 		<TouchableOpacity style={[s.container, style]} onPress={() => {
@@ -24,6 +25,7 @@ const RemarkItem = (props: RemarkItemProps) => {
 		}}>
 			<View style={s.left_box}>
 				<Text style={{ color: '#303030', fontSize: 22 * w, marginRight: 5 * w }}>
+					{require && <Text style={{ color: 'red' }}>*</Text>}
 					{label}
 				</Text>
 			</View>

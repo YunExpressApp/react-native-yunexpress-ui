@@ -1,3 +1,3 @@
-import DialogView from './DialogView'
+import Dialog from './Dialog'
 
-export default DialogView
+export default Dialog

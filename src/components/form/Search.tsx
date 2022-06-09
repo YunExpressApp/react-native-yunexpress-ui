@@ -19,8 +19,8 @@ const Search = (props: SearchType) => {
 	let { defaultValue = '', multiline, numberOfLines = 1, onChangeText, onSubmitEditing, placeholder, style } = props;
 	const [value, setValue] = useState(defaultValue);
 
-	return <View style={styles.container}>
-		<View style={[styles.content, style]}>
+	return <View style={[styles.container, style]}>
+		<View style={[styles.content]}>
 			<TextInput style={styles.searchTxt}
 				defaultValue={defaultValue}
 				value={value}

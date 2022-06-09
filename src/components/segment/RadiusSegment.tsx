@@ -6,7 +6,7 @@ type RadiusSegmentProps = {
 	leftText?: string,
 	rightText?: string,
 	defaultIndex?: number,
-	onSegmentChange?: Function,
+	onChange?: Function,
 	style?: StyleProp<ViewStyle>,
 }
 
@@ -38,7 +38,7 @@ export default class RadiusSegment extends Component<RadiusSegmentProps, RadiusS
 
 	segmentChange = (current: number) => {
 		this.setState({ current })
-		this.props.onSegmentChange && this.props.onSegmentChange(current);
+		this.props.onChange && this.props.onChange(current);
 	}
 
 	render() {
