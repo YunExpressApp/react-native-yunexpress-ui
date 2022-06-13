@@ -5,7 +5,10 @@ export default {
 	FooterEmptyDataText: 'No relevant data',
 
 	Cancel: "Cancel",
-	"Save": "Save",
-	"Remarks": "Remark",
+	Save: "Save",
+	Remarks: "Remark",
 	InputRemark: 'Please input remark',
+	Operation: "Operate",
+	ManuallyInput: "manual entry",
+	ManualInputPlz: "please input barcode number",
 }

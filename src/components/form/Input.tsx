@@ -1,30 +1,31 @@
 import React, { useState } from "react";
-import { Text, TextInput, View, StyleSheet } from "react-native";
+import { Text, TextInput, View, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
 import { w } from '../../util/CStyle';
 
 type InputType = {
 	label?: string,
 	defaultValue?: string,
 	multiline?: boolean,
-	numberOfLines?: number,
 	onChangeText?: Function,
-	require?: boolean
+	require?: boolean,
+	placeholder?: string,
+	style?: StyleProp<ViewStyle>,
+	labelStyle?: StyleProp<TextStyle>,
+	inputStyle?: StyleProp<ViewStyle>,
 }
 
 const Input = (props: InputType) => {
-
-	let { label = '', defaultValue = '', multiline, numberOfLines = 1, onChangeText, require } = props;
+	let { label = '', defaultValue = '', multiline, onChangeText, require, placeholder, style, labelStyle, inputStyle } = props;
 	const [value, setValue] = useState(defaultValue);
-
-	return <View style={styles.container}>
-		<Text style={styles.leftTxt}>{label} {require && <Text style={styles.dot}>*</Text>}</Text>
+	return <View style={[styles.container, style]}>
+		<Text style={[styles.leftTxt, labelStyle]}>{require && <Text style={styles.dot}>*</Text>}{label}</Text>
 		<View style={styles.rightView}>
-			<TextInput style={styles.rightTxt}
+			<TextInput style={[styles.rightTxt, inputStyle]}
 				defaultValue={defaultValue}
 				value={value}
 				multiline={multiline}
-				numberOfLines={numberOfLines}
-				placeholder="请输入"
+				numberOfLines={1}
+				placeholder={placeholder || "请输入"}
 				onChangeText={(val: string) => {
 					setValue(val);
 					onChangeText != null && onChangeText(val);
@@ -33,8 +34,6 @@ const Input = (props: InputType) => {
 		</View>
 	</View>
 }
-
-
 export default Input;
 
 
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		// paddingHorizontal: 32 * w,
+		paddingHorizontal: 32 * w,
 	},
 	leftTxt: {
 		color: '#303030',

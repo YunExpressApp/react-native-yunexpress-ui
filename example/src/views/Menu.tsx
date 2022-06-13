@@ -10,6 +10,8 @@ import StatusBadgeExample from "./StatusBadgeExample";
 import RemarkExample from "./RemarkExample";
 import FormExample from "./FormExample";
 import SegmentExample from "./SegmentExample";
+import ActionSheetExample from "./ActionSheetExample";
+import NavBarExample from "./NavBarExample";
 
 export default [
 	{
@@ -58,6 +60,12 @@ export default [
 		descr: 'StatusBadge状态徽章组件'
 	},
 	{
+		page: NavBarExample,
+		name: 'NavBarExample',
+		descr: 'NavBarExample顶部导航栏组件'
+	},
+
+	{
 		page: RemarkExample,
 		name: 'RemarkExample',
 		descr: 'RemarkExample备注输入框组件'
@@ -71,6 +79,11 @@ export default [
 		page: SegmentExample,
 		name: 'SegmentExample',
 		descr: 'SegmentExample表单组件'
+	},
+	{
+		page: ActionSheetExample,
+		name: 'ActionSheetExample',
+		descr: 'ActionSheetExample底部选择组件'
 	}
 
 

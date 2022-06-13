@@ -8,9 +8,9 @@ export default function FormExample() {
 	return (
 		<View style={styles.container}>
 			<YTForm.Search />
-			<YTForm.Input label='必选项' require numberOfLines={1} />
-			<YTForm.Input label='选择项' numberOfLines={1} />
-			<YTForm.Input label='输入项' numberOfLines={1} />
+			<YTForm.Input label='必选项' require />
+			<YTForm.Input label='选择项' />
+			<YTForm.Input label='输入项' />
 			<YTForm.InputItem label='选择项' defaultValue={value} onClick={() => {
 				setValue("XXXXXXXX")
 			}} />
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: 'white',
-		paddingHorizontal: 32 * w,
+		// paddingHorizontal: 32 * w,
 		paddingVertical: 32 * w
 	}
 });

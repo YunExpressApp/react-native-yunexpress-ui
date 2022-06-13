@@ -4,8 +4,12 @@ export default {
 	FooterNoMoreDataText: 'Toutes les données sont chargées',
 	FooterEmptyDataText: 'Aucune donnée disponible',
 
-	"Cancel": "Annuler",
-	"Save": "enregistrer",
-	"Remarks": "Remarque",
-	InputRemark: "Veuillez entrer une note"
+	Cancel: "Annuler",
+	Save: "enregistrer",
+	Remarks: "Remarque",
+	InputRemark: "Veuillez entrer une note",
+	Operation: "fonctionner",
+	ManuallyInput: "Saisie manuelle",
+	ManualInputPlz: "请输入条码号!",
+
 }

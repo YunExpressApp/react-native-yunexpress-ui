@@ -17,4 +17,7 @@ export default {
 	Save: "保存",
 	Remarks: '备注',
 	InputRemark: '请输入备注',
+	Operation: "操作",
+	ManuallyInput: "手动输入",
+	ManualInputPlz: '请输入条码号!',
 }

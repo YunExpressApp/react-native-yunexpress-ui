@@ -80,3 +80,13 @@ export { default as YTForm } from './components/form/index'
  */
 export { default as YTSegment } from './components/segment/index'
 
+/**
+ * 底部弹框选择组件
+ */
+export { default as YTActionSheet } from './components/actionsheet/index'
+
+/**
+ * 导航栏顶部组件
+ */
+export { default as YTNavBar } from './components/navbar/index'
+
