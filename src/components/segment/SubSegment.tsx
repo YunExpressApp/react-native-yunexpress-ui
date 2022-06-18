@@ -1,29 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native";
 import { w } from '../../util/CStyle';
 
 type SubSegmentType = {
 	style?: StyleProp<ViewStyle>,
 	data?: string[],
+	colors?: string[],
 	index?: number,
 	onChange?: Function
 }
 
 const SubSegment = (props: SubSegmentType) => {
-	let { style, data = [], index = 0, onChange } = props;
-	const [current, setCurrent] = useState(index);
+	let { style, data = [], onChange, colors } = props;
+
 	const inteClick = (index: number) => {
-		setCurrent(index);
 		onChange && onChange(index);
 	}
 
 	const renderItems = () => {
 		let items = []
-		for (let index = 0; index < data.length; index++) {
-			const element = data[index];
+		for (let i = 0; i < data.length; i++) {
+			const element = data[i];
+			let indexColor = (i == props.index ? "#1693A4" : "#303030");
+			if (colors != null && i < colors.length) {
+				indexColor = colors[i];
+			}
 			items.push(
-				<TouchableOpacity activeOpacity={1} key={index} style={index == current ? styles.actItem : styles.item} onPress={() => inteClick(index)}>
-					<Text style={index == current ? styles.actText : styles.defText}>{element}</Text>
+				<TouchableOpacity activeOpacity={1} key={i} style={i == props.index ? styles.actItem : styles.item} onPress={() => inteClick(i)}>
+					{/* <Text style={i == props.index ? styles.actText : styles.defText}>{element}</Text> */}
+
+					<Text style={[styles.defText, { color: indexColor }]}>{element}</Text>
 
 				</TouchableOpacity>
 			)

@@ -18,12 +18,14 @@ const ExpandMoreModal = (props: ExpandMoreModalType) => {
 
 	return (
 		<Modal
+			statusBarTranslucent={true}
 			animationType="fade"
 			transparent={true}
 			visible={isShow}
 			onRequestClose={() => {
 				onClose != null && onClose();
 			}}
+
 		>
 			<View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }}>
 				<TouchableOpacity style={{ flexGrow: 1 }} onPress={() => {
@@ -36,7 +38,9 @@ const ExpandMoreModal = (props: ExpandMoreModalType) => {
 							menu != null && menu.map((item, index) => {
 								return (
 									<TouchableOpacity activeOpacity={1} key={`${index}`} style={s.item_box} onPress={() => {
+
 										item.onPress != null && item.onPress();
+										onClose != null && onClose();
 									}}>
 										{item.img != null && <Image source={item.img} style={s.item_img} />}
 										<Text style={s.item_title}>{item.title ?? ""}</Text>

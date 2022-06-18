@@ -71,6 +71,11 @@ export { default as YTRemarkItem } from './components/remark/index'
 export { default as YTDialog } from './components/dialog/index'
 
 /**
+ * Modal组件
+ */
+export { default as YTOverlay } from './components/dialog/index'
+
+/**
  * 表单组件
  */
 export { default as YTForm } from './components/form/index'
@@ -89,4 +94,9 @@ export { default as YTActionSheet } from './components/actionsheet/index'
  * 导航栏顶部组件
  */
 export { default as YTNavBar } from './components/navbar/index'
+
+/**
+ * 辅助按钮组件
+ */
+export { default as YTBtns } from './components/btns/index'
 

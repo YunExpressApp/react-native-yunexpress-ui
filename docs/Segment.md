@@ -36,6 +36,7 @@ import { YTSegment } from 'react-native-yunexpress-ui';
 |---|---|---|---|
 | style | ViewStyle | {} | 样式 
 | data | string[] | [] | 数据 eg: ["标签1","标签2"]
+| colors | string[] | [] | 每个栏目选中的字体颜色 eg: ["#1592A3", "#EF7E2C"]
 | onChange | Function | (index: number) => {} | 分段标签切换改变事件 
 
 

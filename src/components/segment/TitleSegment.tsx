@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native";
 import { w } from '../../util/CStyle';
 
@@ -10,10 +10,9 @@ type TitleSegmentType = {
 }
 
 const TitleSegment = (props: TitleSegmentType) => {
-	let { style, data = [], index = 0, onChange } = props;
-	const [current, setCurrent] = useState(index);
+	let { style, data = [], onChange } = props;
+	// const [current, setCurrent] = useState(index);
 	const inteClick = (index: number) => {
-		setCurrent(index);
 		onChange && onChange(index);
 	}
 
@@ -23,9 +22,9 @@ const TitleSegment = (props: TitleSegmentType) => {
 			const element = data[index];
 			items.push(
 				<TouchableOpacity key={index} style={styles.item} onPress={() => inteClick(index)}>
-					<Text style={index == current ? styles.actText : styles.defText}>{element}</Text>
+					<Text style={index == props.index ? styles.actText : styles.defText}>{element}</Text>
 					{
-						index == current && <View style={[styles.actLine]}></View>
+						index == props.index && <View style={[styles.actLine]}></View>
 					}
 				</TouchableOpacity>
 			)

@@ -1,26 +1,33 @@
-
-import React from "react";
-import { StyleProp, StyleSheet, Text, View, TextStyle } from "react-native"
+import { Text, StyleSheet, StyleProp, ViewStyle, TextStyle, TouchableOpacity } from 'react-native'
+import React, { Component } from 'react'
 import Theme from '../../themes/Theme'
+import ScanCode from './ScanCode'
 
 type CellType = {
+	style?: StyleProp<ViewStyle>,
 	leftTitle?: string,
 	leftStyle?: StyleProp<TextStyle>,
 	rightTitle?: string,
 	rightStyle?: StyleProp<TextStyle>,
+	onClick?: Function
 }
 
+export default class Cell extends Component<CellType, any> {
 
-export default function Cell(props: CellType) {
-	let { leftTitle, leftStyle, rightTitle, rightStyle } = props;
-	return (
-		<View style={styles.container}>
-			<Text style={[styles.ltitle, leftStyle]}>{leftTitle || ""}</Text>
-			<Text style={[styles.rtitle, rightStyle]}>{rightTitle || ""}</Text>
-		</View>
-	)
+	static ScanCode = ScanCode
+
+	render() {
+		let { leftTitle, leftStyle, rightTitle, rightStyle, onClick } = this.props;
+		return (
+			<TouchableOpacity style={[styles.container, this.props.style]} activeOpacity={1} onPress={() => {
+				onClick != null && onClick();
+			}}>
+				<Text style={[styles.ltitle, leftStyle]}>{leftTitle || ""}</Text>
+				<Text style={[styles.rtitle, rightStyle]}>{rightTitle || ""}</Text>
+			</TouchableOpacity>
+		)
+	}
 }
-
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',

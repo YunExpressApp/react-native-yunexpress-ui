@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
-import { StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import { w, YTForm } from 'react-native-yunexpress-ui';
 export default function FormExample() {
 
-	const [value, setValue] = useState("JJJJJJJJJJ");
+	const [value, setValue] = useState("");
 
 	return (
 		<View style={styles.container}>
-			<YTForm.Search />
-			<YTForm.Input label='必选项' require />
-			<YTForm.Input label='选择项' />
+			<YTForm.Search placeholder='请输入搜索关键字' />
+			<YTForm.Input label='必选项' require value={value} onChangeText={(val: string) => {
+				setValue(val);
+			}} />
+			<YTForm.Input label='选择项' maxLength={10} editable={false} value="禁止输入" />
 			<YTForm.Input label='输入项' />
-			<YTForm.InputItem label='选择项' defaultValue={value} onClick={() => {
-				setValue("XXXXXXXX")
+			<YTForm.InputItem label='选择项' editable={true} value={value} onClick={() => {
+				Alert.alert("请选择");
 			}} />
 		</View>
 	);

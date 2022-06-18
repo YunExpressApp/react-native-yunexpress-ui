@@ -5,7 +5,7 @@ import { w } from '../../util/CStyle';
 type RadiusSegmentProps = {
 	leftText?: string,
 	rightText?: string,
-	defaultIndex?: number,
+	index?: number,
 	onChange?: Function,
 	style?: StyleProp<ViewStyle>,
 }
@@ -30,19 +30,19 @@ export default class RadiusSegment extends Component<RadiusSegmentProps, RadiusS
 
 	constructor(props: RadiusSegmentProps) {
 		super(props)
-		let { defaultIndex = 0 } = props;
-		this.state = {
-			current: defaultIndex
-		}
+		// let { defaultIndex = 0 } = props;
+		// this.state = {
+		// 	current: defaultIndex
+		// }
 	}
 
 	segmentChange = (current: number) => {
-		this.setState({ current })
+		// this.setState({ current })
 		this.props.onChange && this.props.onChange(current);
 	}
 
 	render() {
-		let { current } = this.state;
+		let { index } = this.props;
 		let { leftText = '新增', rightText = '删除' } = this.props;
 		return (
 			<View style={this.props.style}>
@@ -50,10 +50,10 @@ export default class RadiusSegment extends Component<RadiusSegmentProps, RadiusS
 					<TouchableOpacity
 						activeOpacity={1}
 						onPress={() => this.segmentChange(0)}
-						style={current == 0 ? styles.actToBg : styles.toBg}
+						style={index == 0 ? styles.actToBg : styles.toBg}
 					>
-						<View style={current == 0 ? styles.actBg : styles.bgRight}>
-							<Text style={current == 0 ? styles.hAddTxtSel : styles.hAddTxt}>
+						<View style={index == 0 ? styles.actBg : styles.bgRight}>
+							<Text style={index == 0 ? styles.hAddTxtSel : styles.hAddTxt}>
 								{leftText}
 							</Text>
 						</View>
@@ -62,10 +62,10 @@ export default class RadiusSegment extends Component<RadiusSegmentProps, RadiusS
 					<TouchableOpacity
 						activeOpacity={1}
 						onPress={() => this.segmentChange(1)}
-						style={current == 1 ? styles.actToBg : styles.toBg}
+						style={index == 1 ? styles.actToBg : styles.toBg}
 					>
-						<View style={current == 1 ? styles.actBg : styles.bg}>
-							<Text style={current == 1 ? styles.actDelTxt : styles.delTxt}>{rightText}</Text>
+						<View style={index == 1 ? styles.actBg : styles.bg}>
+							<Text style={index == 1 ? styles.actDelTxt : styles.delTxt}>{rightText}</Text>
 						</View>
 					</TouchableOpacity>
 				</View>

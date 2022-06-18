@@ -12,6 +12,7 @@ import FormExample from "./FormExample";
 import SegmentExample from "./SegmentExample";
 import ActionSheetExample from "./ActionSheetExample";
 import NavBarExample from "./NavBarExample";
+import BtnsExample from "./BtnsExample";
 
 export default [
 	{
@@ -84,6 +85,11 @@ export default [
 		page: ActionSheetExample,
 		name: 'ActionSheetExample',
 		descr: 'ActionSheetExample底部选择组件'
+	},
+	{
+		page: BtnsExample,
+		name: 'BtnsExample',
+		descr: 'BtnsExample辅助按钮组件'
 	}
 
 

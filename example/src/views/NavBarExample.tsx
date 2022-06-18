@@ -6,8 +6,11 @@ export default function NavBarExample() {
 	return (
 		<View style={styles.container}>
 			<YTNavBar title='navbar标题' rightMenus={[
-
-			]} />
+				{
+					img: require("../imgs/common_manual_input.png"),
+					title: "手动输入",
+				}
+			]} backgroundColor='white' />
 
 			{/* img: require('../imgs/common/common_manual_input.png.png'),
 	// 	title: i18n.t('Task.ManuallyInput'), */}
