@@ -22,11 +22,13 @@ interface IProps {
 	isFirst?: boolean; //是否为第一行
 	isDel?: boolean; //是否为删除操作
 	data?: DataType; // 格式 {status: 1, message: '', code: ''}   
-	onClick?: Function
+	showDelete?: boolean, //是否显示删除
+	onClick?: Function,
+	onDelete?: Function, //点击删除的时候回调 showDelete必须为true 否则不生效
 }
 export default function ScanCode(props: IProps) {
 
-	let { data = {}, isFirst, isDel, onClick, style } = props;
+	let { data = {}, isFirst, isDel, onClick, style, onDelete, showDelete } = props;
 	let { status, message, code } = data;
 
 	let img = require("../../imgs/common_status_success.png");
@@ -63,7 +65,13 @@ export default function ScanCode(props: IProps) {
 			onClick != null && onClick();
 		}}>
 			<Image style={styles.cImg} resizeMode="center" source={img} />
-			<Text style={[styles.cTxt, txtStyle]}>{code || ''}</Text>
+			<Text style={[styles.cTxt, txtStyle]} numberOfLines={1} ellipsizeMode={'tail'}>{code || ''}</Text>
+			{
+				showDelete && <TouchableOpacity onPress={() => { onDelete != null && onDelete() }} style={styles.delOp}>
+					<Image style={styles.crImg} resizeMode={'center'} source={require("../../imgs/common_x.png")} />
+				</TouchableOpacity>
+			}
+
 		</TouchableOpacity>
 	)
 }
@@ -73,7 +81,8 @@ const styles = StyleSheet.create({
 		height: 70 * w,
 		flexDirection: 'row',
 		alignItems: 'center',
-		paddingHorizontal: 26 * w,
+		// paddingHorizontal: 26 * w,
+		paddingLeft: 26 * w,
 	},
 	cImg: {
 		width: 25 * w,
@@ -82,6 +91,12 @@ const styles = StyleSheet.create({
 	cTxt: {
 		fontSize: 22 * w,
 		color: '#111111',
-		marginLeft: 21 * w
+		marginHorizontal: 22 * w,
+		flex: 1
 	},
+	crImg: {
+		width: 15 * w,
+		height: 15 * w
+	},
+	delOp: { height: '100%', width: 50 * w, justifyContent: 'center', alignItems: 'center' }
 })

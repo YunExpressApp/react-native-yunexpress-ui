@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
 		borderRadius: 33 * w,
 		backgroundColor: '#EBEBEB',
 		overflow: "hidden",
-		paddingHorizontal: 37 * w
+		paddingHorizontal: 37 * w,
+		justifyContent: 'center'
 	},
 	searchTxt: {
 		color: '#808080',

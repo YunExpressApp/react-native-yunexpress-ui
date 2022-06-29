@@ -19,7 +19,7 @@ export default class Cell extends Component<CellType, any> {
 	render() {
 		let { leftTitle, leftStyle, rightTitle, rightStyle, onClick } = this.props;
 		return (
-			<TouchableOpacity style={[styles.container, this.props.style]} activeOpacity={1} onPress={() => {
+			<TouchableOpacity disabled={onClick == null} style={[styles.container, this.props.style]} activeOpacity={1} onPress={() => {
 				onClick != null && onClick();
 			}}>
 				<Text style={[styles.ltitle, leftStyle]}>{leftTitle || ""}</Text>
