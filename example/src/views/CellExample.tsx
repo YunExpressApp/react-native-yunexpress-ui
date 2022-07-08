@@ -8,8 +8,14 @@ export default function CellExample() {
 			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
 			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
 			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
-			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
-			<YTCell leftTitle='左边内容' rightTitle='右边内容'></YTCell>
+
+			<YTCell.ScanCode data={{ code: "123456CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC", status: 1, message: "提示信息" }} />
+			<YTCell.ScanCode data={{ code: "123456GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG", status: 1, message: "提示信息" }} showDelete onDelete={() => {
+
+			}} />
+			<YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息" }} />
+			<YTCell.ScanCode isDel={true} data={{ code: "123456", status: 1, message: "提示信息" }} />
+			<YTCell.ScanCode isFirst={true} isDel={true} data={{ code: "123456", status: 1, message: "提示信息" }} />
 		</View>
 	);
 }
@@ -18,8 +24,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: 'white',
-		justifyContent: 'center',
-		alignItems: 'center',
 		padding: 24
 	}
 });

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Text, TextInput, View, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
+import React from "react";
+import { Text, TextInput, View, StyleSheet, StyleProp, ViewStyle, TextStyle, KeyboardTypeOptions } from "react-native";
 import { w } from '../../util/CStyle';
 
 type InputType = {
 	label?: string,
-	defaultValue?: string,
+	value?: string,
 	multiline?: boolean,
 	onChangeText?: Function,
 	require?: boolean,
@@ -12,22 +12,27 @@ type InputType = {
 	style?: StyleProp<ViewStyle>,
 	labelStyle?: StyleProp<TextStyle>,
 	inputStyle?: StyleProp<ViewStyle>,
+	maxLength?: number,
+	keyboardType?: KeyboardTypeOptions | undefined,
+	editable?: boolean
+
 }
 
 const Input = (props: InputType) => {
-	let { label = '', defaultValue = '', multiline, onChangeText, require, placeholder, style, labelStyle, inputStyle } = props;
-	const [value, setValue] = useState(defaultValue);
+	let { label = '', multiline, onChangeText, require, placeholder, style, labelStyle, inputStyle, maxLength, editable, keyboardType } = props;
+
 	return <View style={[styles.container, style]}>
 		<Text style={[styles.leftTxt, labelStyle]}>{require && <Text style={styles.dot}>*</Text>}{label}</Text>
 		<View style={styles.rightView}>
 			<TextInput style={[styles.rightTxt, inputStyle]}
-				defaultValue={defaultValue}
-				value={value}
+				value={props.value}
 				multiline={multiline}
 				numberOfLines={1}
 				placeholder={placeholder || "请输入"}
+				maxLength={maxLength}
+				editable={editable}
+				keyboardType={keyboardType}
 				onChangeText={(val: string) => {
-					setValue(val);
 					onChangeText != null && onChangeText(val);
 				}}
 			/>

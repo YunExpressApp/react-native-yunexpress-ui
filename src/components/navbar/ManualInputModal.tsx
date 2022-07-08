@@ -28,6 +28,7 @@ const ManualInputModal = (props: ManualInputModalType) => {
 
 	return (
 		<Modal
+			statusBarTranslucent={true}
 			animationType="fade"
 			transparent={true}
 			visible={isShow}

@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View } from "react-native";
 import { w, YTSegment } from 'react-native-yunexpress-ui';
 export default function SegmentExample() {
 
+	const [index, setIndex] = useState(0);
+
 	return (
 		<View style={styles.container}>
-			<YTSegment.Title data={["标签1", "标签2"]} />
+			<YTSegment.Title data={["标签1", "标签2"]} index={index} onChange={(index: number) => setIndex(index)} />
 			<View style={{ height: 30 }}></View>
-			<YTSegment.Sub data={["标签1", "标签2"]} />
+			<YTSegment.Sub data={["标签1", "标签2"]} colors={["#1592A3", "#EF7E2C"]} index={index} onChange={(index: number) => setIndex(index)} />
 			<View style={{ height: 30 }}></View>
-			<YTSegment.Radius leftText='添加' rightText='删除' />
+			<YTSegment.Radius leftText='添加' rightText='删除' index={index} onChange={(index: number) => setIndex(index)} />
 
 		</View>
 	);

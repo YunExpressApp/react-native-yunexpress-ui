@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 import i18n from '../../i18n'
 import { w } from '../../util/CStyle';
@@ -14,12 +14,12 @@ type RemarkItemProps = {
 }
 
 const RemarkItem = (props: RemarkItemProps) => {
-	const { value, label, style, onChange, require } = props;
-	const [val, setVal] = useState<string | undefined>(value);
+	const { label, style, onChange, require } = props;
+	// const [val, setVal] = useState<string | undefined>(value);
 	return (
 		<TouchableOpacity style={[s.container, style]} onPress={() => {
-			RemarkDialog.showView(val || "", (val: string) => {
-				setVal(val);
+			RemarkDialog.showView(props.value || "", (val: string) => {
+				// setVal(val);
 				onChange && onChange(val);
 			});
 		}}>
@@ -30,9 +30,9 @@ const RemarkItem = (props: RemarkItemProps) => {
 				</Text>
 			</View>
 			{
-				val ? (
+				props.value ? (
 					<View style={{ maxWidth: 300 * w }}>
-						<Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#303030', fontSize: 20 * w }}>{val}</Text>
+						<Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#303030', fontSize: 20 * w }}>{props.value || ""}</Text>
 					</View>
 				) : (
 					<Text style={{ color: '#CCCCCC', fontSize: 20 * w }}>{i18n.t("InputRemark")}</Text>

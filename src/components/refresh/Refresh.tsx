@@ -126,6 +126,8 @@ class Refresh extends PureComponent<Props | any, State> {
 					refreshing={this.props.refreshState == RefreshState.HeaderRefreshing}
 					ListFooterComponent={this.renderFooter}
 					onEndReachedThreshold={0.1}
+					keyboardShouldPersistTaps="always"
+					keyboardDismissMode='on-drag'
 					renderItem={renderItem}
 					data={data}
 					{...rest}
@@ -142,6 +144,8 @@ class Refresh extends PureComponent<Props | any, State> {
 					onEndReachedThreshold={0.1}
 					renderItem={renderItem}
 					sections={sectionsData || []}
+					keyboardShouldPersistTaps="always"
+					keyboardDismissMode='on-drag'
 					{...rest}
 				/>
 			)

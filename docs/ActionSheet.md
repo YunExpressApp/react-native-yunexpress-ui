@@ -1,8 +1,8 @@
 ---
-title: ActionSheet底部弹框选择组件
+title: ActionSheet底部选择组件
 ---
 
-# ActionSheet底部弹框选择组件
+# ActionSheet底部选择组件
 
 ## Screenshots
 <img src="/assets/actionsheet.gif" width="20%" height="20%"> 

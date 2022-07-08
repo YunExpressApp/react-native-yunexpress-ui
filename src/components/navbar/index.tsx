@@ -1,5 +1,5 @@
 import React, { useState, memo } from 'react';
-import { BackHandler, Image, StatusBar, StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { BackHandler, ColorValue, Image, StatusBar, StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { w } from '../../util/CStyle';
 import i18n from '../../i18n'
 import ExpandMoreModal from './ExpandMoreModal';
@@ -10,6 +10,7 @@ type NavBarType = {
 	title?: string,  //标题
 	style?: StyleProp<ViewStyle>,
 	containerStyle?: StyleProp<ViewStyle>,
+	backgroundColor?: ColorValue;  // 导航栏背景色
 	navigation?: any,
 	leftOnClick?: Function,  //导航栏左边返回箭头的点击事件
 	hideRightView?: boolean, //影藏导航栏右边View
@@ -18,27 +19,31 @@ type NavBarType = {
 	rightOnClick?: Function, //导航栏右边点击按钮事件
 	rightMenus?: [{
 		img?: any,  //require image 对象
-		title?: string,
-		onPress?: Function
+		title?: string, //标题
+		onPress?: Function //点击事件
 	}] | [],
 
 }
 const NavBar = (props: NavBarType) => {
 
-	const { title, style, rightView, hideRightView, containerStyle, navigation, leftOnClick, rightOnClick, rightMenus = [], hideMannualInput } = props;
+	const { title, style, rightView, hideRightView, containerStyle,
+		navigation, leftOnClick, rightOnClick, rightMenus = [],
+		hideMannualInput, backgroundColor } = props;
 
 	const [showMore, setShowMore] = useState(false);
 	const [showManualInput, setShowManualInput] = useState(false);
 
+	let menu: any = rightMenus;
 	if (!hideMannualInput) {
-		rightMenus.splice(0, 1, {
+		let item: any = {
 			img: require("../../imgs/common_manual_input.png"),
 			title: i18n.t("ManuallyInput"),
 			onPress: () => {
 				setShowMore(false);
 				setShowManualInput(true)
 			}
-		});
+		};
+		menu = [item].concat(rightMenus);
 	}
 	const _handleGoBack = () => {
 		if (leftOnClick) {
@@ -75,11 +80,12 @@ const NavBar = (props: NavBarType) => {
 		}
 	}
 
+	let bgColor = backgroundColor || 'white';
 
 	return (
 		<HeadContext.Provider value={{}}>
-			<View style={[{ paddingTop: StatusBar.currentHeight }, style]}>
-				<View style={[s.container, containerStyle]}>
+			<View style={[{ paddingTop: StatusBar.currentHeight }, { backgroundColor: bgColor }, style]}>
+				<View style={[s.container, { backgroundColor: bgColor }, containerStyle]}>
 					<TouchableOpacity style={s.left_box} onPress={_handleGoBack}>
 						<Image source={require('../../imgs/common_nav_back.png')} style={s.back_img} />
 					</TouchableOpacity>
@@ -96,7 +102,7 @@ const NavBar = (props: NavBarType) => {
 				</View>
 				<ExpandMoreModal
 					isShow={showMore}
-					menu={rightMenus}
+					menu={menu}
 					onClose={() => {
 						setShowMore(false);
 					}}
