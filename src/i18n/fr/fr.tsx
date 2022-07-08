@@ -5,6 +5,7 @@ export default {
 	FooterEmptyDataText: 'Aucune donnée disponible',
 
 	Cancel: "Annuler",
+	Confirm: "confirmer",
 	Save: "enregistrer",
 	Remarks: "Remarque",
 	InputRemark: "Veuillez entrer une note",

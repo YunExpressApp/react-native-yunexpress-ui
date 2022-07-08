@@ -13,6 +13,7 @@ import {
     StyleProp,
     TextStyle
 } from 'react-native';
+import i18n from '../../i18n';
 import { w } from '../../util/CStyle';
 import Button from '../button';
 
@@ -33,7 +34,11 @@ type AlertProps = {
     /** 子组件 */
     children?: any,
     /** 弹框文字样式 */
-    titleStyle?: StyleProp<TextStyle>
+    titleStyle?: StyleProp<TextStyle>,
+    /** 弹框按钮左边文字 */
+    leftText: string | undefined,
+    /** 弹框按钮右边文字 */
+    rightText: string | undefined
 }
 
 /**
@@ -70,8 +75,8 @@ export default class Alert extends Component<AlertProps, State> {
         this.state = {
             isVisible: this.props.show || false,
             title: '',
-            leftText: '',
-            rightText: '',
+            leftText: this.props.leftText || '',
+            rightText: this.props.rightText || '',
             onLeftPress: () => { },
             onRightPress: () => { },
         };
@@ -116,8 +121,8 @@ export default class Alert extends Component<AlertProps, State> {
                 </View>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                     <Button
-                        buttonLeftText={this.state.leftText || "取消"}
-                        buttonRightText={this.state.rightText || "确认"}
+                        buttonLeftText={this.state.leftText || /*"取消"*/i18n.t('Cancel')}
+                        buttonRightText={this.state.rightText || /**"确认"*/i18n.t('Confirm')}
                         isBorder={false}
                         onLeftPress={() => {
                             if ((this.props.onLeftPress && !this.props.onLeftPress()) || !this.props.onLeftPress)
