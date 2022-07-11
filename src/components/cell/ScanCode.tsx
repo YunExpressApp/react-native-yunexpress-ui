@@ -7,29 +7,31 @@
  * @FilePath: \AwesomeProjecte:\git\yunExpress\app\components\YTOptCell.tsx
  */
 import React from 'react';
-import { Image, StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle } from "react-native";
+import { Image, StyleProp, StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from "react-native";
 import { w } from '../../util/CStyle';
 
 interface DataType {
 	status?: number; //status:1 成功 2 失败
 	message?: string; //message: 提示信息
 	code?: string; //code:显示的code
+	value?: string; //右边显示的值
 }
 
 // props类型
 interface IProps {
 	style?: StyleProp<ViewStyle>,
+	valueStyle?: StyleProp<TextStyle>, //右边文字点击事件
 	isFirst?: boolean; //是否为第一行
 	isDel?: boolean; //是否为删除操作
 	data?: DataType; // 格式 {status: 1, message: '', code: ''}   
 	showDelete?: boolean, //是否显示删除
-	onClick?: Function,
+	onClick?: Function,   //cell点击事件
 	onDelete?: Function, //点击删除的时候回调 showDelete必须为true 否则不生效
 }
 export default function ScanCode(props: IProps) {
 
-	let { data = {}, isFirst, isDel, onClick, style, onDelete, showDelete } = props;
-	let { status, message, code } = data;
+	let { data = {}, isFirst, isDel, onClick, style, onDelete, showDelete, valueStyle } = props;
+	let { status, message, code, value } = data;
 
 	let img = require("../../imgs/common_status_success.png");
 	let txtStyle = {};
@@ -66,6 +68,11 @@ export default function ScanCode(props: IProps) {
 		}}>
 			<Image style={styles.cImg} resizeMode="center" source={img} />
 			<Text style={[styles.cTxt, txtStyle]} numberOfLines={1} ellipsizeMode={'tail'}>{code || ''}</Text>
+
+			{
+				value != null &&
+				<Text style={[styles.valText, valueStyle]}>{value}</Text>
+			}
 			{
 				showDelete && <TouchableOpacity onPress={() => { onDelete != null && onDelete() }} style={styles.delOp}>
 					<Image style={styles.crImg} resizeMode={'center'} source={require("../../imgs/common_x.png")} />
@@ -97,6 +104,11 @@ const styles = StyleSheet.create({
 	crImg: {
 		width: 15 * w,
 		height: 15 * w
+	},
+	valText: {
+		marginRight: 26 * w,
+		color: '#CCCCCC',
+		fontSize: 20 * w
 	},
 	delOp: { height: '100%', width: 50 * w, justifyContent: 'center', alignItems: 'center' }
 })

@@ -51,6 +51,9 @@ import { YTCell } from 'react-native-yunexpress-ui';
 | status | number |  | 扫描结果status状态: 1 成功 2 失败
 | message | string |  | 错误信息  点击cell的时候提示需要
 | code | string |  | 扫码结果的ScanCode
+| value | string |  | 右边显示的值
+
+
  
 	
 ## Contributing
