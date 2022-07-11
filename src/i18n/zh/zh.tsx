@@ -14,6 +14,7 @@ export default {
 	FooterEmptyDataText: '暂时没有相关数据',
 
 	Cancel: '取消',
+	Confirm: '确认',
 	Save: "保存",
 	Remarks: '备注',
 	InputRemark: '请输入备注',
