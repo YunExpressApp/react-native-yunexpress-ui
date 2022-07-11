@@ -6,6 +6,8 @@ import ExpandMoreModal from './ExpandMoreModal';
 import ManualInputModal from './ManualInputModal';
 export const HeadContext = React.createContext({});
 
+
+
 type NavBarType = {
 	title?: string,  //标题
 	style?: StyleProp<ViewStyle>,
@@ -17,11 +19,11 @@ type NavBarType = {
 	hideMannualInput?: boolean, //影藏手动输入
 	rightView?: JSX.Element, // 导航栏右边View
 	rightOnClick?: Function, //导航栏右边点击按钮事件
-	rightMenus?: [{
+	rightMenus?: {
 		img?: any,  //require image 对象
 		title?: string, //标题
 		onPress?: Function //点击事件
-	}] | [],
+	}[] | [] | any,
 
 }
 const NavBar = (props: NavBarType) => {
