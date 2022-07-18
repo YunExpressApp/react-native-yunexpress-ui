@@ -1,3 +1,9 @@
+/*
+ * @Date: 2022-06-13 09:49:54
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-07-14 13:48:51
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\navbar\ManualInputModal.tsx
+ */
 import React, { useState, memo } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, TextInput, Modal, NativeModules, Alert } from 'react-native';
 import i18n from '../../i18n'
@@ -24,6 +30,7 @@ const ManualInputModal = (props: ManualInputModalType) => {
 		};
 		NativeModules.Scanner?.inputTextToScanner(inputVal);
 		onClose != null && onClose();
+		setInputVal("");
 	}
 
 	return (
