@@ -22,6 +22,8 @@ import { Color, w } from '../../util/CStyle';
 interface ButtonProps {
     /** 是否有边框 */
     isBorder?: boolean,
+    /** 是否未激活 */
+    disable?: 'left' | 'right' | 'all' | 'none',
     /** 样式 */
     style?: StyleProp<ViewStyle>,
     /** 按钮样式 */
@@ -77,17 +79,21 @@ export default function Button(props: ButtonProps) {
 
     let borderStyle = props.isBorder ? { borderRadius: 42 * w, borderWidth: 1, margin: 10 * w } : null
     let btnContainer = { ...styles.btnContainerAll, ...borderStyle }
+    let leftDisable = props.disable == 'left' || props.disable == 'all'
+    let rightDisable = props.disable == 'right' || props.disable == 'all'
     return (
         <View style={[btnContainer, styles.btnParent, props.style]}>
             {buttonLeftText ? <TouchableOpacity
-                style={[btnContainer, { backgroundColor: Color.c555, flex: 0.34 }, props.btnStyle]}
+                style={[btnContainer, { backgroundColor: leftDisable ? Color.grey : Color.c555, flex: 0.34 }, props.btnStyle]}
                 activeOpacity={0.8}
+                disabled={leftDisable}
                 onPress={() => props.onLeftPress && props.onLeftPress()}>
                 <Text style={[styles.white, { fontSize: 24 * w }, props.btnLeftTextStyle]}>{buttonLeftText}</Text>
             </TouchableOpacity> : null}
             <TouchableOpacity
-                style={[btnContainer, { backgroundColor: Color.blue, flex: buttonLeftText ? 0.66 : 1 }, props.btnStyle]}
+                style={[btnContainer, { backgroundColor: rightDisable ? Color.blue_disable : Color.blue, flex: buttonLeftText ? 0.66 : 1 }, props.btnStyle]}
                 activeOpacity={0.8}
+                disabled={rightDisable}
                 onPress={() => props.onRightPress && props.onRightPress()}>
                 <Text style={[styles.white, { fontSize: 24 * w }, props.btnRightTextStyle]}>{buttonRightText}</Text>
             </TouchableOpacity>
