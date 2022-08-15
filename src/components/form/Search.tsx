@@ -1,3 +1,9 @@
+/*
+ * @Date: 2022-06-07 11:09:55
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-08-10 14:03:14
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\form\Search.tsx
+ */
 import React from "react";
 import { TextInput, View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { w } from '../../util/CStyle';
@@ -50,7 +56,7 @@ const styles = StyleSheet.create({
 	content: {
 		flex: 1,
 		borderRadius: 33 * w,
-		backgroundColor: '#EBEBEB',
+		backgroundColor: '#F7F7F7',
 		overflow: "hidden",
 		paddingHorizontal: 37 * w,
 		justifyContent: 'center'
