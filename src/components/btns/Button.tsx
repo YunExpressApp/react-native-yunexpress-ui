@@ -1,3 +1,9 @@
+/*
+ * @Date: 2022-06-16 12:02:51
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-08-15 17:21:03
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\btns\Button.tsx
+ */
 
 import React from 'react';
 import { StyleProp, StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
@@ -13,6 +19,7 @@ interface IProps {
 	radius?: boolean,
 	leftTitle?: string,
 	leftOnPress?: Function;
+	leftEnable?: Boolean;  //true: 可用状态 false:禁用 
 }
 export default function Button(props: IProps) {
 	let { title = '', enable, onPress, style, radius, leftTitle, leftOnPress } = props;
@@ -20,7 +27,7 @@ export default function Button(props: IProps) {
 		<View style={[styles.bottomBtns, { borderRadius: radius ? 42 * w : 0 }, style]}>
 			{
 				leftTitle != null && <TouchableOpacity style={[styles.leftBtn, style]} activeOpacity={0.5} onPress={() => {
-					if (leftOnPress != null) {
+					if ((props.leftEnable == null || props.leftEnable) && leftOnPress != null) {
 						leftOnPress();
 					}
 				}}>

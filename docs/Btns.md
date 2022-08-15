@@ -1,3 +1,9 @@
+<!--
+ * @Date: 2022-06-18 09:18:41
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-08-15 17:24:11
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\docs\Btns.md
+-->
 ---
 title: Btns辅助按钮组件
 ---
@@ -28,6 +34,7 @@ import { YTBtns } from 'react-native-yunexpress-ui';
 <YTBtns.Button title={"按钮"} enable={true} onPress={() => { }} />
 <YTBtns.Button title={"按钮"} radius enable={true} onPress={() => { }} />
 <YTBtns.Button title={"按钮"} leftTitle="左边按钮" enable={true} onPress={() => { }} />
+<YTBtns.Button title={"按钮"} leftTitle="左边按钮不可点击" enable={true} onPress={() => { }} leftEnable={false} leftOnPress={() => {}} />
 <YTBtns.Button title={"按钮"} leftTitle="左边按钮" onPress={() => { }} />
 
 ```
@@ -55,6 +62,9 @@ import { YTBtns } from 'react-native-yunexpress-ui';
 | radius | boolean | false | 是否为圆角按钮 true:圆角 false:非圆角 
 | leftTitle | string |  | 左边按钮文案 为空时左边按钮不显示  默认不显示
 | leftOnPress | Function |  | 左边按钮的点击事件
+| leftEnable | Boolean | true | 左边按钮状态 true: 可点击状态 false:不可点击状态 
+
+
 
 ## Contributing
 

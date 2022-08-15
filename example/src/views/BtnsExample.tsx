@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import { w, YTBtns } from 'react-native-yunexpress-ui';
 export default function BtnsExample() {
 
@@ -27,7 +27,9 @@ export default function BtnsExample() {
 				<View style={{ height: 10 }} />
 				<YTBtns.Button title={"按钮"} radius enable={true} onPress={() => { }} />
 				<View style={{ height: 10 }} />
-				<YTBtns.Button title={"按钮"} leftTitle="左边按钮" enable={true} onPress={() => { }} />
+				<YTBtns.Button title={"按钮"} leftTitle="左边按钮" enable={true} onPress={() => { }} leftEnable={false} leftOnPress={() => {
+					Alert.alert("AAA");
+				}} />
 				<View style={{ height: 10 }} />
 				<YTBtns.Button title={"按钮"} leftTitle="左边按钮" onPress={() => { }} />
 			</ScrollView>

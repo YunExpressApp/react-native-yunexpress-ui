@@ -1,3 +1,9 @@
+<!--
+ * @Date: 2022-06-09 11:26:19
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-08-15 09:38:50
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\docs\Segment.md
+-->
 ---
 title: Segment分段选择组件
 ---
@@ -17,7 +23,7 @@ import { YTSegment } from 'react-native-yunexpress-ui';
 
 ```js
 
-<YTSegment.Title data={["标签1", "标签2"]} />
+<YTSegment.Title data={["标签1", "标签2"]} index={0}/>
 
 <YTSegment.Sub data={["标签1", "标签2"]} />
 
@@ -28,7 +34,9 @@ import { YTSegment } from 'react-native-yunexpress-ui';
 | Prop | Type | Default | Note |
 |---|---|---|---|
 | style | ViewStyle | {} | 样式 
+| itemStyle | ViewStyle | {} | 每项Item的样式 
 | data | string[] | [] | 数据 eg: ["标签1","标签2"]
+| index | snumber | null | 选中位置的索引
 | onChange | Function | (index: number) => {} | 分段标签切换改变事件 
 
 ## YTSegment.Sub  Props
