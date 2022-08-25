@@ -1,8 +1,14 @@
-import React, { memo } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
+/*
+ * @Date: 2022-06-02 15:49:40
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-08-25 14:56:41
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\remark\RemarkItem.tsx
+ */
+import React, { memo, useState } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, StyleProp, ViewStyle, Modal } from 'react-native';
 import i18n from '../../i18n'
 import { w } from '../../util/CStyle';
-import RemarkDialog from './RemarkDialog';
+import RemarkPopup from './RemarkPopup';
 
 
 type RemarkItemProps = {
@@ -16,12 +22,14 @@ type RemarkItemProps = {
 const RemarkItem = (props: RemarkItemProps) => {
 	const { label, style, onChange, require } = props;
 	// const [val, setVal] = useState<string | undefined>(value);
+	const [visible, setVisible] = useState(false);
 	return (
 		<TouchableOpacity style={[s.container, style]} onPress={() => {
-			RemarkDialog.showView(props.value || "", (val: string) => {
-				// setVal(val);
-				onChange && onChange(val);
-			});
+			// RemarkDialog.showView(props.value || "", (val: string) => {
+			// 	// setVal(val);
+			// 	onChange && onChange(val);
+			// });
+			setVisible(true)
 		}}>
 			<View style={s.left_box}>
 				<Text style={{ color: '#303030', fontSize: 22 * w, marginRight: 5 * w }}>
@@ -38,6 +46,24 @@ const RemarkItem = (props: RemarkItemProps) => {
 					<Text style={{ color: '#CCCCCC', fontSize: 20 * w }}>{i18n.t("InputRemark")}</Text>
 				)
 			}
+			<Modal visible={visible}
+				animationType={'fade'}
+				transparent={true}
+				onRequestClose={() => {
+					setVisible(false)
+				}}>
+				<View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+					<TouchableOpacity style={{ flex: 1 }} onPress={() => { setVisible(false) }}>
+
+					</TouchableOpacity>
+					<RemarkPopup defValue={props.value || ""} onConfirm={(value: string) => {
+						onChange && onChange(value);
+						setVisible(false)
+					}} onClose={() => {
+						setVisible(false)
+					}} />
+				</View>
+			</Modal>
 		</TouchableOpacity>
 	)
 }
