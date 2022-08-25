@@ -1,3 +1,9 @@
+/*
+ * @Date: 2022-06-06 09:32:47
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-08-18 13:48:54
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\form\Input.tsx
+ */
 import React from "react";
 import { Text, TextInput, View, StyleSheet, StyleProp, ViewStyle, TextStyle, KeyboardTypeOptions } from "react-native";
 import { w } from '../../util/CStyle';
@@ -14,12 +20,13 @@ type InputType = {
 	inputStyle?: StyleProp<ViewStyle>,
 	maxLength?: number,
 	keyboardType?: KeyboardTypeOptions | undefined,
-	editable?: boolean
+	editable?: boolean,
+	onSubmitEditing?: Function;
 
 }
 
 const Input = (props: InputType) => {
-	let { label = '', multiline, onChangeText, require, placeholder, style, labelStyle, inputStyle, maxLength, editable, keyboardType } = props;
+	let { label = '', multiline, onChangeText, onSubmitEditing, require, placeholder, style, labelStyle, inputStyle, maxLength, editable, keyboardType } = props;
 
 	return <View style={[styles.container, style]}>
 		<Text style={[styles.leftTxt, labelStyle]}>{require && <Text style={styles.dot}>*</Text>}{label}</Text>
@@ -34,6 +41,9 @@ const Input = (props: InputType) => {
 				keyboardType={keyboardType}
 				onChangeText={(val: string) => {
 					onChangeText != null && onChangeText(val);
+				}}
+				onSubmitEditing={() => {
+					onSubmitEditing != null && onSubmitEditing();
 				}}
 			/>
 		</View>

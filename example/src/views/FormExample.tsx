@@ -1,3 +1,9 @@
+/*
+ * @Date: 2022-06-06 09:45:24
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-08-25 10:04:40
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\example\src\views\FormExample.tsx
+ */
 import React, { useState } from 'react'
 import { Alert, StyleSheet, View } from "react-native";
 import { w, YTForm } from 'react-native-yunexpress-ui';
@@ -15,6 +21,9 @@ export default function FormExample() {
 			<YTForm.Input label='输入项' />
 			<YTForm.InputItem label='选择项' editable={true} value={value} onClick={() => {
 				Alert.alert("请选择");
+			}} />
+			<YTForm.Radio label='单选项' data={["选项1", "选项2", "选项3"]} index={0} onChange={(i: number) => {
+				Alert.alert("请选择" + i);
 			}} />
 		</View>
 	);
