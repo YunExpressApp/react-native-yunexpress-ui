@@ -1,3 +1,9 @@
+<!--
+ * @Date: 2022-06-18 10:23:43
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-08-25 15:14:00
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\docs\Form.md
+-->
 ---
 title: Form组件
 ---
@@ -34,7 +40,7 @@ const [value, setValue] = useState("");
 
 ```
 
-## YTForm.Search Props
+## YTForm.Search 搜索输入框 Props 
 | Prop | Type | Default | Note |
 |---|---|---|---|
 | style | ViewStyle | {} | 自定义样式
@@ -48,7 +54,7 @@ const [value, setValue] = useState("");
 | onChangeText | Function | (val:string)=>{} | 输入框文字改变时回调 
 | onSubmitEditing | Function | ()=>{} | 完成编辑时的回调 
 
-## YTForm.Input Props
+## YTForm.Input  输入框 Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
 | style | ViewStyle | {} | 自定义样式
@@ -64,7 +70,19 @@ const [value, setValue] = useState("");
 | keyboardType | KeyboardTypeOptions |  | 
 | onChangeText | Function | (val:string)=>{} | 输入框文字改变时回调
 
-## YTForm.InputItem Props
+## YTForm.Radio  单选按钮 Props
+| Prop | Type | Default | Note |
+|---|---|---|---|
+| style | ViewStyle | {} | 自定义样式
+| label | string |  | 左边按钮文案
+| labelStyle | TextStyle |  | 左边按钮样式
+| data | string[] |  | 数据源字符串数组
+| index | number |  | 默认选中第几项
+| require | boolean | false | 是否必填  必填时前面显示“*”  true:必填 false:非必填 
+| disable | boolean | false | true 禁止点击 false:可以点击 
+| onChange | Function | (index:number)=>{} | 选中的是第几项
+
+## YTForm.InputItem  下拉选择框  Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
 | style | ViewStyle | {} | 自定义样式

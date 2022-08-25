@@ -13,6 +13,7 @@ import SegmentExample from "./SegmentExample";
 import ActionSheetExample from "./ActionSheetExample";
 import NavBarExample from "./NavBarExample";
 import BtnsExample from "./BtnsExample";
+import ModalExample from "./ModalExample";
 
 export default [
 	{
@@ -90,6 +91,11 @@ export default [
 		page: BtnsExample,
 		name: 'BtnsExample',
 		descr: 'BtnsExample辅助按钮组件'
+	},
+	{
+		page: ModalExample,
+		name: 'ModalExample',
+		descr: 'ModalExample弹框组件'
 	}
 
 

@@ -98,5 +98,10 @@ export { default as YTNavBar } from './components/navbar/index'
 /**
  * 辅助按钮组件
  */
-export { default as YTBtns } from './components/btns/index'
+export { default as YTBtns } from './components/btns/index';
+
+/**
+ * 弹框组件
+ */
+export { default as YTModal } from './components/modal/index'
 
