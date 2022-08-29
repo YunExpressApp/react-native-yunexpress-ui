@@ -11,7 +11,7 @@ import {
     TouchableOpacity,
     Modal,
     StyleProp,
-    TextStyle
+    TextStyle,
 } from 'react-native';
 import i18n from '../../i18n';
 import { w } from '../../util/CStyle';
@@ -25,7 +25,7 @@ type AlertProps = {
     show?: boolean,
     /** 弹框关闭时回调，必加属性，关闭后设为不显示 */
     onClose?: Function,
-    /** 弹框内容 */
+    /** 弹框标题 */
     title?: string,
     /** 左边按钮点击回调 */
     onLeftPress?: Function,
@@ -36,9 +36,14 @@ type AlertProps = {
     /** 弹框文字样式 */
     titleStyle?: StyleProp<TextStyle>,
     /** 弹框按钮左边文字 */
-    leftText: string | undefined,
+    leftText?: string | undefined,
     /** 弹框按钮右边文字 */
-    rightText: string | undefined
+    rightText?: string | undefined,
+    /** 弹框内容 */
+    content?: string | undefined,
+    contentStyle?: StyleProp<TextStyle>,
+    /** 点旁边是否关闭 */
+    isCancelable?: boolean
 }
 
 /**
@@ -47,12 +52,18 @@ type AlertProps = {
 type State = {
     /** 是否显示 */
     isVisible: boolean,
-    /** 弹框内容 */
+    /** 弹框标题 */
     title: string,
     leftText: string | undefined,
     rightText: string | undefined,
     onLeftPress: Function | undefined,
     onRightPress: Function,
+    /** 弹框内容 */
+    content?: string | undefined,
+    contentStyle?: StyleProp<TextStyle>,
+    /** 是否只有一个按钮 */
+    isOneButton: boolean,
+    isCancelable?: boolean
 }
 
 /**
@@ -69,79 +80,144 @@ type State = {
  * 【onRightPress】: Function 右边按钮点击回调
  */
 export default class Alert extends Component<AlertProps, State> {
-
+    private outSizeCancelable: boolean = true
+    private defaultState = {
+        isVisible: false,
+        title: '',
+        leftText: '',
+        rightText: '',
+        onLeftPress: () => { },
+        onRightPress: () => { },
+        isOneButton: false,
+        isCancelable: true
+    }
     constructor(props: AlertProps) {
         super(props);
-        this.state = {
-            isVisible: this.props.show || false,
-            title: '',
-            leftText: this.props.leftText || '',
-            rightText: this.props.rightText || '',
-            onLeftPress: () => { },
-            onRightPress: () => { },
-        };
+        this.state = this.defaultState;
+    }
+
+    /**
+     * 组件属性变化时刷新
+     * @param nextProps 
+     * @param prevState 
+     */
+    static getDerivedStateFromProps(nextProps: AlertProps, prevState: State) {
+        // myAlert(nextProps.show + '===' + prevState.isVisible)
+        if (nextProps.show != undefined && nextProps.show != prevState.isVisible) {
+            return { isVisible: nextProps.show }
+        }
+        if (nextProps.leftText != prevState.leftText) {
+            return { leftText: prevState.leftText }
+        }
+        if (nextProps.rightText != prevState.rightText) {
+            return { rightText: prevState.rightText }
+        }
+        return null
     }
 
     /** 刷新控制显示和关闭 */
-    UNSAFE_componentWillReceiveProps(nextProps: AlertProps) {
-        if (nextProps.show === true || nextProps.show === false) {
-            if (nextProps.show !== this.state.isVisible) {
-                this.setState({ isVisible: nextProps.show });
-            }
-        }
-    }
+    // UNSAFE_componentWillReceiveProps(nextProps: AlertProps) {
+    //     if (nextProps.show === true || nextProps.show === false) {
+    //         if (nextProps.show !== this.state.isVisible) {
+    //             this.setState({ isVisible: nextProps.show });
+    //         }
+    //     }
+    // }
 
-    /** 关闭弹框 */
+    /**
+     * 关闭弹框
+     */
     closeModal() {
+        this.state = this.defaultState;
+        this.outSizeCancelable = true
         this.setState({
             isVisible: false
+        }, () => {
+            //如果有其它组件刷新，需要在onClose里面还原show的初始值，不然只要有刷新就会弹出
+            this.props.onClose && this.props.onClose();
         });
-        //如果有其它组件刷新，需要在onClose里面还原show的初始值，不然只要有刷新就会弹出
-        this.props.onClose && this.props.onClose();
     }
 
-    show(title: string, onRightPress: Function, rightText?: string, onLeftPress?: Function, leftText?: string) {
+    /**
+     * 显示弹框
+     * @param title 
+     * @param onRightPress 
+     * @param rightText 
+     * @param onLeftPress 
+     * @param leftText 
+     * @param content 
+     */
+    show(title: string, onRightPress: Function, rightText?: string, onLeftPress?: Function, leftText?: string, content?: string) {
         this.setState({
             title,
+            content,
             leftText,
             onLeftPress,
             rightText,
             onRightPress,
             isVisible: true,
+            isOneButton: false,
+            isCancelable: this.outSizeCancelable
         });
+    }
+
+    /**
+     * 显示一个按钮弹框
+     * @param title 
+     * @param content 
+     */
+    showOneButton(title: string, content?: string) {
+        this.setState({
+            title,
+            content,
+            rightText: '',
+            onRightPress: () => { },
+            isVisible: true,
+            isOneButton: true,
+            isCancelable: this.outSizeCancelable
+        });
+    }
+
+    /**
+     * 设置点弹框外面是否可以关闭弹框
+     * @param isCancelable 
+     */
+    setIsCancelable(isCancelable: boolean) {
+        this.outSizeCancelable = isCancelable
     }
 
     /** 弹框内容 */
     renderDialog() {
         return (
             <View style={styles.modalStyle}>
-                <View style={{ paddingTop: 46 * w, paddingHorizontal: 32 * w }}>
+                <TouchableOpacity activeOpacity={1} style={{ paddingTop: 46 * w, paddingHorizontal: 32 * w, paddingBottom: 10 * w }}>
                     <Text style={[{ fontSize: 25 * w, color: '#111', fontWeight: '500' }, this.props.titleStyle]}>{this.state.title || this.props.title || ""}</Text>
+                    {this.state.content || this.props.content ? <Text style={[{ fontSize: 22 * w, color: '#333', marginVertical: 10 * w }, this.state.contentStyle || this.props.contentStyle]}>{this.state.content || this.props.content || ""}</Text> : null}
                     {this.props.children}
-                </View>
-                <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-                    <Button
-                        buttonLeftText={this.state.leftText || /*"取消"*/i18n.t('Cancel')}
-                        buttonRightText={this.state.rightText || /**"确认"*/i18n.t('Confirm')}
-                        isBorder={false}
-                        onLeftPress={() => {
-                            if ((this.props.onLeftPress && !this.props.onLeftPress()) || !this.props.onLeftPress)
-                                this.closeModal()
-                            else if ((this.state.onLeftPress && !this.state.onLeftPress()) || !this.state.onLeftPress) {
-                                this.closeModal()
-                            }
-                        }}
-                        onRightPress={() => {
-                            if (this.props.onRightPress && !this.props.onRightPress())
-                                this.closeModal()
-                            else if (this.state.onRightPress && !this.state.onRightPress())
-                                this.closeModal()
-                        }}
-                        btnLeftTextStyle={{ color: '#303030', fontSize: 24 * w }}
-                        btnRightTextStyle={{ color: '#1592A3', fontSize: 24 * w }}
-                        btnStyle={{ flex: 1, backgroundColor: '#00000000', alignItems: 'flex-start', paddingTop: 10 * w }}
-                    />
-                </View>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={1} style={{ flex: 1 }} />
+                <Button
+                    buttonLeftText={this.state.isOneButton ? undefined : (this.state.leftText || this.props.leftText || /*"取消"*/i18n.t('Cancel'))}
+                    buttonRightText={this.state.rightText || this.props.rightText || /**"确认"*/i18n.t('Confirm')}
+                    isBorder={false}
+                    onLeftPress={() => {
+                        if ((this.props.onLeftPress && !this.props.onLeftPress()))
+                            this.closeModal()
+                        else if ((this.state.onLeftPress && !this.state.onLeftPress()) || !this.state.onLeftPress || !this.props.onLeftPress) {
+                            this.closeModal()
+                        }
+                    }}
+                    onRightPress={() => {
+                        if (this.props.onRightPress && !this.props.onRightPress())
+                            this.closeModal()
+                        else if (this.state.onRightPress && !this.state.onRightPress())
+                            this.closeModal()
+                    }}
+                    btnLeftTextStyle={{ color: '#303030', fontSize: 24 * w }}
+                    btnRightTextStyle={{ color: '#1592A3', fontSize: 24 * w }}
+                    btnStyle={{ flex: 1, backgroundColor: '#00000000', alignItems: 'flex-start', paddingTop: 10 * w }}
+                />
+                {/* </View> */}
             </View>
         )
     }
@@ -156,7 +232,9 @@ export default class Alert extends Component<AlertProps, State> {
                 <View style={styles.container}>
                     <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
                         activeOpacity={1}
-                        onPress={() => this.closeModal()}>
+                        onPress={() => {
+                            if (this.state.isCancelable || this.props.isCancelable) this.closeModal()
+                        }}>
                         {this.renderDialog()}
                     </TouchableOpacity>
                 </View>
@@ -191,7 +269,7 @@ const styles = StyleSheet.create({
     },
     modalStyle: {
         width: 386 * w,
-        height: 253 * w,
+        minHeight: 253 * w,
         zIndex: 99999,
         borderRadius: 10 * w,
         backgroundColor: '#ffffff',
