@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-06-16 12:02:51
  * @LastEditors: yanyulin
- * @LastEditTime: 2022-08-15 17:21:03
+ * @LastEditTime: 2022-09-14 18:18:09
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\btns\Button.tsx
  */
 
@@ -26,7 +26,7 @@ export default function Button(props: IProps) {
 	return (
 		<View style={[styles.bottomBtns, { borderRadius: radius ? 42 * w : 0 }, style]}>
 			{
-				leftTitle != null && <TouchableOpacity style={[styles.leftBtn, style]} activeOpacity={0.5} onPress={() => {
+				leftTitle != null && <TouchableOpacity style={(props.leftEnable == null || props.leftEnable) ? styles.leftBtn : styles.leftBtnDis} activeOpacity={(props.leftEnable == null || props.leftEnable) ? 0.5 : 1} onPress={() => {
 					if ((props.leftEnable == null || props.leftEnable) && leftOnPress != null) {
 						leftOnPress();
 					}
@@ -71,6 +71,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#555555',
+		paddingHorizontal: 50 * w
+	},
+	leftBtnDis: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#D4D4D4',
 		paddingHorizontal: 50 * w
 	},
 })

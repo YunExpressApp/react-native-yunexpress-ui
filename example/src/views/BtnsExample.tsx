@@ -1,3 +1,9 @@
+/*
+ * @Date: 2022-06-16 11:00:59
+ * @LastEditors: yanyulin
+ * @LastEditTime: 2022-09-14 18:20:03
+ * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\example\src\views\BtnsExample.tsx
+ */
 import React, { useState } from 'react'
 import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import { w, YTBtns } from 'react-native-yunexpress-ui';
@@ -27,7 +33,7 @@ export default function BtnsExample() {
 				<View style={{ height: 10 }} />
 				<YTBtns.Button title={"按钮"} radius enable={true} onPress={() => { }} />
 				<View style={{ height: 10 }} />
-				<YTBtns.Button title={"按钮"} leftTitle="左边按钮" enable={true} onPress={() => { }} leftEnable={false} leftOnPress={() => {
+				<YTBtns.Button title={"按钮"} leftTitle="左边按钮" enable={false} onPress={() => { }} leftEnable={false} leftOnPress={() => {
 					Alert.alert("AAA");
 				}} />
 				<View style={{ height: 10 }} />
