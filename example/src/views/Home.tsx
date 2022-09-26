@@ -1,3 +1,11 @@
+/*
+ * @Author: 袁康乐 yuankangle@yunexpress.cn
+ * @Date: 2022-06-13 10:22:40
+ * @LastEditors: 袁康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2022-09-26 10:18:58
+ * @FilePath: \react-native-yunexpress-ui\example\src\views\Home.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import React, { useEffect } from 'react'
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { Theme } from 'react-native-yunexpress-ui';

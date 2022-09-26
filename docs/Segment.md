@@ -1,9 +1,3 @@
-<!--
- * @Date: 2022-06-09 11:26:19
- * @LastEditors: yanyulin
- * @LastEditTime: 2022-08-15 09:38:50
- * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\docs\Segment.md
--->
 ---
 title: Segment分段选择组件
 ---

@@ -93,9 +93,9 @@ export const Color = {
 /**
  * 格式化弹框
  * @param data1 
- * @param data2 
+ * @param [data2] 
  */
-export function myAlert(data1: any, data2: any) {
+export function myAlert(data1: any, data2?: any) {
 	console.log(data1);
 	console.log(data2);
 	if (__DEV__) {
@@ -108,9 +108,9 @@ export function myAlert(data1: any, data2: any) {
 /**
  * 格式化日志打印
  * @param data1 
- * @param data2 
+ * @param [data2]
  */
-export function myLog(data1: any, data2: any) {
+export function myLog(data1: any, data2?: any) {
 	let str1: string = (data1 && (typeof (data1) == 'object')) ? JSON.stringify(data1, null, 2) : data1
 	let str2: string = (data2 && (typeof (data2) == 'object')) ? JSON.stringify(data2, null, 2) : ''
 	if (__DEV__ && str1)

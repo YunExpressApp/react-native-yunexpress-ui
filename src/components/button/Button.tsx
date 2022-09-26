@@ -7,7 +7,6 @@
 import {
     View,
     TouchableOpacity,
-    Text,
     StyleSheet,
     StyleProp,
     ViewStyle,
@@ -15,6 +14,7 @@ import {
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Color, w } from '../../util/CStyle';
+import Text from '../text';
 
 /**
  * 按钮属性
@@ -40,7 +40,14 @@ interface ButtonProps {
     onRightPress: Function,
     /** 左边按钮点击回调函数 */
     onLeftPress?: Function,
+    /** 是否可连续点击 */
+    isContinuousClick?: boolean
+    /** 是否固定文本大小 */
+    isFixed?: boolean
 }
+
+//最后点击时间缀
+let clickTime: number = 0
 
 /**
  * === 自定义按钮 ===
@@ -55,7 +62,6 @@ interface ButtonProps {
  * 
  */
 export default function Button(props: ButtonProps) {
-
     const [buttonLeftText, setButtonLeftText] = useState(props.buttonLeftText)
     const [buttonRightText, setButtonRightText] = useState(props.buttonRightText)
 
@@ -75,6 +81,15 @@ export default function Button(props: ButtonProps) {
     //     /** 样式 */
     //     style: undefined
     // };
+    let preventDoubleClick = (press: Function) => {
+        let now = Date.now()
+        if (props.isContinuousClick) {
+            press && press()
+        } else if (now - clickTime > 1000) {
+            clickTime = now
+            press && press()
+        }
+    }
 
 
     let borderStyle = props.isBorder ? { borderRadius: 42 * w, borderWidth: 1, margin: 10 * w } : null
@@ -87,18 +102,19 @@ export default function Button(props: ButtonProps) {
                 style={[btnContainer, { backgroundColor: leftDisable ? Color.grey : Color.c555, flex: 0.34 }, props.btnStyle]}
                 activeOpacity={0.8}
                 disabled={leftDisable}
-                onPress={() => props.onLeftPress && props.onLeftPress()}>
-                <Text style={[styles.white, { fontSize: 24 * w }, props.btnLeftTextStyle]}>{buttonLeftText}</Text>
+                onPress={() => props.onLeftPress && preventDoubleClick(props.onLeftPress)}>
+                <Text isFixed={props.isFixed} style={[styles.white, { fontSize: 24 * w }, props.btnLeftTextStyle]}>{buttonLeftText}</Text>
             </TouchableOpacity> : null}
             <TouchableOpacity
                 style={[btnContainer, { backgroundColor: rightDisable ? Color.blue_disable : Color.blue, flex: buttonLeftText ? 0.66 : 1 }, props.btnStyle]}
                 activeOpacity={0.8}
                 disabled={rightDisable}
-                onPress={() => props.onRightPress && props.onRightPress()}>
-                <Text style={[styles.white, { fontSize: 24 * w }, props.btnRightTextStyle]}>{buttonRightText}</Text>
+                onPress={() => props.onRightPress && preventDoubleClick(props.onRightPress)}>
+                <Text isFixed={props.isFixed} style={[styles.white, { fontSize: 24 * w }, props.btnRightTextStyle]}>{buttonRightText}</Text>
             </TouchableOpacity>
         </View>
     )
+
 }
 
 const styles = StyleSheet.create({

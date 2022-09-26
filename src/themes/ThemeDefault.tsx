@@ -1,3 +1,11 @@
+/*
+ * @Author: 袁康乐 yuankangle@yunexpress.cn
+ * @Date: 2022-06-13 10:22:40
+ * @LastEditors: 袁康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2022-09-26 10:17:04
+ * @FilePath: \react-native-yunexpress-ui\src\themes\ThemeDefault.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // ThemeDefault.js
 'use strict';
 
@@ -40,7 +48,7 @@ const ThemeDefault: ThemeType = {
 	//Cell
 	cellTitleColor: '#999999',
 	w,
-	locale: 'en'
+	locale: 'zh'
 }
 
 export default ThemeDefault;

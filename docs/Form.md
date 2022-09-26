@@ -1,9 +1,3 @@
-<!--
- * @Date: 2022-06-18 10:23:43
- * @LastEditors: yanyulin
- * @LastEditTime: 2022-08-25 15:14:00
- * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\docs\Form.md
--->
 ---
 title: Form组件
 ---

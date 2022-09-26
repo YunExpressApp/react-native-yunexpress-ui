@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    Text,
     TouchableOpacity,
     Modal,
     StyleProp,
@@ -16,6 +15,7 @@ import {
 import i18n from '../../i18n';
 import { w } from '../../util/CStyle';
 import Button from '../button';
+import Text from '../text';
 
 /**
  * 弹框属性
@@ -44,6 +44,8 @@ type AlertProps = {
     contentStyle?: StyleProp<TextStyle>,
     /** 点旁边是否关闭 */
     isCancelable?: boolean
+    /** 是否固定文本大小 */
+    isFixed?: boolean
 }
 
 /**
@@ -191,8 +193,8 @@ export default class Alert extends Component<AlertProps, State> {
         return (
             <View style={styles.modalStyle}>
                 <TouchableOpacity activeOpacity={1} style={{ paddingTop: 46 * w, paddingHorizontal: 32 * w, paddingBottom: 10 * w }}>
-                    <Text style={[{ fontSize: 25 * w, color: '#111', fontWeight: '500' }, this.props.titleStyle]}>{this.state.title || this.props.title || ""}</Text>
-                    {this.state.content || this.props.content ? <Text style={[{ fontSize: 22 * w, color: '#333', marginVertical: 10 * w }, this.state.contentStyle || this.props.contentStyle]}>{this.state.content || this.props.content || ""}</Text> : null}
+                    <Text isFixed={this.props.isFixed} style={[{ fontSize: 25 * w, color: '#111', fontWeight: '500' }, this.props.titleStyle]}>{this.state.title || this.props.title || ""}</Text>
+                    {this.state.content || this.props.content ? <Text isFixed={this.props.isFixed} style={[{ fontSize: 22 * w, color: '#333', marginVertical: 10 * w }, this.state.contentStyle || this.props.contentStyle]}>{this.state.content || this.props.content || ""}</Text> : null}
                     {this.props.children}
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={1} style={{ flex: 1 }} />
@@ -216,6 +218,7 @@ export default class Alert extends Component<AlertProps, State> {
                     btnLeftTextStyle={{ color: '#303030', fontSize: 24 * w }}
                     btnRightTextStyle={{ color: '#1592A3', fontSize: 24 * w }}
                     btnStyle={{ flex: 1, backgroundColor: '#00000000', alignItems: 'flex-start', paddingTop: 10 * w }}
+                    isFixed={this.props.isFixed}
                 />
                 {/* </View> */}
             </View>

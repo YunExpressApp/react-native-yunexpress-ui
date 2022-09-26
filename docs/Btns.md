@@ -1,9 +1,3 @@
-<!--
- * @Date: 2022-06-18 09:18:41
- * @LastEditors: yanyulin
- * @LastEditTime: 2022-08-15 17:24:11
- * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\docs\Btns.md
--->
 ---
 title: Btns辅助按钮组件
 ---

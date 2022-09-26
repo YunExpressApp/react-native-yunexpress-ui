@@ -1,4 +1,9 @@
 export { default as YTDatePicker } from './components/picker';
+
+/**
+ * 文本
+ */
+export { default as Text } from './components/text/index'
 /**
  * 按钮
  */

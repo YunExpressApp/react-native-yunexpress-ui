@@ -14,8 +14,26 @@ import ActionSheetExample from "./ActionSheetExample";
 import NavBarExample from "./NavBarExample";
 import BtnsExample from "./BtnsExample";
 import ModalExample from "./ModalExample";
+import TextExample from "./TextExample";
+import ItemExample from "./ItemExample";
+import ChangeLanguagePage from "./ChangeLanguagePage";
 
 export default [
+	{
+		page: ChangeLanguagePage,
+		name: '多语言',
+		descr: "多语言切换"
+	},
+	{
+		page: TextExample,
+		name: 'Text',
+		descr: "Text文本"
+	},
+	{
+		page: ItemExample,
+		name: 'Item',
+		descr: "Item表单"
+	},
 	{
 		page: AlertExample,
 		name: 'Alert',
