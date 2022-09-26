@@ -2,13 +2,13 @@
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-09-20 16:32:35
  * @LastEditors: 袁康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2022-09-26 16:27:11
+ * @LastEditTime: 2022-09-26 17:17:07
  * @FilePath: \react-native-yunexpress-ui\src\components\text\Text.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useEffect, useState } from 'react'
-import { RecursiveArray, RegisteredStyle, StyleProp, Text as RnText, TextStyle } from 'react-native'
-import { w, myAlert } from '../../util/CStyle'
+import { StyleProp, Text as RnText, TextStyle } from 'react-native'
+import { w } from '../../util/CStyle'
 import Theme from '../../themes/Theme';
 
 interface TextProps {

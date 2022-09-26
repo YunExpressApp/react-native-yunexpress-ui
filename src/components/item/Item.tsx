@@ -15,7 +15,6 @@ import {
     ImageStyle,
     ViewStyle,
     TextInputProps,
-    TextProps
 } from 'react-native'
 import React from 'react'
 import PropTypes from 'prop-types'
