@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-08-20 18:38:02
- * @LastEditTime: 2021-11-04 11:16:22
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-09-28 17:13:21
+ * @LastEditors: 1418220302@qq.com 1418220302@qq.com
  * @Description: In User Settings Edit
  * @FilePath: \AwesomeProjecte:\git\yunExpress\app\i18n\zh\zh.js
  */
@@ -21,4 +21,8 @@ export default {
 	Operation: "操作",
 	ManuallyInput: "手动输入",
 	ManualInputPlz: '请输入条码号!',
+	PleaseChoose: "请选择",
+	PleaseEnter: "请输入",
+	Search: "搜索"
+
 }

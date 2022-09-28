@@ -12,4 +12,7 @@ export default {
 	Operation: "Operate",
 	ManuallyInput: "manual entry",
 	ManualInputPlz: "please input barcode number",
+	PleaseChoose: "please choose",
+	PleaseEnter: "please enter",
+	Search: "Search"
 }

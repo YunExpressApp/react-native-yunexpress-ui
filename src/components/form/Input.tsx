@@ -1,11 +1,12 @@
 /*
  * @Date: 2022-06-06 09:32:47
- * @LastEditors: yanyulin
- * @LastEditTime: 2022-08-18 13:48:54
+ * @LastEditors: 1418220302@qq.com 1418220302@qq.com
+ * @LastEditTime: 2022-09-28 17:12:28
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\form\Input.tsx
  */
 import React from "react";
 import { Text, TextInput, View, StyleSheet, StyleProp, ViewStyle, TextStyle, KeyboardTypeOptions } from "react-native";
+import i18n from '../../i18n'
 import { w } from '../../util/CStyle';
 
 type InputType = {
@@ -35,7 +36,7 @@ const Input = (props: InputType) => {
 				value={props.value}
 				multiline={multiline}
 				numberOfLines={1}
-				placeholder={placeholder || "请输入"}
+				placeholder={placeholder || i18n.t("PleaseEnter")}
 				maxLength={maxLength}
 				editable={editable}
 				keyboardType={keyboardType}

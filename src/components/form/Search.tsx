@@ -1,11 +1,12 @@
 /*
  * @Date: 2022-06-07 11:09:55
- * @LastEditors: yanyulin
- * @LastEditTime: 2022-08-10 14:03:14
+ * @LastEditors: 1418220302@qq.com 1418220302@qq.com
+ * @LastEditTime: 2022-09-28 17:14:21
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\form\Search.tsx
  */
 import React from "react";
 import { TextInput, View, StyleSheet, StyleProp, ViewStyle } from "react-native";
+import i18n from '../../i18n'
 import { w } from '../../util/CStyle';
 
 type SearchType = {
@@ -32,7 +33,7 @@ const Search = (props: SearchType) => {
 				value={props.value}
 				multiline={multiline}
 				numberOfLines={numberOfLines}
-				placeholder={placeholder || "搜索"}
+				placeholder={placeholder || i18n.t("Search")}
 				maxLength={maxLength}
 				editable={editable}
 				onChangeText={(val: string) => {
