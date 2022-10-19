@@ -39,6 +39,8 @@ type AlertProps = {
     leftText?: string | undefined,
     /** 弹框按钮右边文字 */
     rightText?: string | undefined,
+    btnLeftTextStyle?: StyleProp<TextStyle>,
+    btnRightTextStyle?: StyleProp<TextStyle>,
     /** 弹框内容 */
     content?: string | undefined,
     contentStyle?: StyleProp<TextStyle>,
@@ -56,10 +58,13 @@ type State = {
     isVisible: boolean,
     /** 弹框标题 */
     title: string,
+    titleStyle?: StyleProp<TextStyle>,
     leftText: string | undefined,
     rightText: string | undefined,
     onLeftPress: Function | undefined,
     onRightPress: Function,
+    btnLeftTextStyle?: StyleProp<TextStyle>,
+    btnRightTextStyle?: StyleProp<TextStyle>,
     /** 弹框内容 */
     content?: string | undefined,
     contentStyle?: StyleProp<TextStyle>,
@@ -91,8 +96,13 @@ export default class Alert extends Component<AlertProps, State> {
         onLeftPress: () => { },
         onRightPress: () => { },
         isOneButton: false,
-        isCancelable: true
+        isCancelable: true,
+        titleStyle: null,
+        contentStyle: null,
+        btnLeftTextStyle: null,
+        btnRightTextStyle: null
     }
+
     constructor(props: AlertProps) {
         super(props);
         this.state = this.defaultState;
@@ -188,12 +198,39 @@ export default class Alert extends Component<AlertProps, State> {
         this.outSizeCancelable = isCancelable
     }
 
+    /**
+     * 设置标题和内容样式
+     * @param titleStyle 
+     * @param contentStyle 
+     */
+    setTextStyle(titleStyle: StyleProp<TextStyle>, contentStyle?: StyleProp<TextStyle>) {
+        // @ts-ignore
+        this.state.titleStyle = titleStyle
+        // @ts-ignore
+        this.state.contentStyle = contentStyle
+        // this.setState({
+        //     titleStyle, contentStyle
+        // })
+    }
+
+    /**
+     * 设置按钮文本样式
+     * @param btnLeftTextStyle 
+     * @param btnRightTextStyle 
+     */
+    setButtonStyle(btnLeftTextStyle: StyleProp<TextStyle>, btnRightTextStyle: StyleProp<TextStyle>) {
+        // @ts-ignore
+        this.state.btnLeftTextStyle = btnLeftTextStyle
+        // @ts-ignore
+        this.state.btnRightTextStyle = btnRightTextStyle
+    }
+
     /** 弹框内容 */
     renderDialog() {
         return (
             <View style={styles.modalStyle}>
                 <TouchableOpacity activeOpacity={1} style={{ paddingTop: 46 * w, paddingHorizontal: 32 * w, paddingBottom: 10 * w }}>
-                    <Text isFixed={this.props.isFixed} style={[{ fontSize: 25 * w, color: '#111', fontWeight: '500' }, this.props.titleStyle]}>{this.state.title || this.props.title || ""}</Text>
+                    <Text isFixed={this.props.isFixed} style={[{ fontSize: 25 * w, color: '#111', fontWeight: '500' }, this.state.titleStyle || this.props.titleStyle]}>{this.state.title || this.props.title || ""}</Text>
                     {this.state.content || this.props.content ? <Text isFixed={this.props.isFixed} style={[{ fontSize: 22 * w, color: '#333', marginVertical: 10 * w }, this.state.contentStyle || this.props.contentStyle]}>{this.state.content || this.props.content || ""}</Text> : null}
                     {this.props.children}
                 </TouchableOpacity>
@@ -215,8 +252,8 @@ export default class Alert extends Component<AlertProps, State> {
                         else if (this.state.onRightPress && !this.state.onRightPress())
                             this.closeModal()
                     }}
-                    btnLeftTextStyle={{ color: '#303030', fontSize: 24 * w }}
-                    btnRightTextStyle={{ color: '#1592A3', fontSize: 24 * w }}
+                    btnLeftTextStyle={[{ color: '#303030', fontSize: 24 * w }, this.state.btnLeftTextStyle || this.props.btnLeftTextStyle]}
+                    btnRightTextStyle={[{ color: '#1592A3', fontSize: 24 * w }, this.state.btnRightTextStyle || this.props.btnRightTextStyle]}
                     btnStyle={{ flex: 1, backgroundColor: '#00000000', alignItems: 'flex-start', paddingTop: 10 * w }}
                     isFixed={this.props.isFixed}
                 />
