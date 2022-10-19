@@ -2,7 +2,7 @@
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-06-13 10:22:40
  * @LastEditors: 袁康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2022-08-29 14:51:05
+ * @LastEditTime: 2022-10-19 10:16:36
  * @FilePath: \react-native-yunexpress-ui\example\src\views\AlertExample.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -47,6 +47,12 @@ export default function AlertExample() {
 			//点旁边不可关闭
 			setShow(true)
 		}}>第四个属性配置弹框</Text>
+		<Text onPress={() => {
+			//点旁边不可关闭
+			alertRef?.setTextStyle({ color: 'red' }, { color: 'green' })
+			alertRef?.setButtonStyle({ color: 'blue' }, { color: '#6f6' })
+			alertRef?.show('改变样式', () => { }, undefined, undefined, '关闭', '内容样式改变')
+		}}>第五个改变样式</Text>
 		<Alert leftText={leftText} ref={ref => alertRef = ref} />
 		<Alert show={show} title={'show属性控制'} content={'我是内容...........'} leftText={'左边'} rightText={'右边'} onClose={() => setShow(false)} />
 	</View>

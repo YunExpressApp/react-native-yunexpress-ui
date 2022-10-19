@@ -13,6 +13,10 @@ title: Item表单
 | style | ViewStyle |  | 整体样式
 | title | string |  | 标题
 | rightText | string |  | 右边内容
+| rightHidden | boolean | false | 隐藏右边图标
+| onPress | Function |  | 点击事件监听
+| rightInput | TextInputProps |  | 右边编辑框属性
+| rightCustomView | any |  | 右边自定义组件
 ...
 
 ## Demo
