@@ -110,3 +110,6 @@ export { default as YTBtns } from './components/btns/index';
  */
 export { default as YTModal } from './components/modal/index'
 
+export { ActionSheetProps, ActionSheetItem, ActionSheetStatus, ActionSheetRef } from './components/modal/type'
+
+
