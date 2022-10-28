@@ -20,7 +20,7 @@ interface TipComponentProps {
     tipType?: String,
     iconResource?: Image,
     spaceBetween?: number,
-    handleOperation?: () => {}
+    handleOperation?: any
 }
 
 export default function TipComponent(props: TipComponentProps) {
@@ -217,7 +217,6 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative'

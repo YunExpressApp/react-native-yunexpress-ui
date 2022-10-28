@@ -20,7 +20,7 @@ title: Tip弹框组件
 | tipType | String | '' | tip主题色类型（默认黑白、警告橙、错误红） warn/error
 | iconResource | Image | require("../imgs/white_close.png") | tip框右侧Icon图片来源可定制icon图标，默认大小14
 | spaceBetween | number | 0 | tip框与点击触发文案间距
-| handleOperation | any | 0 | tip框底部操作按钮点击触发函数
+| handleOperation | any | () => {} | tip框底部操作按钮点击触发函数
 
 ## Contributing
 create by zhanggui
