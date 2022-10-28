@@ -34,7 +34,7 @@ export default function ActionSheetExample() {
             <View style={{ ...styles.box, marginTop: 100, marginBottom: 100 }}>
                 <View style={{ ...styles.publicItem, ...styles.topItem }}>
                     <TipComponents placement={'top'} domSlot={<Text>Top1</Text>} tipMessage={"我是tip组件"} isShowButton={true} />
-                    <TipComponents placement={'top'} domSlot={<Text>Top2</Text>} tipMessage={"我是内容我是"} isShowButton={true} />
+                    <TipComponents placement={'top'} domSlot={<Text>Top2</Text>} tipMessage={"我是内容我是"} isShowButton={true} tipType={'warn'}/>
                 </View>
                 <View style={{ ...styles.publicItem, ...styles.bottomItem }}>
                     <TipComponents placement={'bottom'} domSlot={<Text>Botton1</Text>} tipMessage={"带操作按钮的提示框 ，区域固定宽 度358px，单位记得换算一下"} isShowButton={true} tipType={'error'} />
@@ -44,7 +44,7 @@ export default function ActionSheetExample() {
 
             <View style={styles.box}>
                 <View style={{ ...styles.publicItem, ...styles.topItem }}>
-                    <TipComponents placement={'top'} domSlot={<Text>Top1</Text>} tipMessage={"使用tip各类型"} bgColor={'#1693A4'} tipType={'warn'} />
+                    <TipComponents placement={'top'} domSlot={<Text>Top1</Text>} tipMessage={"使用tip类型"} bgColor={'#1693A4'} tipType={'warn'} isHideTitleIcon={true}/>
                     <TipComponents placement={'top'} domSlot={<Text>Top2</Text>} tipMessage={"自我定制我"} bgColor={'#1693A4'} />
                 </View>
                 <View style={{ ...styles.publicItem, ...styles.bottomItem }}>

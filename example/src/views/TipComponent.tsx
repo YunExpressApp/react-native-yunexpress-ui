@@ -13,13 +13,14 @@ interface TipComponentProps {
     domSlot: Document,
     placement: String,
     tipMessage?: String,
-    bgColor?: any,
-    textColor?: any,
+    bgColor?: String,
+    textColor?: String,
     isHideTitleIcon?: Boolean,
     isShowButton?: Boolean,
     tipType?: String,
     iconResource?: Image,
-    spaceBetween?: number
+    spaceBetween?: number,
+    handleOperation?: () => {}
 }
 
 export default function TipComponent(props: TipComponentProps) {
@@ -29,6 +30,8 @@ export default function TipComponent(props: TipComponentProps) {
     const [visible, setVisible] = useState(false);
     const [lightSpotWidth, setLightSpotWidth] = useState(0);
     const [lightSpotHeight, setLightSpotHeight] = useState(0);
+
+    const defualtFunction = () => { }
 
     // 默认值
     const currentProps = {
@@ -40,7 +43,8 @@ export default function TipComponent(props: TipComponentProps) {
         isShowButton: props?.isShowButton || false,
         tipType: props?.tipType || false, // tip框套餐类型  默认/警告warn/错误error
         iconResource: props?.iconResource || null,
-        spaceBetween: props?.spaceBetween || 14 // 间距
+        spaceBetween: props?.spaceBetween || 14, // 间距
+        handleOperation: props?.handleOperation || defualtFunction
     }
 
     const domSlotClick = () => {
@@ -121,6 +125,7 @@ export default function TipComponent(props: TipComponentProps) {
 
     // 计算箭头指向
     const tipArrowsComputedCss = () => {
+        const moveDistance = -16
         let result: any = {
             borderTopColor: 'transparent',
             borderRightColor: 'transparent',
@@ -132,16 +137,16 @@ export default function TipComponent(props: TipComponentProps) {
         result.borderLeftColor = currentProps?.placement === 'left' ? tipTypeComputedColor('bgColor')?.backgroundColor : 'transparent'
         result.borderRightColor = currentProps?.placement === 'right' ? tipTypeComputedColor('bgColor')?.backgroundColor : 'transparent'
         if (currentProps?.placement === 'top') {
-            result.bottom = -16
+            result.bottom = moveDistance
         }
         if (currentProps?.placement === 'bottom') {
-            result.top = -16
+            result.top = moveDistance
         }
         if (currentProps?.placement === 'left') {
-            result.right = -16
+            result.right = moveDistance
         }
         if (currentProps?.placement === 'right') {
-            result.left = -16
+            result.left = moveDistance
         }
         return result
     }
@@ -154,7 +159,7 @@ export default function TipComponent(props: TipComponentProps) {
                     <View style={{ ...styles.tipTitle }}>
                         <Text style={{ ...tipTypeComputedColor('color'), fontSize: 12, lineHeight: 20 }}>{currentProps?.tipMessage}</Text>
                         {(!currentProps?.isShowButton && !currentProps?.isHideTitleIcon) &&
-                            <TouchableHighlight onPress={domSlotClick} style={styles.arrow}>
+                            <TouchableHighlight onPress={() => { setVisible(false) }} style={styles.arrow}>
                                 <Image style={{
                                     width: 14,
                                     height: 14
@@ -165,7 +170,7 @@ export default function TipComponent(props: TipComponentProps) {
                     {currentProps?.isShowButton &&
                         <View style={{ ...styles.handleBox }}>
                             <Text style={{ ...styles.handleBoxCancle, marginRight: 3 }} onPress={handleCancle}>取消</Text>
-                            <Text style={{ ...styles.handleBoxMove, marginLeft: 3 }}>操作</Text>
+                            <Text style={{ ...styles.handleBoxMove, marginLeft: 3 }} onPress={currentProps?.handleOperation}>操作</Text>
                         </View>
                     }
                     <View style={{ ...tipArrowsComputedCss(), ...styles.inArrow }}></View>
