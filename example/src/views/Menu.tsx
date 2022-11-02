@@ -17,6 +17,7 @@ import ModalExample from "./ModalExample";
 import TextExample from "./TextExample";
 import ItemExample from "./ItemExample";
 import ChangeLanguagePage from "./ChangeLanguagePage";
+import TipExample from "./TipExample"
 
 export default [
 	{
@@ -114,6 +115,11 @@ export default [
 		page: ModalExample,
 		name: 'ModalExample',
 		descr: 'ModalExample弹框组件'
+	},
+	{
+		page: TipExample,
+		name: 'TipExample',
+		descr: 'Tip弹框组件'
 	}
 
 
