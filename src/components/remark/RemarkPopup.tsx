@@ -46,7 +46,7 @@ export default class RemarkPopup extends Component<RemarkPopupProps, any> {
 		let { placeholder, maxLength = 255, onClose, onConfirm } = this.props;
 		let { value } = this.state;
 		return (
-			<ScrollView style={styles.contentView}>
+			<ScrollView style={styles.contentView} keyboardShouldPersistTaps="always">
 				<View style={styles.header}>
 					<TouchableOpacity activeOpacity={1} onPress={() => { onClose && onClose(); }}>
 						<Text style={styles.hTxt}>{i18n.t("Cancel")}</Text>

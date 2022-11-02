@@ -55,7 +55,7 @@ export default class ActionSheet extends Component<ActionSheetProps, any> {
 		let { cancelText } = this.props;
 		return (
 			<View style={styles.container}>
-				<ScrollView style={styles.scrollView}>
+				<ScrollView style={styles.scrollView} keyboardShouldPersistTaps="always">
 					{this.rendItems()}
 				</ScrollView>
 				<View style={styles.lineView}></View>

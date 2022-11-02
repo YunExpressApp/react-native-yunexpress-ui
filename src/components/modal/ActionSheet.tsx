@@ -59,7 +59,7 @@ export default class ActionSheet extends Component<ActionSheetProps, ActionSheet
                 <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={this.close}></TouchableOpacity>
                     <View style={styles.container}>
-                        <ScrollView style={styles.scrollView}>
+                        <ScrollView style={styles.scrollView} keyboardShouldPersistTaps="always">
                             {this.rendItems()}
                         </ScrollView>
                         <View style={styles.lineView}></View>

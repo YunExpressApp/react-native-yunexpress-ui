@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-08-25 16:17:15
- * @LastEditors: yanyulin
- * @LastEditTime: 2022-08-25 17:14:19
+ * @LastEditors: 1418220302@qq.com 1418220302@qq.com
+ * @LastEditTime: 2022-11-02 10:05:22
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\modal\Bottom.tsx
  */
 import React from "react";
@@ -35,7 +35,7 @@ const Bottom = (props: BottomProps) => {
 
 			</TouchableOpacity>
 			<View style={props.style}>
-				<ScrollView style={{}}>
+				<ScrollView style={{}} keyboardShouldPersistTaps="always">
 					<Header leftTitle={props.leftTitle} rightTitle={props.rightTitle} onLeftPress={props.onLeftPress} onRightPress={props.onRightPress} />
 					<View style={{ backgroundColor: 'white' }}>
 						{

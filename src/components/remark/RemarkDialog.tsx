@@ -58,7 +58,7 @@ export default class RemarkDialog extends Component<RemarkDialogProps, any> {
 				</View>
 				<Text style={styles.rtip}>{i18n.t("Remarks")}</Text>
 				<View style={styles.line}></View>
-				<ScrollView style={styles.scrollView}>
+				<ScrollView style={styles.scrollView} keyboardShouldPersistTaps="always">
 					<View style={styles.inputView}>
 						<TextInput
 							placeholder={placeholder || i18n.t("InputRemark")}
