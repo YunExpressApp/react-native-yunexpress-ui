@@ -18,8 +18,26 @@ import TextExample from "./TextExample";
 import ItemExample from "./ItemExample";
 import ChangeLanguagePage from "./ChangeLanguagePage";
 import TipExample from "./TipExample"
+import UpgradeExample from "./UpgradeExample"
+import GenaralCardExample from "./GenaralCardExample"
+import FunctionIconExample from "./FunctionIconExample"
 
 export default [
+	{
+		page: FunctionIconExample,
+		name: 'FunctionIcon',
+		descr: "功能图标"
+	},
+	{
+		page: GenaralCardExample,
+		name: 'GenaralCard',
+		descr: "通用卡片"
+	},
+	{
+		page: UpgradeExample,
+		name: 'upgrade',
+		descr: "Upgrade升级弹框组件"
+	},
 	{
 		page: ChangeLanguagePage,
 		name: '多语言',

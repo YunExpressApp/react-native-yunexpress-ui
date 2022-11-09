@@ -1,16 +1,16 @@
 /*
- * @Author: 张贵 yuankangle@yunexpress.cn
+ * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-10-19 14:02:00
- * @LastEditors: 张贵 yuankangle@yunexpress.cn
+ * @LastEditors: 张贵 zhanggui@yunexpress.cn
  * @LastEditTime: 2022-10-25 16:35:15
- * @FilePath: \react-native-yunexpress-ui\example\src\views\TipExample.tsx
+ * @FilePath: \react-native-yunexpress-ui\example\src\views\TipComponent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState, useRef, useLayoutEffect, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableHighlight, Image, Button } from "react-native"
 
 interface TipComponentProps {
-    domSlot: Document,
+    content: Document,
     placement: String,
     tipMessage?: String,
     bgColor?: String,
@@ -20,16 +20,21 @@ interface TipComponentProps {
     tipType?: String,
     iconResource?: Image,
     spaceBetween?: number,
-    handleOperation?: any
+    offsetNumber?: number,
+    boxWidthNumber?: number,
+    handleOperation?: Function,
+    rightIconHandleOperation?: Function
 }
 
 export default function TipComponent(props: TipComponentProps) {
     // const ref: any = useRef(null as null | HTMLDivElement);
     const ref = useRef<View | null>(null);
-    const [value, setValue] = useState<string | undefined>('');
+    const contentRef = useRef<View | null>(null);
     const [visible, setVisible] = useState(false);
+    const [staticVisible, setStaticVisible] = useState(true)
     const [lightSpotWidth, setLightSpotWidth] = useState(0);
     const [lightSpotHeight, setLightSpotHeight] = useState(0);
+    const [contentWidth, setContentWidth] = useState(0);
 
     const defualtFunction = () => { }
 
@@ -43,8 +48,11 @@ export default function TipComponent(props: TipComponentProps) {
         isShowButton: props?.isShowButton || false,
         tipType: props?.tipType || false, // tip框套餐类型  默认/警告warn/错误error
         iconResource: props?.iconResource || null,
-        spaceBetween: props?.spaceBetween || 14, // 间距
-        handleOperation: props?.handleOperation || defualtFunction
+        spaceBetween: props?.spaceBetween || 0, // 间距
+        boxWidthNumber: props?.boxWidthNumber || 358,
+        handleOperation: props?.handleOperation || defualtFunction,
+        rightIconHandleOperation: props?.rightIconHandleOperation || defualtFunction,
+        offsetNumber: props?.offsetNumber || 6
     }
 
     const domSlotClick = () => {
@@ -54,18 +62,31 @@ export default function TipComponent(props: TipComponentProps) {
     // 计算tip框方向
     const computedPlacement = () => {
         let result: any = { top: 0, bottom: 0, left: 0, right: 0 }
+        const iconSpace = currentProps?.isShowButton ? 18 : 28
         switch (currentProps?.placement) {
             case 'top':
                 result = { top: -(lightSpotHeight + currentProps?.spaceBetween) }
                 break;
+            case 'topLeft':
+                result = { top: -(lightSpotHeight + currentProps?.spaceBetween), left: -(lightSpotWidth / 2 - iconSpace - currentProps?.offsetNumber) }
+                break;
+            case 'topRight':
+                result = { top: -(lightSpotHeight + currentProps?.spaceBetween), right: -(lightSpotWidth / 2 - iconSpace - currentProps?.offsetNumber) }
+                break;
             case 'bottom':
                 result = { bottom: -(lightSpotHeight + currentProps?.spaceBetween) }
                 break;
+            case 'bottomLeft':
+                result = { bottom: -(lightSpotHeight + currentProps?.spaceBetween), left: -(lightSpotWidth / 2 - iconSpace - currentProps?.offsetNumber) } //  left: -(lightSpotWidth - (contentWidth / 2))
+                break;
+            case 'bottomRight':
+                result = { bottom: -(lightSpotHeight + currentProps?.spaceBetween), right: -(lightSpotWidth / 2 - iconSpace - currentProps?.offsetNumber) } // right: -(lightSpotWidth - (contentWidth / 2))
+                break;
             case 'left':
-                result = { left: -(lightSpotWidth + currentProps?.spaceBetween) }
+                result = { left: -(contentWidth + currentProps?.spaceBetween) }
                 break;
             case 'right':
-                result = { right: -(lightSpotWidth + currentProps?.spaceBetween) }
+                result = { right: -(contentWidth + currentProps?.spaceBetween) }
                 break;
             default:
                 result = { top: 0, bottom: 0, left: 0, right: 0 }
@@ -82,9 +103,18 @@ export default function TipComponent(props: TipComponentProps) {
     const tipBoxRef = () => {
         if (ref) {
             ref?.current?.measure((x, y, width, height, pageX, pageY) => {
-                console.log(x, y, width, height, pageX, pageY);
+                console.log('大大',x, y, width, height, pageX, pageY);
                 setLightSpotWidth(width)
                 setLightSpotHeight(height)
+            });
+        }
+    }
+
+    const tipContentRef = () => {
+        if (contentRef) {
+            contentRef?.current?.measure((x, y, width, height, pageX, pageY) => {
+                console.log('小', x, y, width, height, pageX, pageY);
+                setContentWidth(width)
             });
         }
     }
@@ -115,7 +145,7 @@ export default function TipComponent(props: TipComponentProps) {
             return result
         }
         if (currentProps?.tipType === 'warn') {
-            result = require("../imgs/yellow_close.png")
+            result = require("../imgs/yellow_go.png")
         }
         if (currentProps?.tipType === 'error') {
             result = require("../imgs/white_go.png")
@@ -132,15 +162,19 @@ export default function TipComponent(props: TipComponentProps) {
             borderBottomColor: 'transparent',
             borderLeftColor: 'transparent',
         }
-        result.borderTopColor = currentProps?.placement === 'top' ? tipTypeComputedColor('bgColor')?.backgroundColor : 'transparent'
-        result.borderBottomColor = currentProps?.placement === 'bottom' ? tipTypeComputedColor('bgColor')?.backgroundColor : 'transparent'
+        result.borderTopColor = currentProps?.placement === 'top' || currentProps?.placement === 'topLeft' || currentProps?.placement === 'topRight' ? tipTypeComputedColor('bgColor')?.backgroundColor : 'transparent'
+        result.borderBottomColor = currentProps?.placement === 'bottom' || currentProps?.placement === 'bottomLeft' || currentProps?.placement === 'bottomRight' ? tipTypeComputedColor('bgColor')?.backgroundColor : 'transparent'
         result.borderLeftColor = currentProps?.placement === 'left' ? tipTypeComputedColor('bgColor')?.backgroundColor : 'transparent'
         result.borderRightColor = currentProps?.placement === 'right' ? tipTypeComputedColor('bgColor')?.backgroundColor : 'transparent'
-        if (currentProps?.placement === 'top') {
+        if (currentProps?.placement === 'top' || currentProps?.placement === 'topLeft' || currentProps?.placement === 'topRight') {
             result.bottom = moveDistance
+            result.right = currentProps?.placement === 'topLeft' ? 12 : null
+            result.left = currentProps?.placement === 'topRight' ? 12 : null
         }
-        if (currentProps?.placement === 'bottom') {
+        if (currentProps?.placement === 'bottom' || currentProps?.placement === 'bottomLeft' || currentProps?.placement === 'bottomRight') {
             result.top = moveDistance
+            result.right = currentProps?.placement === 'bottomLeft' ? 12 : null
+            result.left = currentProps?.placement === 'bottomRight' ? 12 : null
         }
         if (currentProps?.placement === 'left') {
             result.right = moveDistance
@@ -151,15 +185,53 @@ export default function TipComponent(props: TipComponentProps) {
         return result
     }
 
+
+    // 计算盒子长度
+    const computedBoxWidth = () => {
+        let result = null
+        if (currentProps?.isShowButton) {
+            result = { maxWidth: currentProps?.boxWidthNumber || 158 }
+        } else if (currentProps?.placement !== 'static') {
+            result = { maxWidth: currentProps?.boxWidthNumber || 220 }
+        } else if (currentProps?.placement === 'static') {
+            result = { width: currentProps?.boxWidthNumber || 280 }
+        }
+        return result
+    }
+
     return (
-        <View style={styles.container}>
-            <TouchableHighlight style={styles.tipTitle} onPress={domSlotClick}>{currentProps?.domSlot || ''}</TouchableHighlight >
-            {visible &&
-                <View ref={ref} onLayout={tipBoxRef} style={{ ...computedPlacement(), ...styles.tipBox, ...tipTypeComputedColor('bgColor'), paddingRight: currentProps?.isShowButton && !currentProps?.isHideTitleIcon ? 8 : 22, }}>
-                    <View style={{ ...styles.tipTitle }}>
+        <View style={{ ...styles.container }}>
+            {staticVisible && currentProps?.placement === 'static' &&
+                <View style={{ ...computedPlacement(), ...styles.staticTipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: currentProps?.isShowButton && !currentProps?.isHideTitleIcon ? 8 : 22, }}>
+                    <View style={{ ...styles.tipTitle, width: '100%' }}>
                         <Text style={{ ...tipTypeComputedColor('color'), fontSize: 12, lineHeight: 20 }}>{currentProps?.tipMessage}</Text>
+                        {!currentProps?.isHideTitleIcon &&
+                            <TouchableHighlight onPress={() => {
+                                currentProps.rightIconHandleOperation()
+                                setStaticVisible(false)
+                            }} style={styles.arrow}>
+                                <Image style={{
+                                    width: 14,
+                                    height: 14
+                                }} source={tipIconComputedColor() || require("../imgs/white_close.png")} />
+                            </TouchableHighlight>
+                        }
+                    </View>
+                </View>
+            }
+            {currentProps?.placement !== 'static' &&
+                <TouchableHighlight style={styles.tipTitle} onPress={domSlotClick}>{currentProps?.content || ''}</TouchableHighlight >
+            }
+
+            {visible &&
+                <View ref={ref} onLayout={tipBoxRef} style={{ ...computedPlacement(), ...styles.tipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: (currentProps?.isHideTitleIcon || (currentProps?.isShowButton && !currentProps?.isHideTitleIcon)) ? 8 : 22, }}>
+                    <View ref={contentRef} onLayout={tipContentRef} style={{ ...styles.tipTitle, width: '100%' }}>
+                        <Text style={{ ...tipTypeComputedColor('color'), ...styles.tipTextCss }}>{currentProps?.tipMessage}</Text>
                         {(!currentProps?.isShowButton && !currentProps?.isHideTitleIcon) &&
-                            <TouchableHighlight onPress={() => { setVisible(false) }} style={styles.arrow}>
+                            <TouchableHighlight onPress={() => {
+                                currentProps.rightIconHandleOperation()
+                                setVisible(false)
+                            }} style={styles.arrow}>
                                 <Image style={{
                                     width: 14,
                                     height: 14
@@ -170,7 +242,7 @@ export default function TipComponent(props: TipComponentProps) {
                     {currentProps?.isShowButton &&
                         <View style={{ ...styles.handleBox }}>
                             <Text style={{ ...styles.handleBoxCancle, marginRight: 3 }} onPress={handleCancle}>取消</Text>
-                            <Text style={{ ...styles.handleBoxMove, marginLeft: 3 }} onPress={currentProps?.handleOperation}>操作</Text>
+                            <Text style={{ ...styles.handleBoxMove, marginLeft: 3 }} onPress={() => { currentProps?.handleOperation() }}>操作</Text>
                         </View>
                     }
                     <View style={{ ...tipArrowsComputedCss(), ...styles.inArrow }}></View>
@@ -189,8 +261,8 @@ const styles = StyleSheet.create({
         // borderRightColor: 'transparent',
         // borderBottomColor: 'transparent',
         // borderLeftColor: '#fff',
-        position: 'absolute',
-        // top: -9
+        position: 'absolute'
+        // left: 12
     },
     handleBox: {
         marginLeft: 'auto',
@@ -211,22 +283,30 @@ const styles = StyleSheet.create({
     arrow: {
         zIndex: 1000,
         position: 'absolute',
-        right: -18,
+        right: -16,
         width: 14,
         height: 14
     },
     container: {
-        flex: 1,
+        // flex: 1,
+        // backgroundColor: 'pink',
+        // maxWidth: 420,
+        minWidth: 160,
+        minHeight: 54,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative'
     },
     tipTitle: {
+        // flex: 1,
         position: 'relative',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    tipTextCss: {
+        fontSize: 12, lineHeight: 20
     },
     tipBox: {
         flexShrink: 0,
@@ -241,6 +321,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute'
+    },
+    staticTipBox: {
+        flexShrink: 0,
+        // width: 480,
+        // height: 34,
+        paddingLeft: 12,
+        paddingBottom: 12,
+        paddingTop: 12,
+        // borderRadius: 4,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative'
     },
     tipBoxContent: {
 
