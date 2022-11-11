@@ -39,6 +39,11 @@ export default [
 		descr: "Upgrade升级弹框组件"
 	},
 	{
+		page: TipExample,
+		name: 'TipExample',
+		descr: 'Tip弹框组件'
+	},
+	{
 		page: ChangeLanguagePage,
 		name: '多语言',
 		descr: "多语言切换"
@@ -133,11 +138,6 @@ export default [
 		page: ModalExample,
 		name: 'ModalExample',
 		descr: 'ModalExample弹框组件'
-	},
-	{
-		page: TipExample,
-		name: 'TipExample',
-		descr: 'Tip弹框组件'
 	}
 
 

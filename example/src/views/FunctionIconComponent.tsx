@@ -8,6 +8,7 @@
  */
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableHighlight, View, Image } from "react-native"
+import { w } from 'react-native-yunexpress-ui'
 
 interface FunctionIconComponentProps {
     type: string
@@ -74,7 +75,7 @@ export default function FunctionIconComponent(props: FunctionIconComponentProps)
                 result = { width: '100%' }
                 break;
             case 'functionType':
-                result = { width: 432, backgroundColor: '#FFFFFF', borderRadius: 14, paddingTop: 18, paddingBottom: 18, paddingLeft: 16, paddingRight: 16 }
+                result = { width: 432 * w, backgroundColor: '#FFFFFF', borderRadius: 14 * w, paddingTop: 18 * w, paddingBottom: 18 * w, paddingLeft: 16 * w, paddingRight: 16 * w }
                 break;
             default:
                 result = { width: '100%' }
@@ -113,8 +114,8 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap'
     },
     functionItemCss: {
-        width: 96,
-        height: 96,
+        width: 96 * w,
+        height: 96 * w,
     },
     functionItemPaddingCss: {
         flex: 1,
@@ -123,30 +124,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     functionItemIconCss: {
-        width: 36,
-        height: 36,
+        width: 36 * w,
+        height: 36 * w,
     },
     functionItemTextCss: {
-        marginTop: 8,
-        fontSize: 18
+        marginTop: 8 * w,
+        fontSize: 18 * w
     },
 
     fillItemCss: {
-        marginBottom: 15,
-        marginRight: 14,
-        width: 134,
-        height: 134,
+        marginBottom: 15 * w,
+        marginRight: 14 * w,
+        width: 134 * w,
+        height: 134 * w,
     },
     functionFillItemCss: {
-        width: 96,
-        height: 96,
+        width: 96 * w,
+        height: 96 * w,
     },
     moduleItemCss: {
-        marginBottom: 15,
-        marginRight: 14,
-        width: 134,
-        height: 134,
-        borderRadius: 14,
+        marginBottom: 15 * w,
+        marginRight: 14 * w,
+        width: 134 * w,
+        height: 134 * w,
+        borderRadius: 14 * w,
         backgroundColor: '#FFFFFF'
     },
     moduleItemPaddingCss: {
@@ -156,12 +157,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     moduleItemIconCss: {
-        width: 52,
-        height: 52
+        width: 52 * w,
+        height: 52 * w
     },
     moduleItemTextCss: {
-        marginTop: 20,
-        fontSize: 19,
+        marginTop: 20 * w,
+        fontSize: 19 * w,
         // lineHeight: 20
     }
 });

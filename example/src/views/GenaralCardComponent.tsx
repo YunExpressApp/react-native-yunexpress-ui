@@ -8,6 +8,7 @@
  */
 import React, { useState } from 'react'
 import { Image, StyleSheet, Text, TouchableHighlight, View, Dimensions } from "react-native"
+import { w } from 'react-native-yunexpress-ui'
 
 interface GenaralCardComponentsProps {
     title: String,
@@ -50,7 +51,7 @@ export default function GenaralCardComponent(props: GenaralCardComponentsProps) 
 
     return (
         <View style={currentProps?.isPopCard ? styles.main : null}>
-            <View style={{ ...styles.container, paddingBottom: currentProps?.isShowButton ? 0 : 24 }}>
+            <View style={{ ...styles.container, paddingBottom: currentProps?.isShowButton ? 0 : 24 * w }}>
                 <View style={styles.titleCss}>
                     <Text style={styles.titleTextCss}>{currentProps?.title}</Text>
                 </View>
@@ -62,18 +63,18 @@ export default function GenaralCardComponent(props: GenaralCardComponentsProps) 
                     }
                 </View>}
 
-                {currentProps?.children && <View style={{ paddingLeft: 24, paddingRight: 24, marginTop: 12 }}>
+                {currentProps?.children && <View style={{ paddingLeft: 24 * w, paddingRight: 24 * w, marginTop: 12 * w }}>
                     {currentProps?.children}
                 </View>}
 
                 {currentProps?.isShowButton && <View style={styles.bottomCss}>
                     <TouchableHighlight
-                        style={{ ...styles.bottomItemCss, borderBottomLeftRadius: 8, borderRightWidth: 1, borderRightColor: '#E5E5E5' }}
+                        style={{ ...styles.bottomItemCss, borderBottomLeftRadius: 8 * w, borderRightWidth: 1 * w, borderRightColor: '#E5E5E5' }}
                         onPress={currentProps.handleLeftOperation}>
                         <Text style={{ ...styles.bottomTextCss, color: currentProps?.leftButtom?.color }}>{currentProps?.leftButtom?.text}</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
-                        style={{ ...styles.bottomItemCss, borderBottomRightRadius: 8 }}
+                        style={{ ...styles.bottomItemCss, borderBottomRightRadius: 8 * w }}
                         onPress={currentProps.handleRightOperation}>
                         <Text style={{ ...styles.bottomTextCss, color: currentProps?.rightButtom?.color }}>{currentProps?.rightButtom?.text}</Text>
                     </TouchableHighlight>
@@ -97,45 +98,45 @@ const styles = StyleSheet.create({
         position: 'absolute'
     },
     container: {
-        width: 421,
-        minHeight: 100,
+        width: 421 * w,
+        minHeight: 100 * w,
         backgroundColor: 'white',
         // justifyContent: 'center',
         // alignItems: 'center',
         // paddingLeft: 24,
         // paddingRight: 24,
-        paddingTop: 16,
+        paddingTop: 16 * w,
         // paddingBottom: 16,
-        borderRadius: 6,
+        borderRadius: 6 * w,
         borderColor: '#D2D2D2',
-        borderWidth: 1
+        borderWidth: 1 * w
     },
     titleCss: {
         // marginTop: 12,
-        paddingLeft: 24,
-        paddingRight: 24,
+        paddingLeft: 24 * w,
+        paddingRight: 24 * w
     },
     titleTextCss: {
-        fontSize: 22,
+        fontSize: 22 * w,
         color: '#111111',
-        lineHeight: 29,
+        lineHeight: 29 * w
     },
     contentCss: {
-        marginTop: 10,
-        paddingLeft: 24,
-        paddingRight: 24
+        marginTop: 10 * w,
+        paddingLeft: 24 * w,
+        paddingRight: 24 * w
     },
     contentTextCss: {
-        marginTop: 6,
-        fontSize: 18,
+        marginTop: 6 * w,
+        fontSize: 18 * w,
         color: '#999999',
-        lineHeight: 21,
+        lineHeight: 21 * w,
         fontWeight: '400'
     },
     bottomCss: {
-        marginTop: 20,
+        marginTop: 20 * w,
         width: '100%',
-        height: 68,
+        height: 68 * w,
         display: 'flex',
         flexDirection: 'row',
         backgroundColor: 'rgb(251,251,251)',
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     bottomTextCss: {
-        fontSize: 22,
+        fontSize: 22 * w,
         // color: '#999999'
     }
 });

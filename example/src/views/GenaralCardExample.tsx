@@ -7,8 +7,9 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native"
 import GenaralCardComponent from './GenaralCardComponent'
+import { w } from 'react-native-yunexpress-ui'
 
 export default function GenaralCardExample() {
     const [isShowCard, setIsShowCard] = useState(false)
@@ -19,7 +20,7 @@ export default function GenaralCardExample() {
         <View style={styles.container}>
             <View style={{ flexDirection: 'row' }}>
 
-                <Text style={{ marginRight: 20 }} onPress={() => {
+                <Text style={{ marginRight: 20 * w }} onPress={() => {
                     setIsShowCard(true);
                     setComponentValue({
                         isPopCard: true,
@@ -51,83 +52,84 @@ export default function GenaralCardExample() {
                         handleLeftOperation: () => { setIsShowCard(false) },
                         handleRightOperation: () => { console.log('点击右边的按钮') },
                         children: <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999' }}>标题：</Text>
-                            <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999' }}>信息内容11</Text>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>标题：</Text>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>信息内容11</Text>
                         </View>
                     })
                 }}>预览式卡片2(弹框能力)</Text>
 
             </View>
 
-            {isShowCard && <GenaralCardComponent
-                title={componentValue?.title || ''}
-                content={componentValue?.content || []}
-                isShowButton={componentValue?.isShowButton || false}
-                leftButtom={componentValue?.leftButtom || null}
-                rightButtom={componentValue?.rightButtom || null}
-                handleLeftOperation={componentValue?.handleLeftOperation || null}
-                handleRightOperation={componentValue?.handleRightOperation || null}
-                isPopCard={componentValue?.isPopCard || false}
-            >
-                {componentValue?.children || null}
-            </GenaralCardComponent>}
-
-            <View style={{ marginTop: 20 }}>
-                <GenaralCardComponent
-                    title={'PL2021302003212332321'}
-                    isShowButton={true}
-                    leftButtom={{ text: '普通操作', color: '#999999' }}
-                    rightButtom={{ text: '主要操作', color: '#1592A3' }}
+            <ScrollView>
+                {isShowCard && <GenaralCardComponent
+                    title={componentValue?.title || ''}
+                    content={componentValue?.content || []}
+                    isShowButton={componentValue?.isShowButton || false}
+                    leftButtom={componentValue?.leftButtom || null}
+                    rightButtom={componentValue?.rightButtom || null}
+                    handleLeftOperation={componentValue?.handleLeftOperation || null}
+                    handleRightOperation={componentValue?.handleRightOperation || null}
+                    isPopCard={componentValue?.isPopCard || false}
                 >
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999' }}>信息内容</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999' }}>信息内容</Text>
-                    </View>
-                </GenaralCardComponent>
-            </View>
+                    {componentValue?.children || null}
+                </GenaralCardComponent>}
 
-            <View style={{ marginTop: 20 }}>
-                <GenaralCardComponent
-                    title={'PL2021302003212332321'}
-                    isShowButton={true}
-                    leftButtom={{ text: '普通操作', color: '#999999' }}
-                    rightButtom={{ text: '普通操作', color: '#999999' }}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999' }}>信息内容</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999' }}>信息内容</Text>
-                    </View>
-                </GenaralCardComponent>
-            </View>
+                <View style={{ marginTop: 20 * w }}>
+                    <GenaralCardComponent
+                        title={'PL2021302003212332321'}
+                        isShowButton={true}
+                        leftButtom={{ text: '普通操作', color: '#999999' }}
+                        rightButtom={{ text: '主要操作', color: '#1592A3' }}
+                    >
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>信息内容</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>信息内容</Text>
+                        </View>
+                    </GenaralCardComponent>
+                </View>
 
-            <View style={{ marginTop: 20 }}>
-                <GenaralCardComponent title={'PL2021302003212332321'}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999' }}>信息内容</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999' }}>信息内容</Text>
-                    </View>
-                </GenaralCardComponent>
-            </View>
+                <View style={{ marginTop: 6 * w }}>
+                    <GenaralCardComponent
+                        title={'PL2021302003212332321'}
+                        isShowButton={true}
+                        leftButtom={{ text: '普通操作', color: '#999999' }}
+                        rightButtom={{ text: '普通操作', color: '#999999' }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>信息内容</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>信息内容</Text>
+                        </View>
+                    </GenaralCardComponent>
+                </View>
 
-            <View style={{ marginTop: 20 }}>
-                <GenaralCardComponent title={'标题文字'}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>备注信息1</Text>
-                    </View>
-                </GenaralCardComponent>
-            </View>
+                <View style={{ marginTop: 6 * w }}>
+                    <GenaralCardComponent title={'PL2021302003212332321'}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>信息内容</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：</Text>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>信息内容</Text>
+                        </View>
+                    </GenaralCardComponent>
+                </View>
 
+                <View style={{ marginTop: 6 * w }}>
+                    <GenaralCardComponent title={'标题文字'}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>备注信息1</Text>
+                        </View>
+                    </GenaralCardComponent>
+                </View>
+            </ScrollView>
         </View >
     );
 }
@@ -138,6 +140,6 @@ const styles = StyleSheet.create({
         // backgroundColor: 'white',
         // justifyContent: 'center',
         // alignItems: 'center',
-        padding: 24
+        padding: 24 * w
     }
 });

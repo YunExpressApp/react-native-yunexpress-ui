@@ -8,6 +8,7 @@
  */
 import React, { useState } from 'react'
 import { Image, StyleSheet, Text, TouchableHighlight, View } from "react-native"
+import { w } from 'react-native-yunexpress-ui'
 
 interface UpgradeComponentsProps {
     title: String,
@@ -42,7 +43,7 @@ export default function UpgradeComponents(props: UpgradeComponentsProps) {
                     }
                 </View>
             }
-            {currentProps?.children && <View style={{ width: '100%', paddingLeft: 32, paddingRight: 32, paddingBottom: 18, marginTop: 12 }}>
+            {currentProps?.children && <View style={{ width: '100%', paddingLeft: 32 * w, paddingRight: 32 * w, paddingBottom: 18 * w, marginTop: 12 * w }}>
                 {currentProps?.children}
             </View>}
             <TouchableHighlight style={styles.bottomCss} onPress={currentProps.handleOperation}>
@@ -54,58 +55,58 @@ export default function UpgradeComponents(props: UpgradeComponentsProps) {
 
 const styles = StyleSheet.create({
     container: {
-        width: 430,
+        width: 430 * w,
         // minHeight: 502,
         backgroundColor: 'white',
         // justifyContent: 'center',
         alignItems: 'center',
         // paddingLeft: 24,
         // paddingRight: 24,
-        paddingBottom: 24,
-        borderRadius: 24
+        paddingBottom: 24 * w,
+        borderRadius: 24 * w
     },
     pngCss: {
         width: '100%',
-        height: 194,
-        marginTop: -38
+        height: 194 * w,
+        marginTop: -38 * w
     },
     titleCss: {
-        marginTop: 12,
-        fontSize: 25,
+        marginTop: 12 * w,
+        fontSize: 25 * w,
         fontWeight: 'bold',
         color: '#111111',
-        lineHeight: 29
+        lineHeight: 29 * w
     },
     contentCss: {
-        marginTop: 8,
+        marginTop: 8 * w,
         width: '100%',
         // backgroundColor: 'pink',
-        paddingTop: 8,
-        paddingLeft: 32,
-        paddingRight: 32,
-        paddingBottom: 18
+        paddingTop: 8 * w,
+        paddingLeft: 32 * w,
+        paddingRight: 32 * w,
+        paddingBottom: 18 * w
     },
     contentTextCss: {
         display: 'flex',
-        fontSize: 18,
+        fontSize: 18 * w,
         color: '#666666',
-        lineHeight: 32,
+        lineHeight: 32 * w,
     },
     bottomCss: {
         marginTop: 'auto',
-        marginBottom: 8,
-        width: 382,
-        height: 68,
+        marginBottom: 8 * w,
+        width: 382 * w,
+        height: 68 * w,
         backgroundColor: '#1693A4',
-        borderRadius: 44,
+        borderRadius: 44 * w,
         opacity: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
     bottomTextCss: {
-        fontSize: 24,
+        fontSize: 24 * w,
         fontWeight: 'bold',
         color: '#FFFFFF',
-        lineHeight: 29
+        lineHeight: 29 * w
     }
 });

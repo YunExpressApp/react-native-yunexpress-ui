@@ -8,7 +8,7 @@
  */
 import React, { useState, useRef, useLayoutEffect, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableHighlight, Image, Button } from "react-native"
-
+import { w } from 'react-native-yunexpress-ui'
 interface TipComponentProps {
     content: Document,
     placement: String,
@@ -49,10 +49,10 @@ export default function TipComponent(props: TipComponentProps) {
         tipType: props?.tipType || false, // tip框套餐类型  默认/警告warn/错误error
         iconResource: props?.iconResource || null,
         spaceBetween: props?.spaceBetween || 0, // 间距
-        boxWidthNumber: props?.boxWidthNumber || 358,
+        boxWidthNumber: props?.boxWidthNumber || 0,
         handleOperation: props?.handleOperation || defualtFunction,
         rightIconHandleOperation: props?.rightIconHandleOperation || defualtFunction,
-        offsetNumber: props?.offsetNumber || 6
+        offsetNumber: props?.offsetNumber || 6 * w
     }
 
     const domSlotClick = () => {
@@ -62,7 +62,7 @@ export default function TipComponent(props: TipComponentProps) {
     // 计算tip框方向
     const computedPlacement = () => {
         let result: any = { top: 0, bottom: 0, left: 0, right: 0 }
-        const iconSpace = currentProps?.isShowButton ? 18 : 28
+        const iconSpace = currentProps?.isShowButton ? 18 * w : 28 * w
         switch (currentProps?.placement) {
             case 'top':
                 result = { top: -(lightSpotHeight + currentProps?.spaceBetween) }
@@ -103,7 +103,7 @@ export default function TipComponent(props: TipComponentProps) {
     const tipBoxRef = () => {
         if (ref) {
             ref?.current?.measure((x, y, width, height, pageX, pageY) => {
-                console.log('大大',x, y, width, height, pageX, pageY);
+                console.log('大大', x, y, width, height, pageX, pageY);
                 setLightSpotWidth(width)
                 setLightSpotHeight(height)
             });
@@ -155,7 +155,7 @@ export default function TipComponent(props: TipComponentProps) {
 
     // 计算箭头指向
     const tipArrowsComputedCss = () => {
-        const moveDistance = -16
+        const moveDistance = -14 * w
         let result: any = {
             borderTopColor: 'transparent',
             borderRightColor: 'transparent',
@@ -168,13 +168,13 @@ export default function TipComponent(props: TipComponentProps) {
         result.borderRightColor = currentProps?.placement === 'right' ? tipTypeComputedColor('bgColor')?.backgroundColor : 'transparent'
         if (currentProps?.placement === 'top' || currentProps?.placement === 'topLeft' || currentProps?.placement === 'topRight') {
             result.bottom = moveDistance
-            result.right = currentProps?.placement === 'topLeft' ? 12 : null
-            result.left = currentProps?.placement === 'topRight' ? 12 : null
+            result.right = currentProps?.placement === 'topLeft' ? 12 * w : null
+            result.left = currentProps?.placement === 'topRight' ? 12 * w : null
         }
         if (currentProps?.placement === 'bottom' || currentProps?.placement === 'bottomLeft' || currentProps?.placement === 'bottomRight') {
             result.top = moveDistance
-            result.right = currentProps?.placement === 'bottomLeft' ? 12 : null
-            result.left = currentProps?.placement === 'bottomRight' ? 12 : null
+            result.right = currentProps?.placement === 'bottomLeft' ? 12 * w : null
+            result.left = currentProps?.placement === 'bottomRight' ? 12 * w : null
         }
         if (currentProps?.placement === 'left') {
             result.right = moveDistance
@@ -190,11 +190,11 @@ export default function TipComponent(props: TipComponentProps) {
     const computedBoxWidth = () => {
         let result = null
         if (currentProps?.isShowButton) {
-            result = { maxWidth: currentProps?.boxWidthNumber || 158 }
+            result = { maxWidth: currentProps?.boxWidthNumber * w || 358 * w }
         } else if (currentProps?.placement !== 'static') {
-            result = { maxWidth: currentProps?.boxWidthNumber || 220 }
+            result = { maxWidth: currentProps?.boxWidthNumber * w || 420 * w }
         } else if (currentProps?.placement === 'static') {
-            result = { width: currentProps?.boxWidthNumber || 280 }
+            result = { width: currentProps?.boxWidthNumber * w || 480 * w }
         }
         return result
     }
@@ -202,17 +202,17 @@ export default function TipComponent(props: TipComponentProps) {
     return (
         <View style={{ ...styles.container }}>
             {staticVisible && currentProps?.placement === 'static' &&
-                <View style={{ ...computedPlacement(), ...styles.staticTipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: currentProps?.isShowButton && !currentProps?.isHideTitleIcon ? 8 : 22, }}>
+                <View style={{ ...computedPlacement(), ...styles.staticTipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: currentProps?.isShowButton && !currentProps?.isHideTitleIcon ? 12 * w : 28 * w, }}>
                     <View style={{ ...styles.tipTitle, width: '100%' }}>
-                        <Text style={{ ...tipTypeComputedColor('color'), fontSize: 12, lineHeight: 20 }}>{currentProps?.tipMessage}</Text>
+                        <Text style={{ ...tipTypeComputedColor('color'), fontSize: 12 * w, lineHeight: 20 * w }}>{currentProps?.tipMessage}</Text>
                         {!currentProps?.isHideTitleIcon &&
                             <TouchableHighlight onPress={() => {
                                 currentProps.rightIconHandleOperation()
                                 setStaticVisible(false)
                             }} style={styles.arrow}>
                                 <Image style={{
-                                    width: 14,
-                                    height: 14
+                                    width: 14 * w,
+                                    height: 14 * w
                                 }} source={tipIconComputedColor() || require("../imgs/white_close.png")} />
                             </TouchableHighlight>
                         }
@@ -224,25 +224,27 @@ export default function TipComponent(props: TipComponentProps) {
             }
 
             {visible &&
-                <View ref={ref} onLayout={tipBoxRef} style={{ ...computedPlacement(), ...styles.tipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: (currentProps?.isHideTitleIcon || (currentProps?.isShowButton && !currentProps?.isHideTitleIcon)) ? 8 : 22, }}>
-                    <View ref={contentRef} onLayout={tipContentRef} style={{ ...styles.tipTitle, width: '100%' }}>
-                        <Text style={{ ...tipTypeComputedColor('color'), ...styles.tipTextCss }}>{currentProps?.tipMessage}</Text>
+                <View ref={ref} onLayout={tipBoxRef} style={{ ...computedPlacement(), ...styles.tipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: (currentProps?.isHideTitleIcon || (currentProps?.isShowButton && !currentProps?.isHideTitleIcon)) ? 12 * w : 28 * w, }}>
+                    <View style={{ ...styles.tipMessageBox }}>
+                        <View ref={contentRef} onLayout={tipContentRef} style={{ ...styles.tipTitle }}>
+                            <Text style={{ ...tipTypeComputedColor('color'), ...styles.tipTextCss }}>{currentProps?.tipMessage}</Text>
+                        </View>
                         {(!currentProps?.isShowButton && !currentProps?.isHideTitleIcon) &&
                             <TouchableHighlight onPress={() => {
                                 currentProps.rightIconHandleOperation()
                                 setVisible(false)
                             }} style={styles.arrow}>
                                 <Image style={{
-                                    width: 14,
-                                    height: 14
+                                    width: 14 * w,
+                                    height: 14 * w
                                 }} source={tipIconComputedColor() || require("../imgs/white_close.png")} />
                             </TouchableHighlight>
                         }
                     </View>
                     {currentProps?.isShowButton &&
                         <View style={{ ...styles.handleBox }}>
-                            <Text style={{ ...styles.handleBoxCancle, marginRight: 3 }} onPress={handleCancle}>取消</Text>
-                            <Text style={{ ...styles.handleBoxMove, marginLeft: 3 }} onPress={() => { currentProps?.handleOperation() }}>操作</Text>
+                            <Text style={{ ...styles.handleBoxCancle, marginRight: 3 * w }} onPress={handleCancle}>取消</Text>
+                            <Text style={{ ...styles.handleBoxMove, marginLeft: 3 * w }} onPress={() => { currentProps?.handleOperation() }}>操作</Text>
                         </View>
                     }
                     <View style={{ ...tipArrowsComputedCss(), ...styles.inArrow }}></View>
@@ -253,10 +255,17 @@ export default function TipComponent(props: TipComponentProps) {
 }
 
 const styles = StyleSheet.create({
+    tipMessageBox: {
+        position: 'relative',
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        // paddingRight: 12
+    },
     inArrow: {
-        width: 12,
-        height: 12,
-        borderWidth: 8,
+        width: 12 * w,
+        height: 12 * w,
+        borderWidth: 8 * w,
         // borderTopColor: 'transparent',
         // borderRightColor: 'transparent',
         // borderBottomColor: 'transparent',
@@ -266,56 +275,58 @@ const styles = StyleSheet.create({
     },
     handleBox: {
         marginLeft: 'auto',
-        marginTop: 6,
+        marginTop: 6 * w,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     handleBoxCancle: {
-        fontSize: 12,
+        fontSize: 12 * w,
         color: '#CCCCCC',
     },
     handleBoxMove: {
-        fontSize: 12,
+        fontSize: 12 * w,
         color: '#61D9EA',
     },
     arrow: {
         zIndex: 1000,
         position: 'absolute',
-        right: -16,
-        width: 14,
-        height: 14
+        right: -16 * w,
+        width: 14 * w,
+        height: 14 * w
     },
     container: {
         // flex: 1,
         // backgroundColor: 'pink',
         // maxWidth: 420,
-        minWidth: 160,
-        minHeight: 54,
+        minWidth: 160 * w,
+        minHeight: 54 * w,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative'
     },
     tipTitle: {
+        width: '100%',
+        // paddingRight: 8 * w,
         // flex: 1,
-        position: 'relative',
+        // position: 'relative',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
     },
     tipTextCss: {
-        fontSize: 12, lineHeight: 20
+        fontSize: 12 * w, lineHeight: 20 * w
     },
     tipBox: {
         flexShrink: 0,
-        minWidth: 100,
+        minWidth: 100 * w,
         // height: 34,
-        paddingLeft: 12,
-        paddingBottom: 12,
-        paddingTop: 12,
-        borderRadius: 4,
+        paddingLeft: 12 * w,
+        paddingBottom: 12 * w,
+        paddingTop: 12 * w,
+        borderRadius: 4 * w,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -326,9 +337,9 @@ const styles = StyleSheet.create({
         flexShrink: 0,
         // width: 480,
         // height: 34,
-        paddingLeft: 12,
-        paddingBottom: 12,
-        paddingTop: 12,
+        paddingLeft: 12 * w,
+        paddingBottom: 12 * w,
+        paddingTop: 12 * w,
         // borderRadius: 4,
         display: 'flex',
         flexDirection: 'row',
