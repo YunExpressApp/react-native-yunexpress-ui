@@ -17,50 +17,51 @@ export default function GenaralCardExample() {
     // const [isShowCard3, setIsShowCard2] = useState(false)
     // const [isShowCard2, setIsShowCard3] = useState(false)
     return (
-        <View style={styles.container}>
-            <View style={{ flexDirection: 'row' }}>
+        <ScrollView>
+            <View style={styles.container}>
+                <View style={{ flexDirection: 'row' }}>
 
-                <Text style={{ marginRight: 20 * w }} onPress={() => {
-                    setIsShowCard(true);
-                    setComponentValue({
-                        isPopCard: true,
-                        title: 'PL2021302003212332321',
-                        content: [
-                            '标题:信息内容',
-                            '标题:信息内容',
-                            '标题:信息内容',
-                            '标题:信息内容',
-                            '标题:信息内容'
-                        ],
-                        isShowButton: true,
-                        leftButtom: { text: '普通操作', color: '#999999' },
-                        rightButtom: { text: '主要操作', color: '#1592A3' },
-                        handleLeftOperation: () => { setIsShowCard(false) },
-                        handleRightOperation: () => { console.log('点击右边的按钮') }
-                    })
-                }}>预览式卡片(弹框能力)</Text>
+                    <Text style={{ marginRight: 20 * w }} onPress={() => {
+                        setIsShowCard(true);
+                        setComponentValue({
+                            isPopCard: true,
+                            title: 'PL2021302003212332321',
+                            content: [
+                                '标题:信息内容',
+                                '标题:信息内容',
+                                '标题:信息内容',
+                                '标题:信息内容',
+                                '标题:信息内容'
+                            ],
+                            isShowButton: true,
+                            leftButtom: { text: '普通操作', color: '#999999' },
+                            rightButtom: { text: '主要操作', color: '#1592A3' },
+                            handleLeftOperation: () => { setIsShowCard(false) },
+                            handleRightOperation: () => { console.log('点击右边的按钮') }
+                        })
+                    }}>预览式卡片(弹框能力)</Text>
 
 
-                <Text onPress={() => {
-                    setIsShowCard(true);
-                    setComponentValue({
-                        isPopCard: true,
-                        title: 'PL2021302003212332321',
-                        isShowButton: true,
-                        leftButtom: { text: '普通操作', color: '#999999' },
-                        rightButtom: { text: '主要操作', color: '#999999' },
-                        handleLeftOperation: () => { setIsShowCard(false) },
-                        handleRightOperation: () => { console.log('点击右边的按钮') },
-                        children: <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>标题：</Text>
-                            <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>信息内容11</Text>
-                        </View>
-                    })
-                }}>预览式卡片2(弹框能力)</Text>
+                    <Text onPress={() => {
+                        setIsShowCard(true);
+                        setComponentValue({
+                            isPopCard: true,
+                            title: 'PL2021302003212332321',
+                            isShowButton: true,
+                            leftButtom: { text: '普通操作', color: '#999999' },
+                            rightButtom: { text: '主要操作', color: '#999999' },
+                            handleLeftOperation: () => { setIsShowCard(false) },
+                            handleRightOperation: () => { console.log('点击右边的按钮') },
+                            children: <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>标题：</Text>
+                                <Text style={{ fontSize: 18 * w, fontWeight: '300', color: '#999999' }}>信息内容11</Text>
+                            </View>
+                        })
+                    }}>预览式卡片2(弹框能力)</Text>
 
-            </View>
+                </View>
 
-            <ScrollView>
+
                 {isShowCard && <GenaralCardComponent
                     title={componentValue?.title || ''}
                     content={componentValue?.content || []}
@@ -129,8 +130,9 @@ export default function GenaralCardExample() {
                         </View>
                     </GenaralCardComponent>
                 </View>
-            </ScrollView>
-        </View >
+
+            </View >
+        </ScrollView>
     );
 }
 
