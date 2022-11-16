@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { Animated, ViewPropTypes } from 'react-native';
+import { Animated } from 'react-native';
 
 import Theme from '../../themes/Theme';
 import DialogView from './DialogView';
@@ -11,7 +11,6 @@ export default class DialogPullView extends DialogSuperView {
 	static propTypes = {
 		...DialogSuperView.propTypes,
 		side: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
-		containerStyle: ViewPropTypes.style,
 		rootTransform: PropTypes.oneOfType([
 			PropTypes.oneOf(['none', 'translate', 'scale']),
 			PropTypes.arrayOf(PropTypes.shape({
