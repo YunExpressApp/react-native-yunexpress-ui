@@ -21,8 +21,26 @@ import TipExample from "./TipExample"
 import UpgradeExample from "./UpgradeExample"
 import GenaralCardExample from "./GenaralCardExample"
 import FunctionIconExample from "./FunctionIconExample"
+import SearchBoxExample from "./SearchBoxExample"
+import ScanPanelExample from "./ScanPanelExample"
+import StepExample from "./StepExample"
 
 export default [
+	{
+		page: StepExample,
+		name: 'Step',
+		descr: "路由流程"
+	},
+	{
+		page: ScanPanelExample,
+		name: 'ScanPanel',
+		descr: "扫描面板"
+	},
+	{
+		page: SearchBoxExample,
+		name: 'SearchBox',
+		descr: "普通搜索"
+	},
 	{
 		page: FunctionIconExample,
 		name: 'FunctionIcon',

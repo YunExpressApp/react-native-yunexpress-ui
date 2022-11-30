@@ -11,9 +11,9 @@ import { Image, StyleSheet, Text, TouchableHighlight, View } from "react-native"
 import { w } from 'react-native-yunexpress-ui'
 
 interface UpgradeComponentsProps {
-    title: String,
+    title: string,
     content?: Array<String>,
-    children?: Document,
+    children?: Array<React.ReactElement> | React.ReactElement,
     handleOperation: () => any
 }
 
@@ -43,7 +43,7 @@ export default function UpgradeComponents(props: UpgradeComponentsProps) {
                     }
                 </View>
             }
-            {currentProps?.children && <View style={{ width: '100%', paddingLeft: 32 * w, paddingRight: 32 * w, paddingBottom: 18 * w, marginTop: 12 * w }}>
+            {!!currentProps?.children && <View style={{ width: '100%', paddingLeft: 32 * w, paddingRight: 32 * w, paddingBottom: 18 * w, marginTop: 12 * w }}>
                 {currentProps?.children}
             </View>}
             <TouchableHighlight style={styles.bottomCss} onPress={currentProps.handleOperation}>
