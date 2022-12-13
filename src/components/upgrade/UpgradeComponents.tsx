@@ -7,7 +7,8 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState } from 'react'
-import { Image, StyleSheet, Text, TouchableHighlight, View } from "react-native"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import i18n from '../../i18n'
 import { w } from 'react-native-yunexpress-ui'
 
 interface UpgradeComponentsProps {
@@ -25,14 +26,14 @@ export default function UpgradeComponents(props: UpgradeComponentsProps) {
     // 默认值
     const currentProps = {
         ...props,
-        title: props?.title || '弹框标题',
+        title: props?.title || i18n.t("FooterEmptyDataText"),
         content: props?.content || [],
         handleOperation: props?.handleOperation || defualtFunction
     }
 
     return (
         <View style={styles.container}>
-            <Image style={styles.pngCss} source={require("../imgs/upgrade.png")} />
+            <Image style={styles.pngCss} source={require("./img/upgrade.png")} />
             <Text style={styles.titleCss}>{currentProps?.title}</Text>
             {currentProps?.content?.length !== 0 &&
                 <View style={styles.contentCss}>
@@ -46,9 +47,9 @@ export default function UpgradeComponents(props: UpgradeComponentsProps) {
             {!!currentProps?.children && <View style={{ width: '100%', paddingLeft: 32 * w, paddingRight: 32 * w, paddingBottom: 18 * w, marginTop: 12 * w }}>
                 {currentProps?.children}
             </View>}
-            <TouchableHighlight style={styles.bottomCss} onPress={currentProps.handleOperation}>
-                <Text style={styles.bottomTextCss}>升级</Text>
-            </TouchableHighlight>
+            <TouchableOpacity style={styles.bottomCss} onPress={currentProps.handleOperation}>
+                <Text style={styles.bottomTextCss}>{i18n.t("Upgrade")}</Text>
+            </TouchableOpacity>
         </View>
     );
 }

@@ -8,7 +8,7 @@
  */
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import UpgradeComponents from './UpgradeComponents'
+import { UpgradeComponents } from 'react-native-yunexpress-ui'
 
 export default function UpgradeExample() {
     const [index, setIndex] = useState<number>();

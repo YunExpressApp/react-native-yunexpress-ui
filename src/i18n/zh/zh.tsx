@@ -23,6 +23,6 @@ export default {
 	ManualInputPlz: '请输入条码号!',
 	PleaseChoose: "请选择",
 	PleaseEnter: "请输入",
-	Search: "搜索"
-
+	Search: "搜索",
+	Upgrade: "升级"
 }

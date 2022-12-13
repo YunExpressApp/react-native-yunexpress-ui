@@ -7,7 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState } from 'react'
-import { Image, StyleSheet, Text, TouchableHighlight, View } from "react-native"
+import { Image, StyleSheet, Text, View } from "react-native"
 import { w } from 'react-native-yunexpress-ui'
 
 interface StepComponentProps {
@@ -29,7 +29,7 @@ export default function UpgradeComponents(props: StepComponentProps) {
     // 默认值
     const currentProps = {
         ...props,
-        title: props?.title || '弹框标题',
+        title: props?.title || '',
         type: props?.type || 'default',
         content: props?.content || []
     }
@@ -45,7 +45,7 @@ export default function UpgradeComponents(props: StepComponentProps) {
                                     width: 22 * w,
                                     height: 22 * w,
                                     marginLeft: -11 * w,
-                                }} source={require("../imgs/sign.png")} />}
+                                }} source={require("./img/sign.png")} />}
                                 {(currentProps?.type === 'default' || !item?.isFinish) && <Text style={[styles.sign, item?.isFinish ? styles.checkedSign : styles.defaultSign]} />}
                                 <Text style={styles.siteItemTitle}>{item?.title}</Text>
                                 {!!item?.title && <Text style={styles.siteItemSubTitle}>{item?.subTitle}</Text>}

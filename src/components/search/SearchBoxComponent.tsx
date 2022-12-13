@@ -7,15 +7,17 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState, useRef } from 'react'
-import { Image, StyleSheet, Text, TouchableHighlight, View, TextInput } from "react-native"
+import { Image, StyleSheet, Text, View, TextInput } from "react-native"
+import i18n from '../../i18n'
 import { w } from 'react-native-yunexpress-ui'
 
 interface SearchBoxComponentProps {
+    searchList?: Array<Object>,
     title?: string,
     placeholder?: string,
     colorType?: string,  // bright深色 tint浅色
     onChangeText?: (e: any) => any
-    onSubmitEditing: (e: any) => any
+    onSubmitEditing?: (e: any) => any
     onCancelText?: () => any
 }
 
@@ -29,9 +31,21 @@ export default function SearchBoxComponent(props: SearchBoxComponentProps) {
     // 默认值
     const currentProps = {
         ...props,
+        searchList: props?.searchList || [],
         onChangeText: props?.onChangeText || defualtFunction,
         onSubmitEditing: props?.onSubmitEditing || defualtFunction,
         onCancelText: props?.onCancelText || defualtFunction
+    }
+
+    const searchKeywordGetValue = (val: string) => {
+        const result: object[] = []
+        const resourceList = currentProps?.searchList
+        resourceList.forEach((item) => {
+            if (Object.values(item).join('')?.indexOf(val) !== -1) {
+                result.push(item)
+            }
+        })
+        return result
     }
 
     return (
@@ -46,7 +60,7 @@ export default function SearchBoxComponent(props: SearchBoxComponentProps) {
                     }]}
                     clearButtonMode={'always'}
                     numberOfLines={1}
-                    placeholder={currentProps?.placeholder || '搜索'}
+                    placeholder={currentProps?.placeholder || i18n.t("Search")}
                     onFocus={() => {
                         setIsGetFocus(true)
                         inputRef.current.focus()
@@ -57,7 +71,11 @@ export default function SearchBoxComponent(props: SearchBoxComponentProps) {
                     }}
                     // 键盘点击输入或者确定的回调
                     onSubmitEditing={() => {
-                        currentProps?.onSubmitEditing(value)
+                        if (!!currentProps?.searchList?.length) {
+                            currentProps?.onSubmitEditing(searchKeywordGetValue(value))
+                        } else {
+                            currentProps?.onSubmitEditing(value)
+                        }
                     }}
                 />
                 {isGetFocus && <Text style={styles.cancleText} onPress={() => {
@@ -65,7 +83,7 @@ export default function SearchBoxComponent(props: SearchBoxComponentProps) {
                     inputRef.current.clear()
                     inputRef.current.blur()
                     currentProps?.onCancelText()
-                }}>取消</Text>}
+                }}>{i18n.t("Cancel")}</Text>}
             </View>
         </View>
     );

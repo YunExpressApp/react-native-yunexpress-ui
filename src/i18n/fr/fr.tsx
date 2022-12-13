@@ -22,6 +22,6 @@ export default {
 	ManualInputPlz: "Veuillez entrer le numéro de code-barres !",
 	PleaseChoose: "Choisissez s'il vous plaît",
 	PleaseEnter: "Entrez s'il vous plait",
-	Search: "chercher"
-
+	Search: "chercher",
+	Upgrade: "passer dans une classe supérieure"
 }

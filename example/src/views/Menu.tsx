@@ -24,32 +24,38 @@ import FunctionIconExample from "./FunctionIconExample"
 import SearchBoxExample from "./SearchBoxExample"
 import ScanPanelExample from "./ScanPanelExample"
 import StepExample from "./StepExample"
+import PopupExample from "./PopupExample"
 
 export default [
 	{
+		page: PopupExample,
+		name: 'PopupExample',
+		descr: "PopupExample弹出工具栏"
+	},
+	{
 		page: StepExample,
 		name: 'Step',
-		descr: "路由流程"
+		descr: "Step路由流程"
 	},
 	{
 		page: ScanPanelExample,
 		name: 'ScanPanel',
-		descr: "扫描面板"
+		descr: "ScanPanel扫描面板"
 	},
 	{
 		page: SearchBoxExample,
 		name: 'SearchBox',
-		descr: "普通搜索"
+		descr: "SearchBox普通搜索"
 	},
 	{
 		page: FunctionIconExample,
 		name: 'FunctionIcon',
-		descr: "功能图标"
+		descr: "FunctionIcon功能图标"
 	},
 	{
 		page: GenaralCardExample,
 		name: 'GenaralCard',
-		descr: "通用卡片"
+		descr: "GenaralCard通用卡片"
 	},
 	{
 		page: UpgradeExample,

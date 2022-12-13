@@ -7,7 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState, useRef, memo } from 'react'
-import { Image, StyleSheet, Text, TouchableHighlight, View, TextInput, ScrollView } from "react-native"
+import { Image, StyleSheet, Text, View, TextInput, ScrollView } from "react-native"
 import { w } from 'react-native-yunexpress-ui'
 
 interface ScanPanelCompoentProps {
@@ -36,8 +36,8 @@ function ScanPanelCompoent(props: ScanPanelCompoentProps) {
         }
     })
 
-    console.log('children运行了,对应的props是:', props);
-    console.log('--------------------------------子组件运行分割线----------------------------------')
+    // console.log('children运行了,对应的props是:', props);
+    // console.log('--------------------------------子组件运行分割线----------------------------------')
 
     return (
         <View style={styles.container}>
@@ -88,5 +88,5 @@ export default memo(ScanPanelCompoent, (prevProps, nextProps) => {
     // 返回false进行更新
     // 返回true不需要进行更新
     // console.log(prevProps.data === nextProps.data,prevProps, nextProps);
-    return prevProps.data === nextProps.data
+    return false // prevProps.data === nextProps.data
 })

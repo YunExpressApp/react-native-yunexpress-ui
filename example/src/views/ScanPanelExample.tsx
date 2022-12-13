@@ -7,9 +7,9 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView, TouchableHighlight } from "react-native"
-import ScanPanelCompoent from './ScanPanelCompoent'
-import { w, Button, YTSegment, YTCell } from 'react-native-yunexpress-ui'
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView, Alert } from "react-native"
+// import ScanPanelCompoent from '../../../src/components/scan/ScanPanelCompoent'
+import { w, Button, YTSegment, YTCell, ScanPanelCompoent } from 'react-native-yunexpress-ui'
 
 export default function ScanPanelExample() {
     const leftNumber = 4
@@ -45,7 +45,7 @@ export default function ScanPanelExample() {
                         <ScrollView horizontal={true}>
                             <View style={{ flexDirection: 'row' }}>
                                 {screenList.map((item) => {
-                                    return <TouchableHighlight
+                                    return <TouchableOpacity
                                         onPress={() => {
                                             setScreenIndex(item?.key)
                                         }}>
@@ -63,7 +63,7 @@ export default function ScanPanelExample() {
                                             <Text style={{ fontSize: 18 * w, color: screenIndex === item.key ? 'white' : 'black' }}>{item?.key}: </Text>
                                             <Text style={{ fontSize: 18 * w, color: screenIndex === item.key ? 'white' : '#1592A3' }}>{item?.value}</Text>
                                         </View>
-                                    </TouchableHighlight>
+                                    </TouchableOpacity>
                                 })}
                             </View>
                         </ScrollView>
@@ -71,22 +71,19 @@ export default function ScanPanelExample() {
                 </View>
                 <View data-position="content">
                     <View style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                        <YTCell.ScanCode isDel={true} data={{ code: "删除数据", status: 1, message: "删除数据" }} />
-                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息", value: "code值信息" }} />
-                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息", value: "code值信息" }} valueStyle={{ color: 'red' }} />
-                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息" }} />
-                        <YTCell.ScanCode isDel={true} data={{ code: "123456", status: 1, message: "提示信息" }} />
-                        <YTCell.ScanCode isDel={true} data={{ code: "123456", status: 1, message: "提示信息" }} />
+                        <YTCell.ScanCode isDel={true} data={{ code: "删除数据", status: 1, message: "删除数据" }} onClick={()=>{  Alert.alert("删除成功"); }}/>
+                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息", value: "code值信息" }}  onClick={()=>{  Alert.alert("code值信息"); }}/>
+                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息", value: "code值信息" }} valueStyle={{ color: 'red' }}  onClick={()=>{  Alert.alert("code值信息"); }}/>
+                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息" }} onClick={()=>{  Alert.alert("code值信息"); }}/>
+                        <YTCell.ScanCode isDel={true} data={{ code: "123456", status: 1, message: "提示信息" }} onClick={()=>{  Alert.alert("提示信息"); }}/>
+                        <YTCell.ScanCode isDel={true} data={{ code: "123456", status: 1, message: "提示信息" }} onClick={()=>{  Alert.alert("提示信息"); }}/>
                         {/* <Text style={{ fontSize: 18 * w, color: '#CCCCCC' }}>请扫描</Text> */}
-                        <YTCell.ScanCode isFirst={true} data={{ code: "123456CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC", status: 1, message: "提示信息" }} />
+                        <YTCell.ScanCode isFirst={true} data={{ code: "123456CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC", status: 1, message: "提示信息" }} onClick={()=>{  Alert.alert("提示信息"); }}/>
                         <YTCell.ScanCode data={{ code: "123456GGGG", status: 1, message: "提示信息" }} showDelete onDelete={() => {
-
+                            Alert.alert("删除成功");
                         }} />
-                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息", value: "code值信息" }} />
-                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息", value: "code值信息" }} valueStyle={{ color: 'red' }} />
-                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息" }} />
-                        <YTCell.ScanCode isDel={true} data={{ code: "123456", status: 1, message: "提示信息" }} />
-                        <YTCell.ScanCode isDel={true} data={{ code: "123456", status: 1, message: "提示信息" }} />
+                        <YTCell.ScanCode data={{ code: "123456", status: 2, message: "提示信息", value: "code值信息" }} onClick={()=>{  Alert.alert("提示信息"); }}/>
+                        <YTCell.ScanCode isDel={true} data={{ code: "123456", status: 1, message: "提示信息" }} onClick={()=>{  Alert.alert("提示信息"); }}/>
                     </View>
                 </View>
                 <View data-position="foot">
