@@ -58,7 +58,19 @@ import { YTBtns } from 'react-native-yunexpress-ui';
 | leftOnPress | Function |  | 左边按钮的点击事件
 | leftEnable | Boolean | true | 左边按钮状态 true: 可点击状态 false:不可点击状态 
 
-
+## YTBtns.Popup Props
+| Prop | Type | Default | Note |
+|---|---|---|---|
+| visible | boolean | false | 按钮状态 true: 显示 false:不可显示 
+| title | string |  | 标题文案
+| isShowHeader | boolean |  | 是否显示头部组件
+| leftTitle | string |  | 头部组件左侧按钮文案
+| rightTitle | string |  | 头部组件右侧按钮文案
+| onClose | Function |  | 关闭弹框后的回调
+| onLeftPress | Function |  | 点击左侧按钮后的回调
+| onRightPress | Function |  | 点击右侧按钮后的回调
+| children | Array<React.ReactElement> | React.ReactElement |  | 子节点
+| style | StyleProp<ViewStyle> |  | 组件外框样式
 
 ## Contributing
 

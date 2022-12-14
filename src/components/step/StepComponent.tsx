@@ -11,7 +11,6 @@ import { Image, StyleSheet, Text, View } from "react-native"
 import { w } from 'react-native-yunexpress-ui'
 
 interface StepComponentProps {
-    title: string,
     type?: string,
     content?: Array<{
         isFinish?: Boolean,
@@ -29,7 +28,6 @@ export default function UpgradeComponents(props: StepComponentProps) {
     // 默认值
     const currentProps = {
         ...props,
-        title: props?.title || '',
         type: props?.type || 'default',
         content: props?.content || []
     }

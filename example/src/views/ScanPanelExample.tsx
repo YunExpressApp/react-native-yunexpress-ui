@@ -31,7 +31,7 @@ export default function ScanPanelExample() {
 
     return (
         <View style={styles.container}>
-            <ScanPanelCompoent data={data}>
+            <ScanPanelCompoent>
                 <View data-position="top">
                     <YTSegment.Radius leftText={`新增(${leftNumber})`} rightText={`删除(${rightNumber})`} index={index} onChange={(index: number) => {
                         setIndex(index)

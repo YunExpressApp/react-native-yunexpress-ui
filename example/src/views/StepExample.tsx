@@ -38,8 +38,8 @@ export default function StepExample() {
 
     return (
         <View style={styles.container}>
-            <StepComponent type={'icon'} title={"云途V1.0.2震撼来袭"} content={routeList} />
-            <StepComponent title={"云途V1.0.2震撼来袭"} content={routeList} />
+            <StepComponent type={'icon'} content={routeList} />
+            <StepComponent content={routeList} />
         </View>
     );
 }

@@ -21,18 +21,12 @@ interface PopupCompoentProps {
     leftTitle?: string,
     rightTitle?: string,
     title?: string,
-    data?: Array<number>
     children?: Array<React.ReactElement> | React.ReactElement,
-    style?: StyleProp<ViewStyle>,
+    style?: StyleProp<ViewStyle>
 }
 
 
 function PopupCompoent(props: PopupCompoentProps) {
-
-    // 默认值
-    const currentProps = {
-        ...props
-    }
 
     return <Modal visible={props.visible}
         animationType={'fade'}

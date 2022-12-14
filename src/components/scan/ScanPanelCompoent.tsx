@@ -11,7 +11,6 @@ import { Image, StyleSheet, Text, View, TextInput, ScrollView } from "react-nati
 import { w } from 'react-native-yunexpress-ui'
 
 interface ScanPanelCompoentProps {
-    data?: Array<number>
     children?: Array<React.ReactElement> | React.ReactElement
 }
 
