@@ -3,7 +3,7 @@
  * @Date: 2022-11-25 15:30:00
  * @LastEditors: 张贵 zhanggui@yunexpress.cn
  * @LastEditTime: 2022-11-30 16:30:00
- * @FilePath: \react-native-yunexpress-ui\example\src\views\UpgradeComponents.tsx
+ * @FilePath: \react-native-yunexpress-ui\example\src\views\StepComponent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState } from 'react'
@@ -21,7 +21,7 @@ interface StepComponentProps {
 }
 
 
-export default function UpgradeComponents(props: StepComponentProps) {
+export default function StepComponent(props: StepComponentProps) {
 
     const defualtFunction = () => { }
 
