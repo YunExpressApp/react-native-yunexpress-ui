@@ -8,8 +8,7 @@
  */
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native"
-import GenaralCardComponent from './GenaralCardComponent'
-import { w } from 'react-native-yunexpress-ui'
+import { w, GenaralCardComponent } from 'react-native-yunexpress-ui'
 
 export default function GenaralCardExample() {
     const [isShowCard, setIsShowCard] = useState(false)

@@ -8,8 +8,7 @@
  */
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native"
-import TipComponents from './TipComponent'
-import { w } from 'react-native-yunexpress-ui'
+import { w, TipComponents } from 'react-native-yunexpress-ui'
 
 export default function TipExample() {
     const [index, setIndex] = useState<number>();

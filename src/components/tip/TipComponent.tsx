@@ -7,7 +7,8 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState, useRef, useLayoutEffect, useEffect } from 'react'
-import { StyleSheet, Text, View, TouchableHighlight, Image, Button } from "react-native"
+import { StyleSheet, Text, View, TouchableOpacity, Image, Button } from "react-native"
+import i18n from '../../i18n'
 import { w } from 'react-native-yunexpress-ui'
 interface TipComponentProps {
     content: Document,
@@ -41,7 +42,7 @@ export default function TipComponent(props: TipComponentProps) {
     // 默认值
     const currentProps = {
         ...props,
-        tipMessage: props?.tipMessage || '区域最宽长度420px ，超出字段换行',
+        tipMessage: props?.tipMessage || i18n.t("FooterEmptyDataText"),
         bgColor: props?.bgColor || '#111111',
         textColor: props?.textColor || '#FFFFFF',
         isHideTitleIcon: props?.isHideTitleIcon || false,
@@ -103,7 +104,7 @@ export default function TipComponent(props: TipComponentProps) {
     const tipBoxRef = () => {
         if (ref) {
             ref?.current?.measure((x, y, width, height, pageX, pageY) => {
-                console.log('大大', x, y, width, height, pageX, pageY);
+                // console.log('大大', x, y, width, height, pageX, pageY);
                 setLightSpotWidth(width)
                 setLightSpotHeight(height)
             });
@@ -113,7 +114,7 @@ export default function TipComponent(props: TipComponentProps) {
     const tipContentRef = () => {
         if (contentRef) {
             contentRef?.current?.measure((x, y, width, height, pageX, pageY) => {
-                console.log('小', x, y, width, height, pageX, pageY);
+                // console.log('小', x, y, width, height, pageX, pageY);
                 setContentWidth(width)
             });
         }
@@ -145,10 +146,10 @@ export default function TipComponent(props: TipComponentProps) {
             return result
         }
         if (currentProps?.tipType === 'warn') {
-            result = require("../imgs/yellow_go.png")
+            result = require("./img/yellow_go.png")
         }
         if (currentProps?.tipType === 'error') {
-            result = require("../imgs/white_go.png")
+            result = require("./img/white_go.png")
         }
         return result
     }
@@ -206,21 +207,21 @@ export default function TipComponent(props: TipComponentProps) {
                     <View style={{ ...styles.tipTitle, width: '100%' }}>
                         <Text style={{ ...tipTypeComputedColor('color'), fontSize: 12 * w, lineHeight: 20 * w }}>{currentProps?.tipMessage}</Text>
                         {!currentProps?.isHideTitleIcon &&
-                            <TouchableHighlight onPress={() => {
+                            <TouchableOpacity onPress={() => {
                                 currentProps.rightIconHandleOperation()
                                 setStaticVisible(false)
                             }} style={styles.arrow}>
                                 <Image style={{
                                     width: 14 * w,
                                     height: 14 * w
-                                }} source={tipIconComputedColor() || require("../imgs/white_close.png")} />
-                            </TouchableHighlight>
+                                }} source={tipIconComputedColor() || require("./img/white_close.png")} />
+                            </TouchableOpacity>
                         }
                     </View>
                 </View>
             }
             {currentProps?.placement !== 'static' &&
-                <TouchableHighlight style={styles.tipTitle} onPress={domSlotClick}>{currentProps?.content || ''}</TouchableHighlight >
+                <TouchableOpacity style={styles.tipTitle} onPress={domSlotClick}>{currentProps?.content || ''}</TouchableOpacity >
             }
 
             {visible &&
@@ -230,21 +231,21 @@ export default function TipComponent(props: TipComponentProps) {
                             <Text style={{ ...tipTypeComputedColor('color'), ...styles.tipTextCss }}>{currentProps?.tipMessage}</Text>
                         </View>
                         {(!currentProps?.isShowButton && !currentProps?.isHideTitleIcon) &&
-                            <TouchableHighlight onPress={() => {
+                            <TouchableOpacity onPress={() => {
                                 currentProps.rightIconHandleOperation()
                                 setVisible(false)
                             }} style={styles.arrow}>
                                 <Image style={{
                                     width: 14 * w,
                                     height: 14 * w
-                                }} source={tipIconComputedColor() || require("../imgs/white_close.png")} />
-                            </TouchableHighlight>
+                                }} source={tipIconComputedColor() || require("./img/white_close.png")} />
+                            </TouchableOpacity>
                         }
                     </View>
                     {currentProps?.isShowButton &&
                         <View style={{ ...styles.handleBox }}>
-                            <Text style={{ ...styles.handleBoxCancle, marginRight: 3 * w }} onPress={handleCancle}>取消</Text>
-                            <Text style={{ ...styles.handleBoxMove, marginLeft: 3 * w }} onPress={() => { currentProps?.handleOperation() }}>操作</Text>
+                            <Text style={{ ...styles.handleBoxCancle, marginRight: 3 * w }} onPress={handleCancle}>{i18n.t("Cancel")}</Text>
+                            <Text style={{ ...styles.handleBoxMove, marginLeft: 3 * w }} onPress={() => { currentProps?.handleOperation() }}>{i18n.t("Operation")}</Text>
                         </View>
                     }
                     <View style={{ ...tipArrowsComputedCss(), ...styles.inArrow }}></View>

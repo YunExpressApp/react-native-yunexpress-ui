@@ -15,6 +15,7 @@ title: GenaralCard
 | children | Document | <Text style={{ fontSize: 18, fontWeight: '300', color: '#999999', marginRight: 'auto' }}>标题：信息内容</Text> | GenaralCard框内插槽形式传递主内容
 | leftButtom | { text?: String, color?: String } | { text: '普通操作', color: '#999999' } | '弹框内左边操作按钮参数'
 | rightButtom | { text?: String, color?: String } | { text: '主要操作', color: '#999999' } | '弹框内右边操作按钮参数'
+| isShowButton | boolean | false | '是否显示按钮'
 | handleLeftOperation | () => any | () => {} | '弹框内左侧操作按钮函数参数'
 | handleRightOperation | () => any | () => {} | '弹框内右侧操作按钮函数参数'
 ## Contributing

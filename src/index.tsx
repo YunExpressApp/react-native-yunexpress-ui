@@ -113,3 +113,37 @@ export { default as YTModal } from './components/modal/index'
 export { ActionSheetProps, ActionSheetItem, ActionSheetStatus, ActionSheetRef } from './components/modal/type'
 
 
+/**
+ * 路由流程组件
+ */
+ export { default as StepComponent } from './components/step/index'
+
+/**
+ * 扫描面板
+ */
+export { default as ScanPanelCompoent } from './components/scan/index'
+
+/**
+ * 普通搜索
+ */
+export { default as SearchBoxComponent } from './components/search/index'
+
+/**
+ * 功能图标
+ */
+export { default as FunctionIconComponent } from './components/functionicon/index'
+
+/**
+ * 通用卡片
+ */
+export { default as GenaralCardComponent } from './components/genaralcard/index'
+
+/**
+ * 升级卡片
+ */
+export { default as UpgradeComponents } from './components/upgrade/index'
+
+/**
+ * tip弹框组件
+ */
+export { default as TipComponents } from './components/tip/index'

@@ -7,7 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableHighlight, View, Image } from "react-native"
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native"
 import { w } from 'react-native-yunexpress-ui'
 
 interface FunctionIconComponentProps {
@@ -18,7 +18,7 @@ interface FunctionIconComponentProps {
 
 export default function FunctionIconComponent(props: FunctionIconComponentProps) {
     // Item节点
-    const getItemDocument = (value: { icon: string, text: string, handleOperation: Function } = {
+    const getItemDocument = (value: { icon: any, text: string, handleOperation: Function } = {
         icon: '',
         text: '',
         handleOperation: () => { }
@@ -27,20 +27,20 @@ export default function FunctionIconComponent(props: FunctionIconComponentProps)
         const type = props?.type || ''
         switch (type) {
             case 'moduleType':
-                result = <TouchableHighlight style={styles.moduleItemCss} onPress={() => { value.handleOperation() }}>
+                result = <TouchableOpacity style={styles.moduleItemCss} onPress={() => { value.handleOperation() }}>
                     <View style={styles.moduleItemPaddingCss}>
                         <Image style={styles.moduleItemIconCss} source={value.icon} />
                         <Text style={styles.moduleItemTextCss}>{value?.text || ''}</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
                 break;
             case 'functionType':
-                result = <TouchableHighlight style={styles.functionItemCss} onPress={() => { value.handleOperation() }}>
+                result = <TouchableOpacity style={styles.functionItemCss} onPress={() => { value.handleOperation() }}>
                     <View style={styles.functionItemPaddingCss}>
                         <Image style={styles.functionItemIconCss} source={value.icon} />
                         <Text style={styles.functionItemTextCss}>{value?.text || ''}</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
                 break;
         }
 
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
 
     fillItemCss: {
         marginBottom: 15 * w,
-        marginRight: 14 * w,
+        // marginRight: 14 * w,
         width: 134 * w,
         height: 134 * w,
     },

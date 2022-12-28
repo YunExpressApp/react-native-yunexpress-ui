@@ -14,5 +14,6 @@ export default {
 	ManualInputPlz: "please input barcode number",
 	PleaseChoose: "please choose",
 	PleaseEnter: "please enter",
-	Search: "Search"
+	Search: "Search",
+	Upgrade: "Upgrade"
 }

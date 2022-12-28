@@ -9,7 +9,7 @@
  
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import FunctionIconComponent from './FunctionIconComponent'
+import { w, FunctionIconComponent } from 'react-native-yunexpress-ui'
 
 export default function FunctionIconExample() {
     const moduleArray = [
@@ -81,7 +81,7 @@ export default function FunctionIconExample() {
     return (
         <View style={styles.container}>
             <FunctionIconComponent type={'moduleType'} content={moduleArray} />
-            <View style={{ height: 30 }}></View>
+            <View style={{ height: 30 * w }}></View>
             <FunctionIconComponent type={'functionType'} content={functionArray} />
         </View>
     );
@@ -89,7 +89,7 @@ export default function FunctionIconExample() {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 20,
+        paddingTop: 20 * w,
         flex: 1,
         flexDirection: 'column',
         // backgroundColor: 'white',
