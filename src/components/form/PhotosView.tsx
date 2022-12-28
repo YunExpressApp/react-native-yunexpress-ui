@@ -2,13 +2,14 @@
  * @Author: 1418220302@qq.com 1418220302@qq.com
  * @Date: 2022-06-09 18:13:54
  * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-10-20 18:21:20
+ * @LastEditTime: 2022-12-01 16:50:55
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\form\InputItem.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React from "react";
 import { View, StyleSheet, Image, ViewStyle, TouchableOpacity, TouchableWithoutFeedback, StyleProp, TextStyle } from "react-native";
 import { w } from '../../util/CStyle';
+import Text from "../text";
 import Title from "../title";
 
 type CFunction = (index?: number) => void
@@ -16,7 +17,8 @@ type CFunction = (index?: number) => void
 type PhotosViewType = {
     imgUrls?: string[],
     max?: number,
-    title?: string,
+    title?: string | JSX.Element,
+    require?: boolean,
     style?: StyleProp<ViewStyle>,
     titleStyle?: StyleProp<TextStyle>,
     onDel?: CFunction,
@@ -59,10 +61,28 @@ const PhotosView = (props: PhotosViewType) => {
         return items;
     }
 
-    return <View style={[styles.container, props.style]}>
-        {
-            props.title && <Title style={props.titleStyle}>{props.title || "照片"}</Title>
+    const renderHeader = () => {
+        if (!props?.title) {
+            return null;
         }
+        if (typeof props?.title == 'string') {
+            
+        }
+        return <View style={{flexDirection:'row'}}>
+            {props?.require && <Text style={{ color: 'red' }}>*</Text>}
+            {
+                (typeof props?.title == 'string')  && <Title style={props.titleStyle}>{`${props.title}`}</Title>
+            }
+            {
+                (typeof props?.title != 'string')  && props?.title
+            }
+        </View>
+
+    }
+
+    return <View style={[styles.container, props.style]}>
+
+        {renderHeader()}        
         <View style={styles.items}>
             {renderItems()}
             {

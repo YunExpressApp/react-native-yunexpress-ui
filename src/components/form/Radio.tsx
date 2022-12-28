@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-08-25 09:22:01
- * @LastEditors: yanyulin
- * @LastEditTime: 2022-08-25 10:14:54
+ * @LastEditors: 1418220302@qq.com 1418220302@qq.com
+ * @LastEditTime: 2022-12-28 16:12:58
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\form\radio.tsx
  */
 import React, { useState } from "react";
@@ -22,7 +22,7 @@ type RadioType = {
 const Radio = (props: RadioType) => {
 	let { label = '', onChange, style, labelStyle, disable, data = [], index } = props;
 
-	const [curIndex, setCurIndex] = useState(index);
+	const [curIndex, setCurIndex] = useState(props.index);
 
 	const renderItems = () => {
 		let items: any = []

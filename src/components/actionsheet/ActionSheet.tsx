@@ -7,7 +7,7 @@ type ActionSheetProps = {
 	onClose?: Function,
 	callback?: Function,
 	index?: number | null,
-	data?: string[],
+	data?: string[] | JSX.Element[],
 	cancelText?: string
 }
 
@@ -15,7 +15,7 @@ export default class ActionSheet extends Component<ActionSheetProps, any> {
 
 	static overlayView: any | null;
 
-	static show = (data: string[], index?: number | null, callback?: Function) => {
+	static show = (data: string[] | JSX.Element[], index?: number | null, callback?: Function) => {
 		let overlayView = (
 			<Dialog.PullView ref={v => this.overlayView = v} side='bottom' modal={false} containerStyle={{ backgroundColor: 'transparent' }}>
 				<ActionSheet onClose={() => {
@@ -37,14 +37,22 @@ export default class ActionSheet extends Component<ActionSheetProps, any> {
 	rendItems = () => {
 		let { index } = this.state;
 		let elements: JSX.Element[] = []
-		this.state.data.map((item: string, i: number) => {
+		this.state.data.map((item: string | JSX.Element, i: number) => {
+            console.log(typeof item);
 			elements.push(
 				<TouchableOpacity activeOpacity={1} key={`${i}`} style={styles.itemView} onPress={() => {
 					this.props.callback != null && this.props.callback(i);
 
 					this.props.onClose != null && this.props.onClose();
 				}}>
-					<Text style={[index != null && index == i ? styles.itemSelTxt : styles.itemTxt]}>{item}</Text>
+					{
+                        (typeof item == "string") && 
+                        <Text style={[index != null && index == i ? styles.itemSelTxt : styles.itemTxt]}>{item}</Text>
+                    }
+                    {
+                        (typeof item != "string") && item
+                    }
+
 				</TouchableOpacity>
 			)
 		})
@@ -89,7 +97,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: 25 * w,
 		fontSize: 24 * w,
 		justifyContent: 'center',
-		alignItems: 'center',
+		// alignItems: 'center',
 		borderBottomColor: '#EEEEEE',
 		borderBottomWidth: StyleSheet.hairlineWidth
 	},
@@ -103,10 +111,12 @@ const styles = StyleSheet.create({
 	},
 	itemTxt: {
 		color: '#303030',
-		fontSize: 24 * w
+		fontSize: 24 * w,
+        textAlign: 'center'
 	},
 	itemSelTxt: {
 		color: '#1693A4',
-		fontSize: 24 * w
+		fontSize: 24 * w,
+        textAlign: 'center'
 	}
 })

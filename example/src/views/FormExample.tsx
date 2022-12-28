@@ -1,11 +1,11 @@
 /*
  * @Date: 2022-06-06 09:45:24
  * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-10-20 18:21:49
+ * @LastEditTime: 2022-12-01 16:53:35
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\example\src\views\FormExample.tsx
  */
 import React, { useState } from 'react'
-import { Alert, ScrollView, StyleSheet, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import { w, YTForm } from 'react-native-yunexpress-ui';
 export default function FormExample() {
 
@@ -30,7 +30,8 @@ export default function FormExample() {
 					Alert.alert("请选择" + i);
 				}} />
 
-				<YTForm.PhotosView imgUrls={["", "", "", "", ""]} max={50} title="照片" style={{ paddingHorizontal: 32 * w }} />
+				<YTForm.PhotosView require imgUrls={["", ""]} max={50} title="照片" style={{ paddingHorizontal: 32 * w }} />
+                <YTForm.PhotosView imgUrls={["", ""]} max={50} title={<View><Text>拍照</Text></View>} style={{ paddingHorizontal: 32 * w }} />
 			</ScrollView>
 		</View>
 	);
