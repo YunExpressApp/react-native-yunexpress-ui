@@ -1,13 +1,13 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-11-23 10:30:00
- * @LastEditors: 张贵 zhanggui@yunexpress.cn
- * @LastEditTime: 2022-11-30 16:30:00
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2022-12-28 16:52:38
  * @FilePath: \react-native-yunexpress-ui\example\src\views\ScanPanelCompoent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React, { useState, useRef, memo } from 'react'
-import { Image, StyleSheet, Text, View, TextInput, ScrollView } from "react-native"
+import React, { memo } from 'react'
+import { StyleSheet, View, ScrollView } from "react-native"
 import { w } from 'react-native-yunexpress-ui'
 
 interface ScanPanelCompoentProps {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default memo(ScanPanelCompoent, (prevProps, nextProps) => {
+export default memo(ScanPanelCompoent, () => {
     // 返回false进行更新
     // 返回true不需要进行更新
     // console.log(prevProps.data === nextProps.data,prevProps, nextProps);

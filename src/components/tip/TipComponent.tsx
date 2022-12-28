@@ -1,24 +1,24 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-10-19 14:02:00
- * @LastEditors: 张贵 zhanggui@yunexpress.cn
- * @LastEditTime: 2022-10-25 16:35:15
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2022-12-28 16:57:42
  * @FilePath: \react-native-yunexpress-ui\example\src\views\TipComponent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React, { useState, useRef, useLayoutEffect, useEffect } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Image, Button } from "react-native"
+import React, { useState, useRef } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native"
 import i18n from '../../i18n'
 import { w } from 'react-native-yunexpress-ui'
 interface TipComponentProps {
     content: Document,
-    placement: String,
-    tipMessage?: String,
-    bgColor?: String,
-    textColor?: String,
+    placement: string,
+    tipMessage?: string,
+    bgColor?: string,
+    textColor?: string,
     isHideTitleIcon?: Boolean,
     isShowButton?: Boolean,
-    tipType?: String,
+    tipType?: string,
     iconResource?: Image,
     spaceBetween?: number,
     offsetNumber?: number,
@@ -103,8 +103,8 @@ export default function TipComponent(props: TipComponentProps) {
 
     const tipBoxRef = () => {
         if (ref) {
-            ref?.current?.measure((x, y, width, height, pageX, pageY) => {
-                // console.log('大大', x, y, width, height, pageX, pageY);
+            ref?.current?.measure((x, y, width, height) => {
+                console.log('大大', x, y, width, height);
                 setLightSpotWidth(width)
                 setLightSpotHeight(height)
             });
@@ -113,15 +113,15 @@ export default function TipComponent(props: TipComponentProps) {
 
     const tipContentRef = () => {
         if (contentRef) {
-            contentRef?.current?.measure((x, y, width, height, pageX, pageY) => {
-                // console.log('小', x, y, width, height, pageX, pageY);
+            contentRef?.current?.measure((x, y, width) => {
+                console.log('小', x, y, width);
                 setContentWidth(width)
             });
         }
     }
 
     // 计算颜色组合
-    const tipTypeComputedColor = (type: String) => {
+    const tipTypeComputedColor = (type: string) => {
         let result = type === 'color' ? { color: currentProps?.textColor || '#FFFFFF' } : { backgroundColor: currentProps?.bgColor || '#111111' }
         // 套件组合warn
         if (currentProps?.tipType === 'warn' && type === 'color') {

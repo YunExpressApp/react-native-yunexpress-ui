@@ -20,7 +20,7 @@ type RadioType = {
 }
 
 const Radio = (props: RadioType) => {
-	let { label = '', onChange, style, labelStyle, disable, data = [], index } = props;
+	let { label = '', onChange, style, labelStyle, disable, data = [] } = props;
 
 	const [curIndex, setCurIndex] = useState(props.index);
 
