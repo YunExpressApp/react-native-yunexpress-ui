@@ -1,12 +1,12 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-10-28 9:30:00
- * @LastEditors: 张贵 zhanggui@yunexpress.cn
- * @LastEditTime: 2022-11-08 9:30:00
+ * @LastEditors: 1418220302@qq.com 1418220302@qq.com
+ * @LastEditTime: 2022-12-28 16:19:09
  * @FilePath: \react-native-yunexpress-ui\example\src\views\UpgradeComponents.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React, { useState } from 'react'
+import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import i18n from '../../i18n'
 import { w } from 'react-native-yunexpress-ui'

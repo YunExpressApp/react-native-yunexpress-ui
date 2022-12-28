@@ -1,13 +1,13 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-10-19 14:02:00
- * @LastEditors: 张贵 zhanggui@yunexpress.cn
- * @LastEditTime: 2022-10-25 16:35:15
+ * @LastEditors: 1418220302@qq.com 1418220302@qq.com
+ * @LastEditTime: 2022-12-28 16:20:37
  * @FilePath: \react-native-yunexpress-ui\example\src\views\TipComponent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React, { useState, useRef, useLayoutEffect, useEffect } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Image, Button } from "react-native"
+import React, { useState, useRef } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native"
 import i18n from '../../i18n'
 import { w } from 'react-native-yunexpress-ui'
 interface TipComponentProps {
@@ -103,19 +103,21 @@ export default function TipComponent(props: TipComponentProps) {
 
     const tipBoxRef = () => {
         if (ref) {
-            ref?.current?.measure((x, y, width, height, pageX, pageY) => {
+            ref?.current?.measure((x, y, width, height) => {
                 // console.log('大大', x, y, width, height, pageX, pageY);
                 setLightSpotWidth(width)
                 setLightSpotHeight(height)
+                console.log(x, y);
             });
         }
     }
 
     const tipContentRef = () => {
         if (contentRef) {
-            contentRef?.current?.measure((x, y, width, height, pageX, pageY) => {
+            contentRef?.current?.measure((x, y, width) => {
                 // console.log('小', x, y, width, height, pageX, pageY);
-                setContentWidth(width)
+                setContentWidth(width);
+                console.log(x, y);
             });
         }
     }
@@ -205,7 +207,7 @@ export default function TipComponent(props: TipComponentProps) {
             {staticVisible && currentProps?.placement === 'static' &&
                 <View style={{ ...computedPlacement(), ...styles.staticTipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: currentProps?.isShowButton && !currentProps?.isHideTitleIcon ? 12 * w : 28 * w, }}>
                     <View style={{ ...styles.tipTitle, width: '100%' }}>
-                        <Text style={{ ...tipTypeComputedColor('color'), fontSize: 12 * w, lineHeight: 20 * w }}>{currentProps?.tipMessage}</Text>
+                        <Text style={{ ...tipTypeComputedColor('color') as any, fontSize: 12 * w, lineHeight: 20 * w }}>{currentProps?.tipMessage}</Text>
                         {!currentProps?.isHideTitleIcon &&
                             <TouchableOpacity onPress={() => {
                                 currentProps.rightIconHandleOperation()
@@ -228,7 +230,7 @@ export default function TipComponent(props: TipComponentProps) {
                 <View ref={ref} onLayout={tipBoxRef} style={{ ...computedPlacement(), ...styles.tipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: (currentProps?.isHideTitleIcon || (currentProps?.isShowButton && !currentProps?.isHideTitleIcon)) ? 12 * w : 28 * w, }}>
                     <View style={{ ...styles.tipMessageBox }}>
                         <View ref={contentRef} onLayout={tipContentRef} style={{ ...styles.tipTitle }}>
-                            <Text style={{ ...tipTypeComputedColor('color'), ...styles.tipTextCss }}>{currentProps?.tipMessage}</Text>
+                            <Text style={{ ...tipTypeComputedColor('color') as any, ...styles.tipTextCss }}>{currentProps?.tipMessage}</Text>
                         </View>
                         {(!currentProps?.isShowButton && !currentProps?.isHideTitleIcon) &&
                             <TouchableOpacity onPress={() => {
