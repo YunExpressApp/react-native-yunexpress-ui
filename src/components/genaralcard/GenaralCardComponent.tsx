@@ -1,8 +1,8 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-11-01 9:30:00
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-12-28 16:36:32
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2022-12-28 16:47:27
  * @FilePath: \react-native-yunexpress-ui\example\src\views\GenaralCardComponent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,17 +12,17 @@ import i18n from '../../i18n'
 import { w } from 'react-native-yunexpress-ui'
 
 interface GenaralCardComponentsProps {
-    title: String,
+    title: string,
     isPopCard?: boolean,
-    content?: Array<String>,
+    content?: Array<string>,
     children?: Document,
     leftButtom?: {
-        text?: String,
-        color?: String
+        text?: string,
+        color?: string
     },
     rightButtom?: {
-        text?: String,
-        color?: String
+        text?: string,
+        color?: string
     },
     isShowButton?: boolean,
     handleLeftOperation?: () => any,
@@ -72,15 +72,12 @@ export default function GenaralCardComponent(props: GenaralCardComponentsProps) 
                     <TouchableOpacity
                         style={{ ...styles.bottomItemCss, borderBottomLeftRadius: 8 * w, borderRightWidth: 1 * w, borderRightColor: '#E5E5E5' }}
                         onPress={currentProps.handleLeftOperation}>
-                        {/* <Text style={{ ...styles.bottomTextCss, color: currentProps?.leftButtom?.color }}>{currentProps?.leftButtom?.text}</Text> */}
-                        <Text style={[styles.bottomTextCss, {color: currentProps?.leftButtom?.color as any}]}>{currentProps?.leftButtom?.text}</Text>
+                        <Text style={{ ...styles.bottomTextCss, color: currentProps?.leftButtom?.color }}>{currentProps?.leftButtom?.text}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ ...styles.bottomItemCss, borderBottomRightRadius: 8 * w }}
                         onPress={currentProps.handleRightOperation}>
-                        {/* <Text style={{ ...styles.bottomTextCss, color: currentProps?.rightButtom?.color }}>{currentProps?.rightButtom?.text}</Text> */}
-
-                        <Text style={[styles.bottomTextCss, {color: currentProps?.rightButtom?.color as any }]}>{currentProps?.rightButtom?.text}</Text>
+                        <Text style={{ ...styles.bottomTextCss, color: currentProps?.rightButtom?.color }}>{currentProps?.rightButtom?.text}</Text>
                     </TouchableOpacity>
                 </View>}
 

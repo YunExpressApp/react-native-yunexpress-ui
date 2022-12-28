@@ -1,8 +1,8 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-10-19 14:02:00
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-12-28 16:20:37
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2022-12-28 16:57:42
  * @FilePath: \react-native-yunexpress-ui\example\src\views\TipComponent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,13 +12,13 @@ import i18n from '../../i18n'
 import { w } from 'react-native-yunexpress-ui'
 interface TipComponentProps {
     content: Document,
-    placement: String,
-    tipMessage?: String,
-    bgColor?: String,
-    textColor?: String,
+    placement: string,
+    tipMessage?: string,
+    bgColor?: string,
+    textColor?: string,
     isHideTitleIcon?: Boolean,
     isShowButton?: Boolean,
-    tipType?: String,
+    tipType?: string,
     iconResource?: Image,
     spaceBetween?: number,
     offsetNumber?: number,
@@ -104,10 +104,9 @@ export default function TipComponent(props: TipComponentProps) {
     const tipBoxRef = () => {
         if (ref) {
             ref?.current?.measure((x, y, width, height) => {
-                // console.log('大大', x, y, width, height, pageX, pageY);
+                console.log('大大', x, y, width, height);
                 setLightSpotWidth(width)
                 setLightSpotHeight(height)
-                console.log(x, y);
             });
         }
     }
@@ -115,15 +114,14 @@ export default function TipComponent(props: TipComponentProps) {
     const tipContentRef = () => {
         if (contentRef) {
             contentRef?.current?.measure((x, y, width) => {
-                // console.log('小', x, y, width, height, pageX, pageY);
-                setContentWidth(width);
-                console.log(x, y);
+                console.log('小', x, y, width);
+                setContentWidth(width)
             });
         }
     }
 
     // 计算颜色组合
-    const tipTypeComputedColor = (type: String) => {
+    const tipTypeComputedColor = (type: string) => {
         let result = type === 'color' ? { color: currentProps?.textColor || '#FFFFFF' } : { backgroundColor: currentProps?.bgColor || '#111111' }
         // 套件组合warn
         if (currentProps?.tipType === 'warn' && type === 'color') {
@@ -207,7 +205,7 @@ export default function TipComponent(props: TipComponentProps) {
             {staticVisible && currentProps?.placement === 'static' &&
                 <View style={{ ...computedPlacement(), ...styles.staticTipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: currentProps?.isShowButton && !currentProps?.isHideTitleIcon ? 12 * w : 28 * w, }}>
                     <View style={{ ...styles.tipTitle, width: '100%' }}>
-                        <Text style={{ ...tipTypeComputedColor('color') as any, fontSize: 12 * w, lineHeight: 20 * w }}>{currentProps?.tipMessage}</Text>
+                        <Text style={{ ...tipTypeComputedColor('color'), fontSize: 12 * w, lineHeight: 20 * w }}>{currentProps?.tipMessage}</Text>
                         {!currentProps?.isHideTitleIcon &&
                             <TouchableOpacity onPress={() => {
                                 currentProps.rightIconHandleOperation()
@@ -230,7 +228,7 @@ export default function TipComponent(props: TipComponentProps) {
                 <View ref={ref} onLayout={tipBoxRef} style={{ ...computedPlacement(), ...styles.tipBox, ...tipTypeComputedColor('bgColor'), ...computedBoxWidth(), paddingRight: (currentProps?.isHideTitleIcon || (currentProps?.isShowButton && !currentProps?.isHideTitleIcon)) ? 12 * w : 28 * w, }}>
                     <View style={{ ...styles.tipMessageBox }}>
                         <View ref={contentRef} onLayout={tipContentRef} style={{ ...styles.tipTitle }}>
-                            <Text style={{ ...tipTypeComputedColor('color') as any, ...styles.tipTextCss }}>{currentProps?.tipMessage}</Text>
+                            <Text style={{ ...tipTypeComputedColor('color'), ...styles.tipTextCss }}>{currentProps?.tipMessage}</Text>
                         </View>
                         {(!currentProps?.isShowButton && !currentProps?.isHideTitleIcon) &&
                             <TouchableOpacity onPress={() => {

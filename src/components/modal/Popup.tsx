@@ -1,12 +1,12 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-11-23 10:30:00
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-12-28 16:41:12
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2022-12-28 17:00:22
  * @FilePath: \react-native-yunexpress-ui\example\src\views\ScanPanelCompoent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React, { memo } from 'react'
+import React from 'react'
 import { Modal, TouchableOpacity, View, ScrollView, StyleProp, ViewStyle } from "react-native"
 import Title from "../title";
 import Header from "./Header";
@@ -59,10 +59,4 @@ function PopupCompoent(props: PopupCompoentProps) {
     </Modal>
 }
 
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1
-//     }
-// });
-
-export default memo(PopupCompoent)
+export default PopupCompoent
