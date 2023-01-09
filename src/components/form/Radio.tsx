@@ -1,10 +1,10 @@
 /*
  * @Date: 2022-08-25 09:22:01
  * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-12-28 16:18:32
+ * @LastEditTime: 2022-12-28 16:53:42
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\form\radio.tsx
  */
-import React, { useState } from "react";
+import React from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity, StyleProp, ViewStyle, TextStyle } from "react-native";
 import { w } from '../../util/CStyle';
 
@@ -22,7 +22,7 @@ type RadioType = {
 const Radio = (props: RadioType) => {
 	let { label = '', onChange, style, labelStyle, disable, data = [] } = props;
 
-	const [curIndex, setCurIndex] = useState(props.index);
+	// const [curIndex, setCurIndex] = useState(props.index);
 
 	const renderItems = () => {
 		let items: any = []
@@ -32,10 +32,10 @@ const Radio = (props: RadioType) => {
 					if (disable) {
 						return;
 					}
-					setCurIndex(i);
+					// setCurIndex(i);
 					onChange && onChange(i);
 				}}>
-					<Image style={styles.rightImg} source={i == curIndex ? require('../../imgs/common_radio_sel.png') : require('../../imgs/common_radio_def.png')} />
+					<Image style={styles.rightImg} source={i == props.index ? require('../../imgs/common_radio_sel.png') : require('../../imgs/common_radio_def.png')} />
 					<Text style={styles.radioTxt}>{item || ""}</Text>
 				</TouchableOpacity>
 			)
