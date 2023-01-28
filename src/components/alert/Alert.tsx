@@ -11,9 +11,10 @@ import {
     Modal,
     StyleProp,
     TextStyle,
+    ScrollView,
 } from 'react-native';
 import i18n from '../../i18n';
-import { w } from '../../util/CStyle';
+import { Color, w } from '../../util/CStyle';
 import Button from '../button';
 import Text from '../text';
 
@@ -48,6 +49,8 @@ type AlertProps = {
     isCancelable?: boolean
     /** 是否固定文本大小 */
     isFixed?: boolean
+    /** 弹框key 用来显示不再提示功能 */
+    key?: string
 }
 
 /**
@@ -55,13 +58,13 @@ type AlertProps = {
  */
 type State = {
     /** 是否显示 */
-    isVisible: boolean,
+    isVisible?: boolean,
     /** 弹框标题 */
     title: string,
     titleStyle?: StyleProp<TextStyle>,
-    leftText: string | undefined,
-    rightText: string | undefined,
-    onLeftPress: Function | undefined,
+    leftText?: string | undefined,
+    rightText?: string | undefined,
+    onLeftPress?: Function | undefined,
     onRightPress: Function,
     btnLeftTextStyle?: StyleProp<TextStyle>,
     btnRightTextStyle?: StyleProp<TextStyle>,
@@ -69,8 +72,10 @@ type State = {
     content?: string | undefined,
     contentStyle?: StyleProp<TextStyle>,
     /** 是否只有一个按钮 */
-    isOneButton: boolean,
+    isOneButton?: boolean,
     isCancelable?: boolean
+    key?: string
+    isChecked?: boolean
 }
 
 /**
@@ -99,8 +104,9 @@ export default class Alert extends Component<AlertProps, State> {
         isCancelable: true,
         titleStyle: null,
         contentStyle: null,
-        btnLeftTextStyle: null,
-        btnRightTextStyle: null
+        btnLeftTextStyle: { color: '#303030', fontSize: 24 * w },
+        btnRightTextStyle: { color: '#1592A3', fontSize: 24 * w },
+        isChecked: false
     }
 
     constructor(props: AlertProps) {
@@ -143,6 +149,7 @@ export default class Alert extends Component<AlertProps, State> {
         this.state = this.defaultState;
         this.outSizeCancelable = true
         this.setState({
+            ...this.state,
             isVisible: false
         }, () => {
             //如果有其它组件刷新，需要在onClose里面还原show的初始值，不然只要有刷新就会弹出
@@ -171,6 +178,13 @@ export default class Alert extends Component<AlertProps, State> {
             isOneButton: false,
             isCancelable: this.outSizeCancelable
         });
+    }
+
+    showDoNotPromptAgain(key: string, props: State) {
+        props.key = key
+        props.isVisible = true
+        props.isCancelable = this.outSizeCancelable
+        this.setState(props);
     }
 
     /**
@@ -231,8 +245,26 @@ export default class Alert extends Component<AlertProps, State> {
             <View style={styles.modalStyle}>
                 <TouchableOpacity activeOpacity={1} style={{ paddingTop: 46 * w, paddingHorizontal: 32 * w, paddingBottom: 10 * w }}>
                     <Text isFixed={this.props.isFixed} style={[{ fontSize: 25 * w, lineHeight: 25 * 1.3 * w, color: '#111', fontWeight: '500' }, this.state.titleStyle || this.props.titleStyle]}>{this.state.title || this.props.title || ""}</Text>
-                    {this.state.content || this.props.content ? <Text isFixed={this.props.isFixed} style={[{ fontSize: 22 * w, color: '#333', marginVertical: 8 * w, lineHeight: 22 * 1.4 * w }, this.state.contentStyle || this.props.contentStyle]}>{this.state.content || this.props.content || ""}</Text> : null}
+                    {this.state.content || this.props.content ? <ScrollView keyboardShouldPersistTaps="always" style={{ maxHeight: 500 * w }}><Text isFixed={this.props.isFixed} style={[{ fontSize: 22 * w, color: '#333', marginVertical: 8 * w, lineHeight: 22 * 1.4 * w }, this.state.contentStyle || this.props.contentStyle]}>{this.state.content || this.props.content || ""}</Text></ScrollView> : null}
                     {this.props.children}
+                    {this.state.key ? <TouchableOpacity activeOpacity={0.9} style={{ flexDirection: 'row', alignItems: 'center', marginTop: 20 * w }}
+                        onPress={() => {
+                            this.setState({ isChecked: !this.state.isChecked })
+                        }}
+                    >
+                        <View style={{
+                            height: 20 * w, width: 20 * w, borderWidth: 1, borderColor: '#999',
+                            marginRight: 5, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'
+                        }}>
+                            {
+
+                                this.state.isChecked && (
+                                    <View style={{ height: 12 * w, width: 12 * w, backgroundColor: Color.blue }} />
+                                )
+                            }
+                        </View>
+                        <Text >{i18n.t('DoNotPromptAgain')}</Text>
+                    </TouchableOpacity> : null}
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={1} style={{ flex: 1 }} />
                 <Button
@@ -247,9 +279,9 @@ export default class Alert extends Component<AlertProps, State> {
                         }
                     }}
                     onRightPress={() => {
-                        if (this.props.onRightPress && !this.props.onRightPress())
+                        if (this.props.onRightPress && !this.props.onRightPress(this.state))
                             this.closeModal()
-                        else if (this.state.onRightPress && !this.state.onRightPress())
+                        else if (this.state.onRightPress && !this.state.onRightPress(this.state))
                             this.closeModal()
                     }}
                     btnLeftTextStyle={[{ color: '#303030', fontSize: 24 * w }, this.state.btnLeftTextStyle || this.props.btnLeftTextStyle]}

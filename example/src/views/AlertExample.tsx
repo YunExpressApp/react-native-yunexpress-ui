@@ -1,8 +1,8 @@
 /*
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-06-13 10:22:40
- * @LastEditors: 袁康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2022-11-10 14:00:05
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-01-28 15:46:25
  * @FilePath: \react-native-yunexpress-ui\example\src\views\AlertExample.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,6 +12,7 @@ import { Alert } from 'react-native-yunexpress-ui'
 export default function AlertExample() {
 	let alertRef: Alert | null;
 	let alertCRef: Alert | null;
+	let alertDRef: Alert | null;
 	const [text, setText] = useState('');
 	const [show, setShow] = useState(false);
 	const [leftText, setLeftText] = useState('Cancel');
@@ -35,7 +36,7 @@ export default function AlertExample() {
 			//点旁边不可关闭
 			alertRef?.setIsCancelable(false)
 			setLeftText("修改LeftText")
-			alertRef?.showOneButton('我是标题', '我只有一个按我只有一个按我只有一个按我只有一个按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮')
+			alertRef?.showOneButton('我是标题', '我只有一个按我只有一个按我只有一个按我只有一个按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮按我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮我只有一个按钮')
 		}}>单个按钮请点我[修改第三个弹框LeftText]</Text>
 		<Text onPress={() => {
 			//点旁边不可关闭
@@ -60,10 +61,20 @@ export default function AlertExample() {
 				ToastAndroid.show('点击OK', ToastAndroid.SHORT)
 			}, 'OK', undefined, '关闭')
 		}}>第六个自定义弹框</Text>
+		<Text onPress={() => {
+			alertDRef?.showDoNotPromptAgain('不再提示Key', {
+				title: '不再提示测试',
+				content: '这是内容，这是内容，这是内容，这是内容，这是内容，这是内容',
+				onRightPress: (props: any) => {
+					ToastAndroid.show('--' + props.isChecked, ToastAndroid.SHORT)
+				}
+			})
+		}}>第七个不再提示</Text>
 		<Alert leftText={leftText} ref={ref => alertRef = ref} />
 		<Alert show={show} title={'show属性控制'} content={'我是内容...........'} leftText={'左边'} rightText={'右边'} onClose={() => setShow(false)} />
 		<Alert ref={ref => alertCRef = ref}>
 			<TextInput placeholder={'请输入内容'} />
 		</Alert>
+		<Alert ref={ref => alertDRef = ref} />
 	</View>
 }

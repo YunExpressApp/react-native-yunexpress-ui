@@ -1,24 +1,22 @@
 /*
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-09-20 16:32:35
- * @LastEditors: 袁康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2022-09-26 17:17:07
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-01-28 16:16:50
  * @FilePath: \react-native-yunexpress-ui\src\components\text\Text.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useEffect, useState } from 'react'
-import { StyleProp, Text as RnText, TextStyle } from 'react-native'
+import { Text as RnText, TextProps as RnTextProps } from 'react-native'
 import { w } from '../../util/CStyle'
 import Theme from '../../themes/Theme';
 
-interface TextProps {
+interface TextProps extends RnTextProps {
     children: React.ReactNode[] | string
     /** 文本大小，中文是原大小，其他语言文本大小 = 文本大小 * 0.8 */
     fontSize?: number
     /** 设置语言属性，可不传 */
     locale?: string
-    /** 样式里面的fontSize会覆盖组件的fontSize属性 */
-    style?: StyleProp<TextStyle>
     /** 是否固定文本大小 */
     isFixed?: boolean
 }

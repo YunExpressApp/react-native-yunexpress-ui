@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-08-20 18:38:02
- * @LastEditTime: 2022-09-28 17:13:21
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
+ * @LastEditTime: 2023-01-28 15:20:35
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
  * @Description: In User Settings Edit
  * @FilePath: \AwesomeProjecte:\git\yunExpress\app\i18n\zh\zh.js
  */
@@ -24,5 +24,6 @@ export default {
 	PleaseChoose: "请选择",
 	PleaseEnter: "请输入",
 	Search: "搜索",
-	Upgrade: "升级"
+	Upgrade: "升级",
+	DoNotPromptAgain: '不再提示'
 }
