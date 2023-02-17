@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-06-06 09:45:24
  * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-12-01 16:53:35
+ * @LastEditTime: 2023-02-17 15:25:31
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\example\src\views\FormExample.tsx
  */
 import React, { useState } from 'react'
@@ -9,7 +9,7 @@ import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import { w, YTForm } from 'react-native-yunexpress-ui';
 export default function FormExample() {
 
-	const [value, setValue] = useState("aaaaaa");
+	const [value, setValue] = useState("aaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
 	return (
 		<View style={styles.container}>

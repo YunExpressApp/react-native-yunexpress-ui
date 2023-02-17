@@ -2,7 +2,7 @@
  * @Author: 1418220302@qq.com 1418220302@qq.com
  * @Date: 2022-06-09 18:13:54
  * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-10-17 11:24:13
+ * @LastEditTime: 2023-02-17 15:33:41
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\form\InputItem.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'flex-end'
+		justifyContent: 'flex-end',
+        overflow: 'hidden'
 	},
 	rightTxt: {
 		textAlign: 'right',
