@@ -2,7 +2,7 @@
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-09-20 16:32:35
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-01-28 16:16:50
+ * @LastEditTime: 2023-02-21 16:35:38
  * @FilePath: \react-native-yunexpress-ui\src\components\text\Text.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -49,7 +49,7 @@ export default function Text(props: TextProps) {
     // style样式中的文本大小
     const [fontSize, setFontSize] = useState(0);
     // 文本大小变化基数
-    const baseNum = (props.locale || Theme.locale) == 'zh' || props.isFixed ? 1 : 0.8
+    const baseNum = (props.locale || Theme.locale) !== 'zh' && !props.isFixed ? 0.8 : 1
 
     useEffect(() => {
         let styles: any = props.style;

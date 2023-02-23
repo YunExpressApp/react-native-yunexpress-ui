@@ -8,7 +8,7 @@
  */
 import React from 'react'
 import { Image, StyleSheet, Text, View } from "react-native"
-import { w } from 'react-native-yunexpress-ui'
+import { w } from '../../util/CStyle'
 
 interface StepComponentProps {
     type?: string,

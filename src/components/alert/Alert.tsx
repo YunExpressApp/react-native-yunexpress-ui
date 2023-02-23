@@ -30,7 +30,7 @@ type AlertProps = {
     title?: string,
     /** 左边按钮点击回调 */
     onLeftPress?: Function,
-    /** 右边按钮点击回调 */
+    /** 右边按钮点击回调 回调返回当前State的值 */
     onRightPress?: Function,
     /** 子组件 */
     children?: any,
@@ -75,6 +75,7 @@ type State = {
     isOneButton?: boolean,
     isCancelable?: boolean
     key?: string
+    /** 不再提示是否选中 */
     isChecked?: boolean
 }
 
@@ -89,7 +90,7 @@ type State = {
  * 
  * 【onLeftPress】: Function 左边按钮点击回调
  * 
- * 【onRightPress】: Function 右边按钮点击回调
+ * 【onRightPress】: Function 右边按钮点击回调 回调返回当前State的值
  */
 export default class Alert extends Component<AlertProps, State> {
     private outSizeCancelable: boolean = true

@@ -1,14 +1,15 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-11-7 9:30:00
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-12-28 16:31:47
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-02-17 18:11:11
  * @FilePath: \react-native-yunexpress-ui\example\src\views\FunctionIconComponent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native"
-import { w } from 'react-native-yunexpress-ui'
+import { w } from '../../util/CStyle'
+
 
 interface FunctionIconComponentProps {
     type: string

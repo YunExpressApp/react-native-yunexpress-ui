@@ -7,20 +7,37 @@ type ActionSheetProps = {
 	onClose?: Function,
 	callback?: Function,
 	index?: number | null,
-	data?: string[] | JSX.Element[],
+	data?: string[] | JSX.Element[] | object[],
+	values?: string[] | null,
 	cancelText?: string
 }
 
-export default class ActionSheet extends Component<ActionSheetProps, any> {
+type State = {
+	data: any[]
+	index?: number | null,
+}
+
+export default class ActionSheet extends Component<ActionSheetProps, State> {
 
 	static overlayView: any | null;
 
 	static show = (data: string[] | JSX.Element[], index?: number | null, callback?: Function) => {
 		let overlayView = (
-			<Dialog.PullView ref={v => this.overlayView = v} side='bottom' modal={false} containerStyle={{ backgroundColor: 'transparent' }}>
+			<Dialog.PullView ref={v => ActionSheet.overlayView = v} side='bottom' modal={false} containerStyle={{ backgroundColor: 'transparent' }}>
 				<ActionSheet onClose={() => {
-					this.overlayView && this.overlayView.close();
+					ActionSheet.overlayView && ActionSheet.overlayView.close();
 				}} callback={callback} index={index} data={data} />
+			</Dialog.PullView>
+		);
+		Dialog.show(overlayView);
+	}
+
+	static showByObj = (data: object[], valuse?: string[], callback?: Function, index?: number | null) => {
+		let overlayView = (
+			<Dialog.PullView ref={v => ActionSheet.overlayView = v} side='bottom' modal={false} containerStyle={{ backgroundColor: 'transparent' }}>
+				<ActionSheet onClose={() => {
+					ActionSheet.overlayView && ActionSheet.overlayView.close();
+				}} callback={callback} index={index} values={valuse} data={data} />
 			</Dialog.PullView>
 		);
 		Dialog.show(overlayView);
@@ -34,25 +51,41 @@ export default class ActionSheet extends Component<ActionSheetProps, any> {
 		}
 	}
 
+	getItem(item: any, index?: number | null | undefined, i?: number) {
+		if (item) {
+			if (React.isValidElement(item)) {
+				return item
+			} else {
+				if ((typeof item == "object")) {
+					return <View style={{ flexDirection: 'row' }}>
+						{
+							this.props.values && this.props.values.map((v, j) => {
+								return <Text key={v + '-' + j} style={[{ flex: 1 }, index != null && index == i ? styles.itemSelTxt : styles.itemTxt]}>{`${item[v]}`}</Text>
+							})
+						}
+					</View>
+				} else {
+					return <Text style={[index != null && index == i ? styles.itemSelTxt : styles.itemTxt]}>{item}</Text>
+				}
+			}
+		}
+		return null
+	}
+
 	rendItems = () => {
+		console.log(Array.isArray(this.state.data))
 		let { index } = this.state;
 		let elements: JSX.Element[] = []
-		this.state.data.map((item: string | JSX.Element, i: number) => {
-            console.log(typeof item);
+		this.state.data.map((item, i) => {
+			// console.log(typeof item);
+			// console.log(React.isValidElement(item))
 			elements.push(
 				<TouchableOpacity activeOpacity={1} key={`${i}`} style={styles.itemView} onPress={() => {
 					this.props.callback != null && this.props.callback(i);
 
 					this.props.onClose != null && this.props.onClose();
 				}}>
-					{
-                        (typeof item == "string") && 
-                        <Text style={[index != null && index == i ? styles.itemSelTxt : styles.itemTxt]}>{item}</Text>
-                    }
-                    {
-                        (typeof item != "string") && item
-                    }
-
+					{this.getItem(item, index, i)}
 				</TouchableOpacity>
 			)
 		})
@@ -112,11 +145,11 @@ const styles = StyleSheet.create({
 	itemTxt: {
 		color: '#303030',
 		fontSize: 24 * w,
-        textAlign: 'center'
+		textAlign: 'center'
 	},
 	itemSelTxt: {
 		color: '#1693A4',
 		fontSize: 24 * w,
-        textAlign: 'center'
+		textAlign: 'center'
 	}
 })

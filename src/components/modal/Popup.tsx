@@ -10,7 +10,7 @@ import React from 'react'
 import { Modal, TouchableOpacity, View, ScrollView, StyleProp, ViewStyle } from "react-native"
 import Title from "../title";
 import Header from "./Header";
-import { w } from 'react-native-yunexpress-ui'
+import { w } from '../../util/CStyle'
 
 interface PopupCompoentProps {
     visible?: boolean,

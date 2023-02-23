@@ -1,3 +1,5 @@
+import SearchListBoxExample from "./SearchListBoxExample";
+import BoxItemExample from "./BoxItemExample";
 import AlertExample from "./AlertExample";
 import CardExample from "./CardExample";
 import CellExample from "./CellExample";
@@ -27,6 +29,16 @@ import StepExample from "./StepExample"
 import PopupExample from "./PopupExample"
 
 export default [
+	{
+		page: SearchListBoxExample,
+		name: 'SearchListBoxExample',
+		descr: "SearchListBoxExample 可搜索的列表弹框"
+	},
+	{
+		page: BoxItemExample,
+		name: 'BoxItemExample',
+		descr: "BoxItemExample 点Item底部弹出框"
+	},
 	{
 		page: PopupExample,
 		name: 'PopupExample',

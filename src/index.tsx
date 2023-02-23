@@ -1,3 +1,19 @@
+/**
+ * 可以搜索列表的底部弹框
+ */
+export { default as SearchListBox } from './components/searchlistbox';
+export { SearchListBoxRef } from './components/searchlistbox/SearchListBox';
+/**
+ * 底部弹框子项按钮
+ */
+export { default as BoxItem } from './components/boxitem';
+/**
+ * 底部弹框
+ */
+export { default as PanelModal } from './components/panelmodal';
+/**
+ * 日历
+ */
 export { default as YTDatePicker } from './components/picker';
 
 /**
@@ -116,7 +132,7 @@ export { ActionSheetProps, ActionSheetItem, ActionSheetStatus, ActionSheetRef } 
 /**
  * 路由流程组件
  */
- export { default as StepComponent } from './components/step/index'
+export { default as StepComponent } from './components/step/index'
 
 /**
  * 扫描面板

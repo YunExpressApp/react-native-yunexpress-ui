@@ -8,7 +8,7 @@
  */
 import React, { memo } from 'react'
 import { StyleSheet, View, ScrollView } from "react-native"
-import { w } from 'react-native-yunexpress-ui'
+import { w } from '../../util/CStyle'
 
 interface ScanPanelCompoentProps {
     children?: Array<React.ReactElement> | React.ReactElement

@@ -1,3 +1,4 @@
+
 /**
  * 互动自定义Item控件
  * Created by ykl
@@ -15,6 +16,7 @@ import {
     ImageStyle,
     ViewStyle,
     TextInputProps,
+    StyleProp,
 } from 'react-native'
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -22,17 +24,17 @@ import { w } from '../../util/CStyle';
 import Text from '../text';
 
 /** Item属性 */
-type ItemProps = {
+export type ItemProps = {
     /** 左边图标 */
     leftIcon?: any,
     /** 左边图标样式 */
-    leftIconStyle?: ImageStyle,
+    leftIconStyle?: StyleProp<ImageStyle>,
     /** 是否显示右边图标，默认显示右指向的箭头小图标 */
     rightHidden?: boolean,
     /** 右边图标 */
     rightIcon?: any,
     /** 右边图标样式 */
-    rightIconStyle?: ImageStyle,
+    rightIconStyle?: StyleProp<ImageStyle>,
     /** 右边图标点击事件 */
     rightIconOnPress?: Function,
     /** 是否显示菊花 */
@@ -40,53 +42,53 @@ type ItemProps = {
     /** 标题 */
     title?: string,
     /** 标题样式 */
-    titleStyle?: TextStyle,
+    titleStyle?: StyleProp<TextStyle>,
     /** 子标题 */
     subTitle?: string,
     /** 子标题颜色 */
     subTitleColor?: string,
     /** 子标题样式 */
-    subTitleStyle?: TextStyle,
+    subTitleStyle?: StyleProp<TextStyle>,
     /** 子标题右边内容 */
     titleTag?: string,
     /** 子标题右边内容样式 */
-    titleTagStyle?: TextStyle,
+    titleTagStyle?: StyleProp<TextStyle>,
     /** 子标题父组件样式 */
-    titleTagContentSytle?: ViewStyle,
+    titleTagContentSytle?: StyleProp<ViewStyle>,
     /** 是否显示红点 */
     showRedDot?: boolean,
     /** 标题下面内容 */
     titleBottomText?: string,
     /** 标题下面内容样式 */
-    titleBottomStyle?: TextStyle,
+    titleBottomStyle?: StyleProp<TextStyle>,
     /** 标题下面右边内容 */
     titleBottomRightText?: string,
     /** 标题下面右边内容样式 */
-    titleBottomRightStyle?: TextStyle,
+    titleBottomRightStyle?: StyleProp<TextStyle>,
     /** 标题下面父组件样式 */
-    titleBottomContentStyle?: ViewStyle,
+    titleBottomContentStyle?: StyleProp<ViewStyle>,
     /** 最下面内容 */
     bottomText?: string,
     /** 最下面内容样式 */
-    bottomStyle?: TextStyle,
+    bottomStyle?: StyleProp<TextStyle>,
     /** 最下面右边内容 */
     bottomRightText?: string,
     /** 最下面右边内容样式 */
-    bottomRightStyle?: TextStyle,
+    bottomRightStyle?: StyleProp<TextStyle>,
     /** 最下面右边父组件样式 */
-    bottomContentStyle?: ViewStyle,
+    bottomContentStyle?: StyleProp<ViewStyle>,
     /** 最下面线条样式 */
-    bottomLineStyle?: ViewStyle,
+    bottomLineStyle?: StyleProp<ViewStyle>,
     /** 标题右边父组件样式 */
-    rightContentStyle?: ViewStyle,
+    rightContentStyle?: StyleProp<ViewStyle>,
     /** 标题右边内容 */
     rightText?: string,
     /** 标题右边内容样式 */
-    rightTextStyle?: TextStyle,
+    rightTextStyle?: StyleProp<TextStyle>,
     /** 标题右边的右边内容 */
     rightText2?: string,
     /** 标题右边的右边内容样式 */
-    rightText2Style?: TextStyle,
+    rightText2Style?: StyleProp<TextStyle>,
     /** 标题右边输入框属性 */
     rightInput?: TextInputProps,
     /** 标题右边自定义组件 */
@@ -98,42 +100,39 @@ type ItemProps = {
     /** 标题上面内容 */
     topTitle?: string,
     /** 标题上面内容样式 */
-    topTitleStyle?: TextStyle,
+    topTitleStyle?: StyleProp<TextStyle>,
     /** 点击事件 */
     onPress?: Function,
     /** 长按事件 */
     onLongPress?: Function,
     /** 核心部位样式 */
-    leftTopStyle?: ViewStyle,
+    leftTopStyle?: StyleProp<ViewStyle>,
     /** 是否显示边框 */
     showBorder?: boolean,
     /** topTitle是否有必填的红色星号 */
     required?: boolean,
     /** 总父组件样式 */
-    style?: ViewStyle,
+    style?: StyleProp<ViewStyle>,
     /** 标题父组件样式 */
-    titleParentSytle?: ViewStyle,
+    titleParentSytle?: StyleProp<ViewStyle>,
 }
 
 
 /**
  * 功能很全的自定义Item
+ * ------------------------------------------------------------------------------------------------
  * 
- * -------------------------------------------------------------------------------------------
+ *    (*)---topTitle ------------------------------------------------------------------------------
  * 
- * topTitle
+ *             | title-------------------------titleTag | rightInput------------ | rightIcon-- |
  * 
- * -------------------------------------------------------------------------------------------
- *          | title-------------|
+ *    leftIcon | -------------------------------------- | rightText---rightText2 | loadingView |
  * 
- * leftIcon |--------------------------|rightContent rightInput rightCustomView rightIcon loadingView 
+ *             | titleBottomText---titleBottomRightText | rightCustomView------- | ----------- |
  * 
- *          | titleBottomContent|
- * -------------------------------------------------------------------------------------------
- * bottomContent
+ *    bottomContent -------------------------------------------------------------------------------
  * 
- * -------------------------------------------------------------------------------------------
- * bottomLine
+ *    bottomLine ----------------------------------------------------------------------------------
  */
 export default class Item extends React.Component<ItemProps> {
 
@@ -193,7 +192,7 @@ export default class Item extends React.Component<ItemProps> {
                         <View style={[{ backgroundColor: '#ff823e', marginLeft: 10 * w, borderRadius: 12 * w, paddingLeft: w * 8, paddingRight: w * 8, paddingTop: w * 4, paddingBottom: w * 4 }, this.props.titleTagContentSytle]}>
                             <Text
                                 fontSize={16 * w}
-                                style={{ color: '#fff', ...this.props.titleTagStyle }}>{this.props.titleTag}</Text>
+                                style={[{ color: '#fff' }, this.props.titleTagStyle]}>{this.props.titleTag}</Text>
                         </View>
                         : null
                     }

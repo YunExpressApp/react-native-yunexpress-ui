@@ -9,7 +9,7 @@
 import React, { useState, useRef } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native"
 import i18n from '../../i18n'
-import { w } from 'react-native-yunexpress-ui'
+import { w } from '../../util/CStyle'
 interface TipComponentProps {
     content: Document,
     placement: string,

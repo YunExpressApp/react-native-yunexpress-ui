@@ -2,16 +2,16 @@
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-11-21 9:30:00
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2022-12-28 16:58:23
+ * @LastEditTime: 2023-02-20 13:41:28
  * @FilePath: \react-native-yunexpress-ui\example\src\views\SearchBoxComponent.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState, useRef } from 'react'
-import { StyleSheet, Text, View, TextInput } from "react-native"
+import { StyleSheet, Text, View, TextInput, StyleProp, ViewStyle } from "react-native"
+import { w } from '../../util/CStyle';
 import i18n from '../../i18n'
-import { w } from 'react-native-yunexpress-ui'
 
-interface SearchBoxComponentProps {
+export interface SearchBoxComponentProps {
+    style?: StyleProp<ViewStyle>,
     searchList?: Array<Object>,
     title?: string,
     placeholder?: string,
@@ -19,6 +19,7 @@ interface SearchBoxComponentProps {
     onChangeText?: (e: any) => any
     onSubmitEditing?: (e: any) => any
     onCancelText?: () => any
+    hideCancel?: boolean
 }
 
 
@@ -49,13 +50,13 @@ export default function SearchBoxComponent(props: SearchBoxComponentProps) {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
             {currentProps?.title && <Text style={styles.title}>{currentProps?.title}</Text>}
             <View style={styles.main}>
                 <TextInput
                     ref={inputRef}
                     style={[styles.rightTxt, {
-                        width: isGetFocus ? 360 * w : 432 * w,
+                        flex: isGetFocus && !props.hideCancel ? 0.85 : 1,
                         backgroundColor: currentProps?.colorType === 'bright' ? '#EBEBEB' : '#FFFFFF'
                     }]}
                     clearButtonMode={'always'}
@@ -78,7 +79,7 @@ export default function SearchBoxComponent(props: SearchBoxComponentProps) {
                         }
                     }}
                 />
-                {isGetFocus && <Text style={styles.cancleText} onPress={() => {
+                {isGetFocus && !props.hideCancel && <Text style={[styles.cancleText, { flex: 0.15 }]} onPress={() => {
                     setIsGetFocus(false)
                     inputRef.current.clear()
                     inputRef.current.blur()

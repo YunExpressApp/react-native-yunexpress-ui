@@ -1,8 +1,8 @@
 /*
  * @Author: 1418220302@qq.com 1418220302@qq.com
  * @Date: 2022-06-10 16:34:12
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-11-29 18:50:22
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-02-23 15:16:31
  * @Module Name: 
  * @Description: 
  */
@@ -23,17 +23,17 @@ export default function ActionSheetExample() {
 		});
 	}
 
-    let data2 = [
-        <View style={{flex:1, flexDirection:'row', justifyContent:'space-between'}}>
-            <Text style={{fontSize: 24 * w}}>选项一</Text>
-            <Text style={{fontSize: 24 * w}}>xxxx</Text>
-        </View>,
-        <View style={{flex:1, flexDirection:'row', justifyContent:'space-between'}}>
-            <Text style={{fontSize: 24 * w}}>选项二</Text>
-            <Text style={{fontSize: 24 * w}}>xxxx</Text>
-        </View>
-    ];
-    const showChoice2 = () => {
+	let data2 = [
+		<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+			<Text style={{ fontSize: 24 * w }}>选项一</Text>
+			<Text style={{ fontSize: 24 * w }}>xxxx</Text>
+		</View>,
+		<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+			<Text style={{ fontSize: 24 * w }}>选项二</Text>
+			<Text style={{ fontSize: 24 * w }}>xxxx</Text>
+		</View>
+	];
+	const showChoice2 = () => {
 		YTActionSheet.show(data2, index, (index: number) => {
 			setIndex(index);
 			setValue(`${index} -- ${data[index]}`)
@@ -47,8 +47,17 @@ export default function ActionSheetExample() {
 				<Text>{value}</Text>
 			</TouchableOpacity>
 
-            <TouchableOpacity onPress={showChoice2}>
+			<TouchableOpacity onPress={showChoice2}>
 				<Text>底部点击弹出选择2</Text>
+				<Text>{value}</Text>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={() => {
+				YTActionSheet.showByObj([{ a: 'bb', b: '122', c: 'eeee' }, { a: 'cc', b: 666, c: '1999-2-9' }], ['a'], (index: number) => {
+					setIndex(index);
+					setValue(`${index} -- ${data[index]}`)
+				}, index);
+			}}>
+				<Text>底部点击弹出选择3</Text>
 				<Text>{value}</Text>
 			</TouchableOpacity>
 		</View>
