@@ -1,8 +1,8 @@
 ---
-title: Refresh组件
+title: Refresh列表分页组件
 ---
 
-# Refresh组件
+# Refresh列表刷新组件
 
 ## Screenshots
 <img src="/assets/refresh.jpg" width="20%" height="20%"> 

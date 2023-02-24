@@ -69,8 +69,8 @@ import { YTBtns } from 'react-native-yunexpress-ui';
 | onClose | Function |  | 关闭弹框后的回调
 | onLeftPress | Function |  | 点击左侧按钮后的回调
 | onRightPress | Function |  | 点击右侧按钮后的回调
-| children | Array<React.ReactElement> | React.ReactElement |  | 子节点
-| style | StyleProp<ViewStyle> |  | 组件外框样式
+| children | Array\<React.ReactElement\> \| React.ReactElement |  | 子节点
+| style | StyleProp\<ViewStyle\> |  | 组件外框样式
 
 ## Contributing
 
