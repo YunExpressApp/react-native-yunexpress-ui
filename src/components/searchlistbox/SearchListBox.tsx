@@ -2,7 +2,7 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 14:32:07
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-20 14:57:11
+ * @LastEditTime: 2023-02-27 11:30:18
  * @FilePath: \react-native-yunexpress-ui\src\components\searchlistbox\SearchListBox.tsx
  */
 
@@ -56,6 +56,8 @@ function SearchListBox<T>(props: SearchListBoxProps<T>, ref: Ref<SearchListBoxRe
     return (
         <BoxItem
             ref={ref => BoxItemRef = ref}
+            boxStyle={{ paddingTop: 0 * w, justifyContent: 'flex-end' }}
+            boxContainerStyle={{ minHeight: '50%', maxHeight: '85%', flex: 0 }}
             {...props.boxProps}
             boxRightOnPress={() => {
                 setData(props.data)

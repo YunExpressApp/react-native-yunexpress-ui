@@ -1,15 +1,16 @@
 /*
  * @Date: 2022-06-06 09:45:24
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2023-02-17 15:25:31
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-02-24 11:08:28
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\example\src\views\FormExample.tsx
  */
 import React, { useState } from 'react'
-import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import { w, YTForm } from 'react-native-yunexpress-ui';
 export default function FormExample() {
 
 	const [value, setValue] = useState("aaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+	const [imageUrls, setImageUrls] = useState<string[]>([])
 
 	return (
 		<View style={styles.container}>
@@ -31,7 +32,20 @@ export default function FormExample() {
 				}} />
 
 				<YTForm.PhotosView require imgUrls={["", ""]} max={50} title="照片" style={{ paddingHorizontal: 32 * w }} />
-                <YTForm.PhotosView imgUrls={["", ""]} max={50} title={<View><Text>拍照</Text></View>} style={{ paddingHorizontal: 32 * w }} />
+				<YTForm.PhotosView
+					require
+					onAdd={() => {
+						ToastAndroid.show('添加', ToastAndroid.LONG)
+						imageUrls.push('http://1211212')
+						setImageUrls([...imageUrls])
+					}}
+					onDel={(r) => {
+						ToastAndroid.show('删除' + r, ToastAndroid.LONG)
+					}}
+					onView={(r) => {
+						ToastAndroid.show('显示' + r, ToastAndroid.LONG)
+					}}
+					imgUrls={imageUrls} max={50} title={<View><Text>拍照</Text></View>} style={{ paddingHorizontal: 32 * w }} />
 			</ScrollView>
 		</View>
 	);
@@ -41,7 +55,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: 'white',
-		// paddingHorizontal: 32 * w,
+		paddingHorizontal: 32 * w,
 		paddingVertical: 32 * w
 	}
 });

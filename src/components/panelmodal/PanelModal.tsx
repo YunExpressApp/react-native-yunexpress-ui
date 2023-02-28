@@ -2,7 +2,7 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 11:17:01
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-17 14:27:28
+ * @LastEditTime: 2023-02-27 10:31:08
  * @FilePath: \react-native-yunexpress-ui\src\components\boxitem\BoxItem.tsx
  */
 
@@ -31,7 +31,7 @@ function PanelModal(props: PanelModalProps, ref: Ref<PanelModalRef>) {
             statusBarTranslucent={true}
         >
             <View style={[{ flex: 1, flexDirection: 'column', backgroundColor: '#0909095e', paddingTop: 70 * w }, props.style]}>
-                <View style={styles.PanelModal_Container}>
+                <View style={[styles.PanelModal_Container, props.containerStyle]}>
                     {
                         props.children
                     }
@@ -45,6 +45,7 @@ type PanelModalProps = {
     children?: React.ReactNode
     onClose?: () => void
     style?: StyleProp<ViewStyle>
+    containerStyle?: StyleProp<ViewStyle>
 }
 export type PanelModalRef = {
     open: () => void

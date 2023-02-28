@@ -1,11 +1,14 @@
-/*
- * @Author: 康乐 yuankangle@yunexpress.cn
- * @Date: 2023-02-17 14:41:06
- * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-27 09:33:36
- * @FilePath: \react-native-yunexpress-ui\example\src\views\SearchListBoxExample.tsx
- */
+---
+title: SearchListBox 搜索列表弹框
+---
 
+# SearchListBox 搜索列表弹框
+
+## Screenshots
+<img src="/assets/searchListBox.gif" width="50%" height="50%"> 
+
+## Demo
+```js
 import React, { useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { Color, myAlert, SearchListBox, SearchListBoxRef, Text, w } from 'react-native-yunexpress-ui'
@@ -75,3 +78,7 @@ export default function name(params: any) {
         </View>
     )
 }
+```
+
+## Contributing
+create by yuankangle

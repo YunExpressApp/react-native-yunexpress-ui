@@ -16,7 +16,6 @@
     "react-native-date-picker": "^4.2.6",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-i18n": "github:ykl522/react-native-i18n#849b0d144622728752ca04292587ec07be55ccf7",
-    "react-native-safe-area-context": "^3.1.4",
     "react-native-screens": "2.15.1"
   },
   "devDependencies": {

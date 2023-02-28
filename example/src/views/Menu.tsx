@@ -27,6 +27,7 @@ import SearchBoxExample from "./SearchBoxExample"
 import ScanPanelExample from "./ScanPanelExample"
 import StepExample from "./StepExample"
 import PopupExample from "./PopupExample"
+import test from "./test"
 
 export default [
 	{
@@ -174,6 +175,11 @@ export default [
 		page: ModalExample,
 		name: 'ModalExample',
 		descr: 'ModalExample弹框组件'
+	},
+	{
+		page: test,
+		name: 'test',
+		descr: "test"
 	}
 
 

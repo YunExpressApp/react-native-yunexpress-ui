@@ -1,8 +1,8 @@
 /*
  * @Author: 1418220302@qq.com 1418220302@qq.com
  * @Date: 2022-06-09 18:13:54
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-12-01 16:50:55
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-02-24 11:14:33
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\form\InputItem.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -66,15 +66,15 @@ const PhotosView = (props: PhotosViewType) => {
             return null;
         }
         if (typeof props?.title == 'string') {
-            
+
         }
-        return <View style={{flexDirection:'row'}}>
+        return <View style={{ flexDirection: 'row' }}>
             {props?.require && <Text style={{ color: 'red' }}>*</Text>}
             {
-                (typeof props?.title == 'string')  && <Title style={props.titleStyle}>{`${props.title}`}</Title>
+                (typeof props?.title == 'string') && <Title style={props.titleStyle}>{`${props.title}`}</Title>
             }
             {
-                (typeof props?.title != 'string')  && props?.title
+                (typeof props?.title != 'string') && props?.title
             }
         </View>
 
@@ -82,7 +82,7 @@ const PhotosView = (props: PhotosViewType) => {
 
     return <View style={[styles.container, props.style]}>
 
-        {renderHeader()}        
+        {renderHeader()}
         <View style={styles.items}>
             {renderItems()}
             {
@@ -101,12 +101,11 @@ export default PhotosView;
 
 const styles = StyleSheet.create({
     container: {
-
+        marginTop: 12 * w
     },
     items: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginTop: 12 * w
     },
     item: {
         width: '30%',
@@ -127,8 +126,8 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     add_img: {
-        width: 30 * w,
-        height: 30 * w
+        width: 60 * w,
+        height: 60 * w
     },
     itemTxt: {
         textAlign: 'center',

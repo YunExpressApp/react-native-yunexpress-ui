@@ -2,7 +2,7 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 11:17:01
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-20 13:37:46
+ * @LastEditTime: 2023-02-27 09:27:11
  * @FilePath: \react-native-yunexpress-ui\src\components\boxitem\BoxItem.tsx
  */
 
@@ -19,6 +19,7 @@ export interface BoxItemProps {
     style?: StyleProp<ViewStyle>
     itemStyle?: StyleProp<ViewStyle>
     boxStyle?: StyleProp<ViewStyle>
+    boxContainerStyle?: StyleProp<ViewStyle>
     itemProps?: ItemProps
     onPress?: Function
     text?: string
@@ -66,6 +67,7 @@ function BoxItem(props: BoxItemProps, ref: Ref<BoxItemRef>) {
             />
             <PanelModal
                 style={props.boxStyle}
+                containerStyle={props.boxContainerStyle}
                 ref={ref => PanelModalRef = ref}
             >
                 <View style={{ flexDirection: 'row' }}>
