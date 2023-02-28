@@ -30,6 +30,7 @@ import { YTCell } from 'react-native-yunexpress-ui';
 ## Cell Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
+| style | ViewStyle |  | Cell样式
 | leftTitle | string |  | 左边文字
 | leftStyle | TextStyle | {} | 左边文字样式
 | rightTitle | string |  | 右边文字
@@ -39,9 +40,12 @@ import { YTCell } from 'react-native-yunexpress-ui';
 | Prop | Type | Default | Note |
 |---|---|---|---|
 | style | ViewStyle |  | Cell样式
+| valueStyle | TextStyle |  | 右边文字样式
 | isFirst | boolean |  | 是否为第一行
 | isDel | boolean |  | 是否为删除操作
+| showDelete | boolean |  | 是否显示删除操作
 | onClick | Function |  | Cell行点击事件
+| onDelete | Function |  | Cell行点击删除事件
 | data | DataType | {} | DataType类型如下
 
 

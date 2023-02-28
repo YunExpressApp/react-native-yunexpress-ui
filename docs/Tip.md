@@ -4,12 +4,12 @@ title: Tip弹框组件
 # Tip弹框组件
 
 ## Screenshots
-<img src="/assets/tip.png" width="80%" height="80%"> 
+<img src="/assets/tip.png" width="20%" height="20%"> 
 
 ## Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
-| content | Document | <Text>Tip组件</Text> | tip框触发节点/可以使Text标题也可以是Button等
+| content | Document | \<Text\>Tip组件\</Text\> | tip框触发节点/可以使Text标题也可以是Button等
 | placement | String | '' | tip框出现方向 left right top bottom
 | tipMessage | String | '' | tip框内的文案
 | bgColor | String | '#fff' | tip框背景颜色

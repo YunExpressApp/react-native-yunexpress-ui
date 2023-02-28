@@ -77,8 +77,6 @@ export default class ActionSheet extends Component<ActionSheetProps, State> {
 		let { index } = this.state;
 		let elements: JSX.Element[] = []
 		this.state.data.map((item, i) => {
-			// console.log(typeof item);
-			// console.log(React.isValidElement(item))
 			elements.push(
 				<TouchableOpacity activeOpacity={1} key={`${i}`} style={styles.itemView} onPress={() => {
 					this.props.callback != null && this.props.callback(i);

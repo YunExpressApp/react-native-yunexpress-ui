@@ -4,7 +4,7 @@ title: Step
 # Step路由流程
 
 ## Screenshots
-<img src="/assets/step.png" width="80%" height="80%"> 
+<img src="/assets/step.png" width="30%" height="30%"> 
 
 ## Props
 | Prop | Type | Default | Note |

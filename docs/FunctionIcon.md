@@ -4,7 +4,7 @@ title: functionIcon
 # 功能图标
 
 ## Screenshots
-<img src="/assets/functionIcon.png" width="80%" height="80%"> 
+<img src="/assets/functionIcon.png" width="20%" height="20%"> 
 
 ## Props
 | Prop | Type | Default | Note |

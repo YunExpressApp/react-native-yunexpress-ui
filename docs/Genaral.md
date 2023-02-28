@@ -4,7 +4,7 @@ title: GenaralCard
 # Genaral通用卡片组件
 
 ## Screenshots
-<img src="/assets/genaralCard.png" width="80%" height="80%"> 
+<img src="/assets/genaralCard.png" width="20%" height="20%"> 
 
 ## Props
 | Prop | Type | Default | Note |
@@ -18,5 +18,6 @@ title: GenaralCard
 | isShowButton | boolean | false | '是否显示按钮'
 | handleLeftOperation | () => any | () => {} | '弹框内左侧操作按钮函数参数'
 | handleRightOperation | () => any | () => {} | '弹框内右侧操作按钮函数参数'
+
 ## Contributing
 create by zhanggui
