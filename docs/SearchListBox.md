@@ -80,5 +80,15 @@ export default function name(params: any) {
 }
 ```
 
+## Props
+| Prop | Type | Default | Note |
+|:----|:----|:----|:----|
+| boxProps | BoxItemProps | null | 参考BoxItem组件属性
+| searchBoxProps | SearchBoxComponentProps | null | 参考SearchBox组件属性
+| flatListStyle | ViewStyle | {} | flatList样式
+| renderItem | ListRenderItem<T> | null | (必填)flatListItem控件
+| data | T[] | [] | (必填)flatList数据源
+| searchKey | string | undefined | 需要搜索数组单个对象的Key
+
 ## Contributing
 create by yuankangle
