@@ -2,7 +2,7 @@
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-10-19 14:02:00
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2022-12-28 16:57:42
+ * @LastEditTime: 2023-02-28 17:50:30
  * @FilePath: \react-native-yunexpress-ui\example\src\views\TipComponent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -93,7 +93,7 @@ export default function TipComponent(props: TipComponentProps) {
                 result = { top: 0, bottom: 0, left: 0, right: 0 }
                 break;
         }
-        console.log('obk', result)
+        // console.log('obk', result)
         return result
     }
 
@@ -104,7 +104,7 @@ export default function TipComponent(props: TipComponentProps) {
     const tipBoxRef = () => {
         if (ref) {
             ref?.current?.measure((x, y, width, height) => {
-                console.log('大大', x, y, width, height);
+                // console.log('大大', x, y, width, height);
                 setLightSpotWidth(width)
                 setLightSpotHeight(height)
             });
@@ -114,7 +114,7 @@ export default function TipComponent(props: TipComponentProps) {
     const tipContentRef = () => {
         if (contentRef) {
             contentRef?.current?.measure((x, y, width) => {
-                console.log('小', x, y, width);
+                // console.log('小', x, y, width);
                 setContentWidth(width)
             });
         }

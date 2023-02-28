@@ -73,7 +73,7 @@ export default class ActionSheet extends Component<ActionSheetProps, State> {
 	}
 
 	rendItems = () => {
-		console.log(Array.isArray(this.state.data))
+		// console.log(Array.isArray(this.state.data))
 		let { index } = this.state;
 		let elements: JSX.Element[] = []
 		this.state.data.map((item, i) => {
