@@ -113,6 +113,12 @@ export function myAlert(data1: any, data2?: any) {
 export function myLog(data1: any, data2?: any) {
 	let str1: string = (data1 && (typeof (data1) == 'object')) ? JSON.stringify(data1, null, 2) : data1
 	let str2: string = (data2 && (typeof (data2) == 'object')) ? JSON.stringify(data2, null, 2) : ''
-	if (__DEV__ && str1)
-		console.log(str1 + str2)
+	if (__DEV__) {
+		if (str1) {
+			str2 ? console.log(str1, str2) : console.log(str1)
+		}
+		else if (str2) {
+			console.log(str2)
+		}
+	}
 }
