@@ -2,12 +2,12 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 14:32:07
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-03-01 14:33:56
+ * @LastEditTime: 2023-03-01 17:28:40
  * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\src\components\searchlistbox\SearchListBox.tsx
  */
 
 import React, { forwardRef, useEffect, useState, Ref, useImperativeHandle } from "react";
-import { FlatList, ListRenderItem, StyleProp, ViewStyle } from "react-native";
+import { FlatList, ListRenderItem, StyleProp, ViewStyle, TouchableOpacity, ListRenderItemInfo } from "react-native";
 import { w } from "../../util/CStyle";
 import BoxItem from "../boxitem";
 import type { BoxItemProps } from "../boxitem/BoxItem";
@@ -28,6 +28,8 @@ interface SearchListBoxProps<T> {
     /** 显示和搜索的字段在单个对象中的key */
     searchKey?: string
     isHideSrarch?: boolean
+    /** 点击renderItem是否关闭弹框 */
+    renderItemClickCloseAndCallback?: (info: ListRenderItemInfo<T>) => void
 }
 
 export interface SearchListBoxRef {
@@ -59,10 +61,24 @@ function SearchListBox<T>(props: SearchListBoxProps<T>, ref: Ref<SearchListBoxRe
             },
             close() {
                 BoxItemRef?.onShow(false)
-                setData(props.data)
             }
         }
     ))
+
+    function getRenderItem(): ListRenderItem<T> | null | undefined {
+        if (props.renderItemClickCloseAndCallback) {
+            return (info) => (
+                <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => {
+                        BoxItemRef?.onShow(false)
+                        props.renderItemClickCloseAndCallback && props.renderItemClickCloseAndCallback(info)
+                    }}
+                >{props.renderItem(info)}</TouchableOpacity>
+            )
+        }
+        return props.renderItem
+    }
 
     return (
         <BoxItem
@@ -74,7 +90,9 @@ function SearchListBox<T>(props: SearchListBoxProps<T>, ref: Ref<SearchListBoxRe
                 setData(props.data)
             }}
             onClose={() => {
-                setIsHideSrarch(false)
+                // 还原设置
+                setIsHideSrarch(props.isHideSrarch || false)
+                setData(props.data)
             }}
         >
             {
@@ -105,7 +123,7 @@ function SearchListBox<T>(props: SearchListBoxProps<T>, ref: Ref<SearchListBoxRe
                 keyboardDismissMode='on-drag'
                 keyExtractor={(_item, index) => ('' + index)}
                 data={data}
-                renderItem={props.renderItem}
+                renderItem={getRenderItem()}
             />
         </BoxItem>
     )
