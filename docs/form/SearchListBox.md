@@ -1,5 +1,7 @@
 ---
 title: SearchListBox 搜索列表弹框
+group:
+    title: "表单"
 ---
 
 # SearchListBox 搜索列表弹框

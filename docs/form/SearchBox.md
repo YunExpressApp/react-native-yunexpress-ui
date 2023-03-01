@@ -1,5 +1,7 @@
 ---
 title: SearchBox
+group:
+    title: "表单"
 ---
 # SearchBox通用卡片组件
 

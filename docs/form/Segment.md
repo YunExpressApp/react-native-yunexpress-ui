@@ -1,5 +1,7 @@
 ---
 title: Segment分段选择组件
+group:
+    title: "表单"
 ---
 
 # Segment分段选择组件

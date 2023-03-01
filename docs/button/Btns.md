@@ -1,5 +1,7 @@
 ---
-title: Btns辅助按钮组件
+title: Btns按钮组件
+group:
+    title: 按钮
 ---
 
 # Btns辅助按钮组件

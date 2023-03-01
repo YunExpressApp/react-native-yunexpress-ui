@@ -1,5 +1,7 @@
 ---
 title: Upgrade升级弹框组件
+group:
+    title: "列表卡片"
 ---
 # 升级弹框组件
 

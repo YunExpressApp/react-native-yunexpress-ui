@@ -1,5 +1,7 @@
 ---
 title: StatusBadge微章组件
+group:
+    title: "表单"
 ---
 
 # StatusBadge微章组件

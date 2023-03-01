@@ -1,5 +1,7 @@
 ---
 title: GenaralCard
+group:
+    title: "列表卡片"
 ---
 # Genaral通用卡片组件
 

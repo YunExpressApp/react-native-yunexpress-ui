@@ -1,5 +1,7 @@
 ---
 title: Refresh列表分页组件
+group:
+    title: "列表卡片"
 ---
 
 # Refresh列表刷新组件
