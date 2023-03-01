@@ -1,5 +1,7 @@
 ---
 title: ScanPanel
+group:
+    title: "列表卡片"
 ---
 # ScanPanel扫描面板
 

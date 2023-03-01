@@ -1,5 +1,7 @@
 ---
 title: CheckBox单选按钮
+group:
+    title: "表单"
 ---
 # CheckBox单选按钮
 
