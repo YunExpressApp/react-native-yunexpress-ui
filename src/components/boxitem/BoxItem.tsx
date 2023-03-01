@@ -2,8 +2,8 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 11:17:01
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-27 09:27:11
- * @FilePath: \react-native-yunexpress-ui\src\components\boxitem\BoxItem.tsx
+ * @LastEditTime: 2023-03-01 14:28:45
+ * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\src\components\boxitem\BoxItem.tsx
  */
 
 import React, { forwardRef, Ref, useImperativeHandle } from "react"
@@ -22,6 +22,7 @@ export interface BoxItemProps {
     boxContainerStyle?: StyleProp<ViewStyle>
     itemProps?: ItemProps
     onPress?: Function
+    onClose?: Function
     text?: string
     boxLeftText?: string
     boxRigthText?: string
@@ -69,6 +70,9 @@ function BoxItem(props: BoxItemProps, ref: Ref<BoxItemRef>) {
                 style={props.boxStyle}
                 containerStyle={props.boxContainerStyle}
                 ref={ref => PanelModalRef = ref}
+                onClose={() => {
+                    props.onClose && props.onClose()
+                }}
             >
                 <View style={{ flexDirection: 'row' }}>
                     {props.boxLeftText ?

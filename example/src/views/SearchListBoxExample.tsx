@@ -2,8 +2,8 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 14:41:06
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-27 09:33:36
- * @FilePath: \react-native-yunexpress-ui\example\src\views\SearchListBoxExample.tsx
+ * @LastEditTime: 2023-03-01 14:38:53
+ * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\example\src\views\SearchListBoxExample.tsx
  */
 
 import React, { useState } from 'react'
@@ -51,8 +51,8 @@ export default function name(params: any) {
                 }
             />
             <Text style={{ marginTop: 20 * w }} onPress={() => {
-                SearchListBoxRef?.open()
-            }}>REF 调用触发: {selectedItem?.value || ''}</Text>
+                SearchListBoxRef?.open(true)
+            }}>REF 调用触发 不显示搜索: {selectedItem?.value || ''}</Text>
             <Text style={{ marginTop: 20 * w }} onPress={() => {
                 setData([
                     { key: 1, value: '大磊大大林' },
@@ -71,7 +71,7 @@ export default function name(params: any) {
                     { key: 4, value: '林十二月4' }
                 ])
                 SearchListBoxRef?.open()
-            }}>给搜索列表赋值后弹出</Text>
+            }}>REF调用触发 显示搜索（给搜索列表赋值后弹出）</Text>
         </View>
     )
 }
