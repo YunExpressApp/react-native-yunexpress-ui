@@ -2,8 +2,8 @@
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-10-19 14:02:00
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-28 17:50:30
- * @FilePath: \react-native-yunexpress-ui\example\src\views\TipComponent.tsx
+ * @LastEditTime: 2023-03-01 14:48:41
+ * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\src\components\tip\TipComponent.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState, useRef } from 'react'
@@ -103,7 +103,7 @@ export default function TipComponent(props: TipComponentProps) {
 
     const tipBoxRef = () => {
         if (ref) {
-            ref?.current?.measure((x, y, width, height) => {
+            ref?.current?.measure((_x, _y, width, height) => {
                 // console.log('大大', x, y, width, height);
                 setLightSpotWidth(width)
                 setLightSpotHeight(height)
@@ -113,7 +113,7 @@ export default function TipComponent(props: TipComponentProps) {
 
     const tipContentRef = () => {
         if (contentRef) {
-            contentRef?.current?.measure((x, y, width) => {
+            contentRef?.current?.measure((_x, _y, width) => {
                 // console.log('小', x, y, width);
                 setContentWidth(width)
             });
