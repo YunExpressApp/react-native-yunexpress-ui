@@ -2,7 +2,7 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 14:41:06
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-03-01 17:36:44
+ * @LastEditTime: 2023-03-01 19:16:13
  * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\example\src\views\SearchListBoxExample.tsx
  */
 
@@ -23,26 +23,26 @@ export default function name(params: any) {
     return (
         <View>
             <SearchListBox
-                ref={ref => SearchListBoxRef = ref}
                 data={data}
                 boxProps={{
-                    text: `直接触发 不用ref关闭--${selectedItem?.value || ''}`,
+                    text: `隐藏搜索 不用ref关闭--${selectedItem?.value || ''}`,
                     itemProps: {
                         style: { alignItems: 'center', padding: 15 * w },
                         rightHidden: false,
                         titleStyle: { fontSize: 18, color: '#333' }
                     }
                 }}
+                flatListStyle={{ paddingHorizontal: 0 }}
                 searchBoxProps={{
-                    placeholder: "输入线路标后或回车获取数据",
-                    colorType: 'bright',
+                    title: "输入线路标后或回车获取数据",
                 }}
+                isHideSrarchBox
                 searchKey={'value'}
                 renderItemClickCloseAndCallback={({ item }) => {
                     setSelectedItem(item)
                 }}
                 renderItem={({ item }) =>
-                    <View style={{ height: 60 * w, justifyContent: 'center', alignItems: 'center', borderBottomWidth: 1 * w, borderBottomColor: '#eee' }} >
+                    <View style={{ height: 60 * w, justifyContent: 'center', alignItems: 'center', borderTopWidth: 1 * w, borderTopColor: '#eee' }} >
                         <Text>{`${item.value}`}</Text>
                     </View>
                 }

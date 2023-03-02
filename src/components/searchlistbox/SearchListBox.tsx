@@ -2,7 +2,7 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 14:32:07
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-03-01 17:28:40
+ * @LastEditTime: 2023-03-01 19:09:42
  * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\src\components\searchlistbox\SearchListBox.tsx
  */
 
@@ -27,7 +27,7 @@ interface SearchListBoxProps<T> {
     data: T[]
     /** 显示和搜索的字段在单个对象中的key */
     searchKey?: string
-    isHideSrarch?: boolean
+    isHideSrarchBox?: boolean
     /** 点击renderItem是否关闭弹框 */
     renderItemClickCloseAndCallback?: (info: ListRenderItemInfo<T>) => void
 }
@@ -41,21 +41,21 @@ export interface SearchListBoxRef {
 function SearchListBox<T>(props: SearchListBoxProps<T>, ref: Ref<SearchListBoxRef>) {
     let BoxItemRef: { onShow: (isShow: boolean) => void } | null
     const [data, setData] = useState<T[]>()
-    const [isHideSrarch, setIsHideSrarch] = useState<boolean>(false)
+    const [isHideSrarchBox, setIsHideSrarchBox] = useState<boolean>(false)
 
     useEffect(() => {
         if (props.data) setData(props.data)
     }, [props.data])
 
     useEffect(() => {
-        if (props.isHideSrarch) setIsHideSrarch(props.isHideSrarch)
-    }, [props.isHideSrarch])
+        if (props.isHideSrarchBox) setIsHideSrarchBox(props.isHideSrarchBox)
+    }, [props.isHideSrarchBox])
 
     useImperativeHandle(ref, () => (
         {
             open(isHideSrarch) {
                 if (isHideSrarch) {
-                    setIsHideSrarch(true)
+                    setIsHideSrarchBox(true)
                 }
                 BoxItemRef?.onShow(true)
             },
@@ -91,31 +91,31 @@ function SearchListBox<T>(props: SearchListBoxProps<T>, ref: Ref<SearchListBoxRe
             }}
             onClose={() => {
                 // 还原设置
-                setIsHideSrarch(props.isHideSrarch || false)
+                setIsHideSrarchBox(props.isHideSrarchBox || false)
                 setData(props.data)
             }}
         >
-            {
-                !isHideSrarch ? <SearchBoxComponent
-                    style={{ paddingLeft: 30 * w, paddingRight: 30 * w }}
-                    hideCancel
-                    onChangeText={(text) => {
-                        if (text) {
-                            let newData: T[] = []
-                            for (let item of props?.data) {
-                                // @ts-ignore
-                                if (item[`${props?.searchKey}`]?.includes(text)) {
-                                    newData.push(item)
-                                }
+            <SearchBoxComponent
+                style={{ paddingLeft: 30 * w, paddingRight: 30 * w }}
+                hideCancel
+                onChangeText={(text) => {
+                    if (text) {
+                        let newData: T[] = []
+                        for (let item of props?.data) {
+                            // @ts-ignore
+                            if (item[`${props?.searchKey}`]?.includes(text)) {
+                                newData.push(item)
                             }
-                            setData(newData)
-                        } else {
-                            setData([...props.data])
                         }
-                    }}
-                    {...props.searchBoxProps}
-                /> : null
-            }
+                        setData(newData)
+                    } else {
+                        setData([...props.data])
+                    }
+                }}
+                colorType={'bright'}
+                isHideSrarchBox={isHideSrarchBox}
+                {...props.searchBoxProps}
+            />
             <FlatList
                 style={[{ paddingHorizontal: 30 * w }, props.flatListStyle]}
                 onEndReachedThreshold={0.1}

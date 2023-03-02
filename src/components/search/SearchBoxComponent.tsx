@@ -2,8 +2,8 @@
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-11-21 9:30:00
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-20 13:41:28
- * @FilePath: \react-native-yunexpress-ui\example\src\views\SearchBoxComponent.tsx
+ * @LastEditTime: 2023-03-01 19:09:06
+ * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\src\components\search\SearchBoxComponent.tsx
  */
 import React, { useState, useRef } from 'react'
 import { StyleSheet, Text, View, TextInput, StyleProp, ViewStyle } from "react-native"
@@ -20,6 +20,7 @@ export interface SearchBoxComponentProps {
     onSubmitEditing?: (e: any) => any
     onCancelText?: () => any
     hideCancel?: boolean
+    isHideSrarchBox?: boolean
 }
 
 
@@ -52,40 +53,42 @@ export default function SearchBoxComponent(props: SearchBoxComponentProps) {
     return (
         <View style={[styles.container, props.style]}>
             {currentProps?.title && <Text style={styles.title}>{currentProps?.title}</Text>}
-            <View style={styles.main}>
-                <TextInput
-                    ref={inputRef}
-                    style={[styles.rightTxt, {
-                        flex: isGetFocus && !props.hideCancel ? 0.85 : 1,
-                        backgroundColor: currentProps?.colorType === 'bright' ? '#EBEBEB' : '#FFFFFF'
-                    }]}
-                    clearButtonMode={'always'}
-                    numberOfLines={1}
-                    placeholder={currentProps?.placeholder || i18n.t("Search")}
-                    onFocus={() => {
-                        setIsGetFocus(true)
-                        inputRef.current.focus()
-                    }}
-                    onChangeText={(val: string) => {
-                        setValue(val)
-                        currentProps?.onChangeText(val)
-                    }}
-                    // 键盘点击输入或者确定的回调
-                    onSubmitEditing={() => {
-                        if (!!currentProps?.searchList?.length) {
-                            currentProps?.onSubmitEditing(searchKeywordGetValue(value))
-                        } else {
-                            currentProps?.onSubmitEditing(value)
-                        }
-                    }}
-                />
-                {isGetFocus && !props.hideCancel && <Text style={[styles.cancleText, { flex: 0.15 }]} onPress={() => {
-                    setIsGetFocus(false)
-                    inputRef.current.clear()
-                    inputRef.current.blur()
-                    currentProps?.onCancelText()
-                }}>{i18n.t("Cancel")}</Text>}
-            </View>
+            {!props.isHideSrarchBox ?
+                <View style={styles.main}>
+                    <TextInput
+                        ref={inputRef}
+                        style={[styles.rightTxt, {
+                            flex: isGetFocus && !props.hideCancel ? 0.85 : 1,
+                            backgroundColor: currentProps?.colorType === 'bright' ? '#EBEBEB' : '#FFFFFF'
+                        }]}
+                        clearButtonMode={'always'}
+                        numberOfLines={1}
+                        placeholder={currentProps?.placeholder || i18n.t("Search")}
+                        onFocus={() => {
+                            setIsGetFocus(true)
+                            inputRef.current.focus()
+                        }}
+                        onChangeText={(val: string) => {
+                            setValue(val)
+                            currentProps?.onChangeText(val)
+                        }}
+                        // 键盘点击输入或者确定的回调
+                        onSubmitEditing={() => {
+                            if (!!currentProps?.searchList?.length) {
+                                currentProps?.onSubmitEditing(searchKeywordGetValue(value))
+                            } else {
+                                currentProps?.onSubmitEditing(value)
+                            }
+                        }}
+                    />
+                    {isGetFocus && !props.hideCancel ? <Text style={[styles.cancleText, { flex: 0.15 }]} onPress={() => {
+                        setIsGetFocus(false)
+                        inputRef.current.clear()
+                        inputRef.current.blur()
+                        currentProps?.onCancelText()
+                    }}>{i18n.t("Cancel")}</Text> : null}
+                </View> : null
+            }
         </View>
     );
 }
