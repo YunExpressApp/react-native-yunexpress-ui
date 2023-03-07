@@ -1,10 +1,9 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-11-21 9:30:00
- * @LastEditors: 张贵 zhanggui@yunexpress.cn
- * @LastEditTime: 2022-11-24 9:30:00
- * @FilePath: \react-native-yunexpress-ui\example\src\views\UpgradeExample.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-03-02 13:33:23
+ * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\example\src\views\SearchBoxExample.tsx
  */
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native"

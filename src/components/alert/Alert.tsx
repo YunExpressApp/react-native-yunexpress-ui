@@ -40,10 +40,13 @@ type AlertProps = {
     leftText?: string | undefined,
     /** 弹框按钮右边文字 */
     rightText?: string | undefined,
+    /** 弹框按钮左边文字样式 */
     btnLeftTextStyle?: StyleProp<TextStyle>,
+    /** 弹框按钮右边文字样式 */
     btnRightTextStyle?: StyleProp<TextStyle>,
     /** 弹框内容 */
     content?: string | undefined,
+    /** 弹框内容样式 */
     contentStyle?: StyleProp<TextStyle>,
     /** 点旁边是否关闭 */
     isCancelable?: boolean
@@ -181,6 +184,11 @@ export default class Alert extends Component<AlertProps, State> {
         });
     }
 
+    /**
+     * 显示含不再提示弹框
+     * @param key key为空不会显示单选按钮
+     * @param props 要传必填项{title: string, onRightPress: Function}
+     */
     showDoNotPromptAgain(key: string, props: State) {
         props.key = key
         props.isVisible = true
@@ -207,7 +215,7 @@ export default class Alert extends Component<AlertProps, State> {
 
     /**
      * 设置点弹框外面是否可以关闭弹框
-     * @param isCancelable 
+     * @param isCancelable 是否可关闭，false不可关闭，true可关闭，默认可关闭
      */
     setIsCancelable(isCancelable: boolean) {
         this.outSizeCancelable = isCancelable

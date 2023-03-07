@@ -2,7 +2,7 @@
  * @Author: 1418220302@qq.com 1418220302@qq.com
  * @Date: 2022-06-10 16:34:12
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-23 15:16:31
+ * @LastEditTime: 2023-03-02 14:11:36
  * @Module Name: 
  * @Description: 
  */
@@ -16,6 +16,7 @@ export default function ActionSheetExample() {
 	const [value, setValue] = useState<string | undefined>('');
 
 	let data = ["a", "b", "c", "b"];
+	let data3 = [{ a: 'bb', b: '122', c: 'eeee' }, { a: 'cc', b: 666, c: '1999-2-9' }]
 	const showChoice = () => {
 		YTActionSheet.show(data, index, (index: number) => {
 			setIndex(index);
@@ -52,9 +53,9 @@ export default function ActionSheetExample() {
 				<Text>{value}</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => {
-				YTActionSheet.showByObj([{ a: 'bb', b: '122', c: 'eeee' }, { a: 'cc', b: 666, c: '1999-2-9' }], ['a'], (index: number) => {
+				YTActionSheet.showByObj(data3, ['a'], (index: number) => {
 					setIndex(index);
-					setValue(`${index} -- ${data[index]}`)
+					setValue(`${index} -- ${JSON.stringify(data3[index])}`)
 				}, index);
 			}}>
 				<Text>底部点击弹出选择3</Text>

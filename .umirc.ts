@@ -1,8 +1,8 @@
 /*
  * @Author: 1418220302@qq.com 1418220302@qq.com
  * @Date: 2023-03-01 10:28:47
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2023-03-01 16:13:52
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-03-07 15:43:27
  * @Module Name: 
  * @Description: 
  */
@@ -15,10 +15,10 @@ export default defineConfig({
 	logo: '/assets/logo.png',
 	outputPath: 'docs-dist',
 	mode: 'doc',
-	publicPath: './',
+	publicPath: '/',
 	// more config: https://d.umijs.org/config
 	// 单语言配置方式如下
 	navs: [
-		null, 
+		null,
 	],
 });

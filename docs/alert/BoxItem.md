@@ -1,13 +1,16 @@
-/*
- * @Author: 康乐 yuankangle@yunexpress.cn
- * @Date: 2023-02-17 13:42:00
- * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-03-07 14:41:11
- * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\example\src\views\BoxItemExample.tsx
- * @Description: 
- * 
- * Copyright (c) 2023 by 康乐 yuankangle@yunexpress.cn, All Rights Reserved. 
- */
+---
+title: BoxItem弹框
+group:
+    title: 弹框
+---
+
+# BoxItem弹框
+
+## Screenshots
+<img src="/assets/boxItem.gif" width="400ps" > 
+
+## Demo
+```js
 import React from 'react'
 import { Image, View } from "react-native";
 import { BoxItem, Button, Text, w } from 'react-native-yunexpress-ui'
@@ -59,3 +62,32 @@ export default function BoxItemExample() {
         </View>
     )
 }
+```
+
+## Props
+| Prop | Type | Default | Note |
+|---|---|---|---|
+| style | ViewStyle |  | 整体样式
+| itemStyle | ViewStyle |  | 子项按钮样式
+| boxStyle | ViewStyle |  | 弹框样式
+| boxContainerStyle | TextStyle |  | 弹框内容样式
+| itemProps | ItemProps |  | 子项属性
+| text | string |  | item的标题，也可以在itemProps.title里面赋值
+| boxLeftText | string |  | 弹框左上角按钮
+| boxRigthText | string |  | 弹框右上角按钮
+| boxLeftOnPress | Function |  | 弹框左上角按钮点击
+| boxRightOnPress | Function |  | 弹框右上角按钮点击
+| text | string |  | item的标题，也可以在itemProps.title里面赋值
+| onPress | Function |  | 子项点击
+| onClose | Function |  | 子项关闭
+
+## Methods
+### onShow()
+    关闭或者显示弹框
+    参数：isShow 是否显示 -- true 表示显示弹框，false表示关闭弹框
+```js
+onShow(isShow: boolean)
+```
+
+## Contributing
+create by yuankangle

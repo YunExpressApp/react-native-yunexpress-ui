@@ -32,6 +32,13 @@ export default class ActionSheet extends Component<ActionSheetProps, State> {
 		Dialog.show(overlayView);
 	}
 
+	/**
+	 * 根据对象显示选择器
+	 * @param data 对象数组
+	 * @param valuse 要显示对象中的key
+	 * @param callback 选择回调
+	 * @param index 选择标记
+	 */
 	static showByObj = (data: object[], valuse?: string[], callback?: Function, index?: number | null) => {
 		let overlayView = (
 			<Dialog.PullView ref={v => ActionSheet.overlayView = v} side='bottom' modal={false} containerStyle={{ backgroundColor: 'transparent' }}>
