@@ -1,4 +1,9 @@
 /**
+ * 多个过滤器组件
+ */
+export { default as FlitersView } from './components/flitersview';
+
+/**
  * 可以搜索列表的底部弹框
  */
 export { default as SearchListBox } from './components/searchlistbox';

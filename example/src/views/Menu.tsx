@@ -28,8 +28,14 @@ import ScanPanelExample from "./ScanPanelExample"
 import StepExample from "./StepExample"
 import PopupExample from "./PopupExample"
 import test from "./test"
+import FlitersViewExample from "./FlitersViewExample";
 
 export default [
+	{
+		page: FlitersViewExample,
+		name: 'FlitersView',
+		descr: "FlitersView 多种过滤器组件"
+	},
 	{
 		page: SearchListBoxExample,
 		name: 'SearchListBoxExample',
