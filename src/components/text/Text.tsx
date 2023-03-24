@@ -2,18 +2,21 @@
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-09-20 16:32:35
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-02-21 16:35:38
+ * @LastEditTime: 2023-03-24 16:53:52
  * @FilePath: \react-native-yunexpress-ui\src\components\text\Text.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Text as RnText, TextProps as RnTextProps } from 'react-native'
-import { w } from '../../util/CStyle'
+import { w } from '../../util/CStyle';
 import Theme from '../../themes/Theme';
 
 interface TextProps extends RnTextProps {
     children: React.ReactNode[] | string
-    /** 文本大小，中文是原大小，其他语言文本大小 = 文本大小 * 0.8 */
+    /** 
+     * 优先取style里面的fontSize,style里面没有再取这个
+     * 文本大小，中文是原大小，其他语言文本大小 = 文本大小 * 0.8 
+     */
     fontSize?: number
     /** 设置语言属性，可不传 */
     locale?: string
@@ -51,28 +54,38 @@ export default function Text(props: TextProps) {
     // 文本大小变化基数
     const baseNum = (props.locale || Theme.locale) !== 'zh' && !props.isFixed ? 0.8 : 1
 
-    useEffect(() => {
+    useMemo(() => {
+        // console.log('========1==========' + props.children)
         let styles: any = props.style;
-        if (baseNum != 1) {
-            if (styles && Array.isArray(styles)) {
-                for (let s of styles) {
-                    if (s && s.fontSize) {
-                        setFontSize(s.fontSize);
-                    }
-                }
-            } else if (styles && typeof styles == 'object') {
-                if (styles.fontSize) {
-                    setFontSize(styles.fontSize);
+        if (styles && Array.isArray(styles)) {
+            for (let s of styles) {
+                if (s && s.fontSize) {
+                    setFontSize(s.fontSize);
+                    return
                 }
             }
+        } else if (styles && typeof styles == 'object') {
+            if (styles.fontSize) {
+                setFontSize(styles.fontSize);
+                return
+            }
         }
-    }, [props.style])
+        if (props.fontSize) {
+            setFontSize(props.fontSize);
+        } else {
+            setFontSize(20 * w);
+        }
+    }, [props.style, props.children, props.fontSize])
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <RnText
             {...props}
             allowFontScaling={false}
-            style={[props.fontSize ? { fontSize: props.fontSize * w * baseNum } : null, props.style, fontSize ? { fontSize: fontSize * baseNum } : null]}
+            style={[props.style, fontSize ? { fontSize: fontSize * baseNum } : null]}
         >{props.children}</RnText>
     )
 

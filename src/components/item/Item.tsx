@@ -191,7 +191,7 @@ export default class Item extends React.Component<ItemProps> {
                     {this.props.titleTag ?
                         <View style={[{ backgroundColor: '#ff823e', marginLeft: 10 * w, borderRadius: 12 * w, paddingLeft: w * 8, paddingRight: w * 8, paddingTop: w * 4, paddingBottom: w * 4 }, this.props.titleTagContentSytle]}>
                             <Text
-                                fontSize={16 * w}
+                                fontSize={22 * w}
                                 style={[{ color: '#fff' }, this.props.titleTagStyle]}>{this.props.titleTag}</Text>
                         </View>
                         : null
@@ -272,7 +272,7 @@ export default class Item extends React.Component<ItemProps> {
 
         return (
             <TouchableOpacity
-                style={[{ backgroundColor: '#fff', paddingLeft: w * 32, paddingRight: w * 32, marginTop: 0, marginBottom: 0, justifyContent: this.props.topTitle || this.props.bottomText || this.props.bottomRightText ? 'flex-start' : 'center' }, this.props.style]}
+                style={[{ backgroundColor: '#fff', paddingLeft: w * 30, paddingRight: w * 30, marginTop: 0, marginBottom: 0, justifyContent: this.props.topTitle || this.props.bottomText || this.props.bottomRightText ? 'flex-start' : 'center' }, this.props.style]}
                 activeOpacity={this.props.disabled ? 1 : this.props.activeOpacity ? this.props.activeOpacity : (this.props.onPress ? 0.5 : 1)}
                 onPress={() => !this.props.disabled && this.props.onPress && this.props.onPress()}
                 onLongPress={() => this.props.onLongPress && this.props.onLongPress()}>
