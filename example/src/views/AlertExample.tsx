@@ -2,7 +2,7 @@
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-06-13 10:22:40
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-01-28 15:46:25
+ * @LastEditTime: 2023-04-10 14:19:07
  * @FilePath: \react-native-yunexpress-ui\example\src\views\AlertExample.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -64,14 +64,33 @@ export default function AlertExample() {
 		<Text onPress={() => {
 			alertDRef?.showDoNotPromptAgain('不再提示Key', {
 				title: '不再提示测试',
-				content: '这是内容，这是内容，这是内容，这是内容，这是内容，这是内容',
+				content: '勾选后右边按钮可以关闭弹框',
 				onRightPress: (props: any) => {
 					ToastAndroid.show('--' + props.isChecked, ToastAndroid.SHORT)
+					if (props.isChecked) {
+						alertDRef?.closeModal()
+					}
+					return true
 				}
 			})
 		}}>第七个不再提示</Text>
+		<Text onPress={() => {
+			alertDRef?.showCountdownClose(5, "倒计时标题", "倒计时的内容..........", "关闭")
+		}}>第8个倒计时弹框</Text>
 		<Alert leftText={leftText} ref={ref => alertRef = ref} />
-		<Alert show={show} title={'show属性控制'} content={'我是内容...........'} leftText={'左边'} rightText={'右边'} onClose={() => setShow(false)} />
+		<Alert
+			show={show}
+			title={'show属性控制'}
+			content={'我是内容...........'}
+			leftText={'左边'}
+			rightText={'右边'}
+			onRightPress={() => {
+				ToastAndroid.show('点击右边通过setShow(false)关闭弹框', ToastAndroid.LONG)
+				setShow(false)
+				return true
+			}}
+			onClose={() => setShow(false)}
+		/>
 		<Alert ref={ref => alertCRef = ref}>
 			<TextInput placeholder={'请输入内容'} />
 		</Alert>

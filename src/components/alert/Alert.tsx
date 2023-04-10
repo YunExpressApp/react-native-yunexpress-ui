@@ -54,6 +54,8 @@ type AlertProps = {
     isFixed?: boolean
     /** 弹框key 用来显示不再提示功能 */
     key?: string
+    /** 倒计时 */
+    countdown?: number
 }
 
 /**
@@ -80,6 +82,8 @@ type State = {
     key?: string
     /** 不再提示是否选中 */
     isChecked?: boolean
+    /** 倒计时 */
+    countdown?: number
 }
 
 /**
@@ -97,6 +101,7 @@ type State = {
  */
 export default class Alert extends Component<AlertProps, State> {
     private outSizeCancelable: boolean = true
+    private interval: NodeJS.Timer | undefined;
     private defaultState = {
         isVisible: false,
         title: '',
@@ -110,7 +115,8 @@ export default class Alert extends Component<AlertProps, State> {
         contentStyle: null,
         btnLeftTextStyle: { color: '#303030', fontSize: 24 * w },
         btnRightTextStyle: { color: '#1592A3', fontSize: 24 * w },
-        isChecked: false
+        isChecked: false,
+        countdown: 0
     }
 
     constructor(props: AlertProps) {
@@ -158,6 +164,7 @@ export default class Alert extends Component<AlertProps, State> {
         }, () => {
             //如果有其它组件刷新，需要在onClose里面还原show的初始值，不然只要有刷新就会弹出
             this.props.onClose && this.props.onClose();
+            this.interval && clearInterval(this.interval)
         });
     }
 
@@ -198,14 +205,46 @@ export default class Alert extends Component<AlertProps, State> {
 
     /**
      * 显示一个按钮弹框
-     * @param title 
-     * @param content 
+     * @param title 弹框标题
+     * @param content 弹框内容
+     * @param rightText 单个按钮文案
      */
-    showOneButton(title: string, content?: string) {
+    showOneButton(title: string, content?: string, rightText?: string) {
         this.setState({
             title,
             content,
-            rightText: '',
+            rightText: rightText || '',
+            onRightPress: () => { },
+            isVisible: true,
+            isOneButton: true,
+            isCancelable: this.outSizeCancelable
+        });
+    }
+
+    /**
+     * 显示一个倒计时自动关闭弹框
+     * @param countdown 倒计时（秒） 
+     * @param title 弹框标题
+     * @param content 弹框内容
+     * @param rightText 单个按钮文案
+     */
+    showCountdownClose(countdown: number, title: string, content?: string, rightText?: string) {
+        if (countdown > 0) {
+            this.interval = setInterval(() => {
+                countdown -= 1
+                if (countdown == 0) {
+                    this.closeModal()
+                    this.interval && clearInterval(this.interval)
+                    return
+                }
+                this.setState({ countdown })
+            }, 1000)
+        }
+        this.setState({
+            countdown,
+            title,
+            content,
+            rightText: rightText || '',
             onRightPress: () => { },
             isVisible: true,
             isOneButton: true,
@@ -283,14 +322,15 @@ export default class Alert extends Component<AlertProps, State> {
                     onLeftPress={() => {
                         if ((this.props.onLeftPress && !this.props.onLeftPress()))
                             this.closeModal()
-                        else if ((this.state.onLeftPress && !this.state.onLeftPress()) || !this.state.onLeftPress || !this.props.onLeftPress) {
+                        else if ((!this.props.onLeftPress && this.state.onLeftPress && !this.state.onLeftPress()) || !this.state.onLeftPress || !this.props.onLeftPress) {
                             this.closeModal()
                         }
                     }}
                     onRightPress={() => {
-                        if (this.props.onRightPress && !this.props.onRightPress(this.state))
+                        if (this.props.onRightPress && !this.props.onRightPress(this.state)) {
                             this.closeModal()
-                        else if (this.state.onRightPress && !this.state.onRightPress(this.state))
+                        }
+                        else if (!this.props.onRightPress && this.state.onRightPress && !this.state.onRightPress(this.state))
                             this.closeModal()
                     }}
                     btnLeftTextStyle={[{ color: '#303030', fontSize: 24 * w }, this.state.btnLeftTextStyle || this.props.btnLeftTextStyle]}
@@ -299,6 +339,7 @@ export default class Alert extends Component<AlertProps, State> {
                     isFixed={this.props.isFixed}
                 />
                 {/* </View> */}
+                {this.state.countdown ? <Text style={styles.countdown}>{this.state.countdown + 's'}</Text> : null}
             </View>
         )
     }
@@ -321,6 +362,10 @@ export default class Alert extends Component<AlertProps, State> {
                 </View>
             </Modal>
         );
+    }
+
+    componentWillUnmount(): void {
+        this.interval && clearInterval(this.interval)
     }
 }
 
@@ -394,4 +439,9 @@ const styles = StyleSheet.create({
         marginLeft: 13 * w,
         flex: 1,
     },
+    countdown: {
+        position: 'absolute',
+        right: 18 * w,
+        top: 15 * w
+    }
 });
