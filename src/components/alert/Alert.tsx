@@ -292,8 +292,8 @@ export default class Alert extends Component<AlertProps, State> {
         return (
             <View style={styles.modalStyle}>
                 <TouchableOpacity activeOpacity={1} style={{ paddingTop: 46 * w, paddingHorizontal: 32 * w, paddingBottom: 10 * w }}>
-                    <Text isFixed={this.props.isFixed} style={[{ fontSize: 25 * w, lineHeight: 25 * 1.3 * w, color: '#111', fontWeight: '500' }, this.state.titleStyle || this.props.titleStyle]}>{this.state.title || this.props.title || ""}</Text>
-                    {this.state.content || this.props.content ? <ScrollView keyboardShouldPersistTaps="always" style={{ maxHeight: 500 * w }}><Text isFixed={this.props.isFixed} style={[{ fontSize: 22 * w, color: '#333', marginVertical: 8 * w, lineHeight: 22 * 1.4 * w }, this.state.contentStyle || this.props.contentStyle]}>{this.state.content || this.props.content || ""}</Text></ScrollView> : null}
+                    <Text isFixed={this.props.isFixed} selectable={!!!this.state.content && !!!this.props.content} style={[{ fontSize: 25 * w, lineHeight: 25 * 1.3 * w, color: '#111', fontWeight: '500' }, this.state.titleStyle || this.props.titleStyle]}>{this.state.title || this.props.title || ""}</Text>
+                    {this.state.content || this.props.content ? <ScrollView keyboardShouldPersistTaps="always" style={{ maxHeight: 500 * w }}><Text isFixed={this.props.isFixed} selectable style={[{ fontSize: 22 * w, color: '#333', marginVertical: 8 * w, lineHeight: 22 * 1.4 * w }, this.state.contentStyle || this.props.contentStyle]}>{this.state.content || this.props.content || ""}</Text></ScrollView> : null}
                     {this.props.children}
                     {this.state.key ? <TouchableOpacity activeOpacity={0.9} style={{ flexDirection: 'row', alignItems: 'center', marginTop: 20 * w }}
                         onPress={() => {
