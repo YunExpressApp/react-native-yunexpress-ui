@@ -8,6 +8,14 @@ let keyValue = 0;
 export default class DialogView extends Component<any, any> {
 	handlers: any[];
 
+    addOverlaySubscription: any;
+    removeOverlaySubscription: any;
+    removeAllOverlaySubscription: any;
+    transformRootSubscription: any;
+    restoreRootSubscription: any;
+
+ 
+
 	static add(element: Element) {
 		let key = ++keyValue;
 		DeviceEventEmitter.emit("addOverlay", { key, element });
@@ -82,11 +90,19 @@ export default class DialogView extends Component<any, any> {
 			return;
 		}
 
-		DeviceEventEmitter.addListener("addOverlay", e => this.handler.add(e));
-		DeviceEventEmitter.addListener("removeOverlay", e => this.handler.remove(e));
-		DeviceEventEmitter.addListener("removeAllOverlay", e => this.handler.removeAll(e));
-		DeviceEventEmitter.addListener("transformRoot", e => this.handler.transform(e));
-		DeviceEventEmitter.addListener("restoreRoot", e => this.handler.restore(e));
+		// DeviceEventEmitter.addListener("addOverlay", e => this.handler.add(e));
+		// DeviceEventEmitter.addListener("removeOverlay", e => this.handler.remove(e));
+		// DeviceEventEmitter.addListener("removeAllOverlay", e => this.handler.removeAll(e));
+		// DeviceEventEmitter.addListener("transformRoot", e => this.handler.transform(e));
+		// DeviceEventEmitter.addListener("restoreRoot", e => this.handler.restore(e));
+
+        this.addOverlaySubscription = DeviceEventEmitter.addListener("addOverlay", e => this.handler.add(e));
+        this.removeOverlaySubscription = DeviceEventEmitter.addListener("removeOverlay", e => this.handler.remove(e));
+        this.removeAllOverlaySubscription = DeviceEventEmitter.addListener("removeAllOverlay", e => this.handler.removeAll(e));
+        this.transformRootSubscription = DeviceEventEmitter.addListener("transformRoot", e => this.handler.transform(e));
+        this.restoreRootSubscription = DeviceEventEmitter.addListener("restoreRoot", e => this.handler.restore(e));
+
+
 	}
 
 	componentWillUnmount() {
@@ -96,11 +112,17 @@ export default class DialogView extends Component<any, any> {
 			return;
 		}
 
-		DeviceEventEmitter.removeAllListeners("addOverlay");
-		DeviceEventEmitter.removeAllListeners("removeOverlay");
-		DeviceEventEmitter.removeAllListeners("removeAllOverlay");
-		DeviceEventEmitter.removeAllListeners("transformRoot");
-		DeviceEventEmitter.removeAllListeners("restoreRoot");
+        this.addOverlaySubscription && this.addOverlaySubscription.remove(); 
+        this.removeOverlaySubscription &&  this.removeOverlaySubscription.remove(); 
+        this.removeAllOverlaySubscription && this.removeAllOverlaySubscription.remove(); 
+        this.transformRootSubscription && this.transformRootSubscription.remove(); 
+        this.restoreRootSubscription && this.restoreRootSubscription.remove(); 
+
+		// DeviceEventEmitter.removeAllListeners("addOverlay");
+		// DeviceEventEmitter.removeAllListeners("removeOverlay");
+		// DeviceEventEmitter.removeAllListeners("removeAllOverlay");
+		// DeviceEventEmitter.removeAllListeners("transformRoot");
+		// DeviceEventEmitter.removeAllListeners("restoreRoot");
 	}
 
 	add(e: any) {
