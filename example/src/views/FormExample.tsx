@@ -1,10 +1,10 @@
 /*
  * @Date: 2022-06-06 09:45:24
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2023-02-24 10:51:19
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-06-02 11:14:36
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\example\src\views\FormExample.tsx
  */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, ScrollView, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import { w, YTForm } from 'react-native-yunexpress-ui';
 export default function FormExample() {
@@ -12,9 +12,13 @@ export default function FormExample() {
 	const [value, setValue] = useState("请输入");
 	const [imageUrls, setImageUrls] = useState<string[]>([])
 
-    const [selValue, setSelValue] = useState("请选择");
+	const [selValue, setSelValue] = useState("请选择");
 
-    const [radioIndex, setRadioIndex] = useState(0);
+	const [radioIndex, setRadioIndex] = useState(0);
+
+	useEffect(() => {
+		setSelValue("请选择")
+	})
 
 	return (
 		<View style={styles.container}>
@@ -32,22 +36,22 @@ export default function FormExample() {
 					Alert.alert("请选择");
 				}} />
 				<YTForm.Radio label='单选项' data={["选项1", "选项2", "选项3"]} index={radioIndex} onChange={(i: number) => {
-                    setRadioIndex(i);
+					setRadioIndex(i);
 				}} />
 
-				<YTForm.PhotosView require 
-                    imgUrls={["", ""]} max={50} title="照片" 
-                    style={{ paddingHorizontal: 32 * w }} 
-                    onDel={(index?: number) => {
-                        Alert.alert("删除图片" + index);
-                    }}
-                    onView={(index?: number) => {
-                        Alert.alert("查看大图" + index);
-                    }}
-                    onAdd={() => {
-                        Alert.alert("上传图片");
-                    }}
-                />
+				<YTForm.PhotosView require
+					imgUrls={["", ""]} max={50} title="照片"
+					style={{ paddingHorizontal: 32 * w }}
+					onDel={(index?: number) => {
+						Alert.alert("删除图片" + index);
+					}}
+					onView={(index?: number) => {
+						Alert.alert("查看大图" + index);
+					}}
+					onAdd={() => {
+						Alert.alert("上传图片");
+					}}
+				/>
 				<YTForm.PhotosView
 					require
 					onAdd={() => {

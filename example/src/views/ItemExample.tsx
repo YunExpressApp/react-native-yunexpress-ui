@@ -2,7 +2,7 @@
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-06-13 10:22:40
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-06-02 10:20:02
+ * @LastEditTime: 2023-06-02 11:15:33
  * @FilePath: \react-native-yunexpress-ui\example\src\views\ButtonExample.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -180,7 +180,6 @@ export default function AlertExample() {
 			titleStyle={{ flex: 1 }}
 			rightContentStyle={{ flex: 0 }}
 			rightHidden
-			showRedDot
 		/>
 		<View style={{ height: 10 * w }} />
 	</ScrollView>

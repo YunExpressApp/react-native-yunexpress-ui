@@ -1,18 +1,16 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-11-25 15:30:00
- * @LastEditors: 张贵 zhanggui@yunexpress.cn
- * @LastEditTime: 2022-12-7 16:30:00
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-06-02 11:24:50
  * @FilePath: \react-native-yunexpress-ui\example\src\views\StepExample.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native"
+import React from 'react'
+import { StyleSheet, TouchableOpacity, View, Alert } from "react-native"
 import { YTStatusBages, StepComponent } from 'react-native-yunexpress-ui';
 
 export default function StepExample() {
-    const [index, setIndex] = useState<number>();
-    const [value, setValue] = useState<string | undefined>('');
 
     const routeList = [
         {

@@ -2,7 +2,7 @@
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-11-21 9:30:00
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-03-02 13:33:23
+ * @LastEditTime: 2023-06-02 11:20:54
  * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\example\src\views\SearchBoxExample.tsx
  */
 import React, { useState } from 'react'
@@ -10,7 +10,7 @@ import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native"
 import { w, SearchBoxComponent } from 'react-native-yunexpress-ui'
 
 export default function UpgradeExample() {
-    const [value, setValue] = useState('')
+    const [_value, setValue] = useState('')
     const resourceList = [
         { key: 'DE-DHL-R', value: 'AMS' },
         { key: 'DE-HRL-t', value: 'CDG' },

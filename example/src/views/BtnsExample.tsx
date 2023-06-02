@@ -1,11 +1,11 @@
 /*
  * @Date: 2022-06-16 11:00:59
- * @LastEditors: yanyulin
- * @LastEditTime: 2022-09-14 18:20:03
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-06-02 11:11:55
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\example\src\views\BtnsExample.tsx
  */
 import React, { useState } from 'react'
-import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import { w, YTBtns } from 'react-native-yunexpress-ui';
 export default function BtnsExample() {
 

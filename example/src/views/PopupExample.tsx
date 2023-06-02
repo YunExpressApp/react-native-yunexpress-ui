@@ -1,22 +1,22 @@
 /*
  * @Author: 张贵 zhanggui@yunexpress.cn
  * @Date: 2022-10-28 9:30:00
- * @LastEditors: 张贵 zhanggui@yunexpress.cn
- * @LastEditTime: 2022-11-08 9:30:00
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-06-02 11:23:11
  * @FilePath: \react-native-yunexpress-ui\example\src\views\UpgradeExample.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useState, useRef } from 'react'
 import { Alert, ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
 import i18n from '../../../src/i18n'
-import { ActionSheetItem, w, YTBtns, YTModal, ActionSheetRef, YTForm, Button, YTRemarkItem, SearchBoxComponent, FunctionIconComponent } from 'react-native-yunexpress-ui';
+import { ActionSheetItem, w, YTBtns, YTModal, ActionSheetRef, YTForm, Button, SearchBoxComponent, FunctionIconComponent } from 'react-native-yunexpress-ui';
 
 export default function BtnsExample() {
     const [visible, setVisible] = useState(false);
-    const [visible2, setVisible2] = useState(false);
+    // const [visible2, setVisible2] = useState(false);
     const [visible3, setVisible3] = useState(false);
     const [visible4, setVisible4] = useState(false);
-    const [visible5, setVisible5] = useState(false);
+    // const [visible5, setVisible5] = useState(false);
     const functionArray = [
         {
             icon: require('../imgs/functionIcon/transfer.png'), text: '临时转派', handleOperation: () => {

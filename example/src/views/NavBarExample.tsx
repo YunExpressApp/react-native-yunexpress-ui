@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { YTNavBar } from 'react-native-yunexpress-ui';
 export default function NavBarExample() {
 

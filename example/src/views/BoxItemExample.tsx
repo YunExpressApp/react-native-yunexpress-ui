@@ -2,7 +2,7 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 13:42:00
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-03-07 14:41:11
+ * @LastEditTime: 2023-06-02 11:10:34
  * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\example\src\views\BoxItemExample.tsx
  * @Description: 
  * 
@@ -21,7 +21,7 @@ export default function BoxItemExample() {
                 text='测试'
                 itemProps={{
                     leftTopStyle: { flex: 1 },
-                    titleParentSytle: { flex: 0 },
+                    titleParentStyle: { flex: 0 },
                     titleStyle: { color: '#fff', backgroundColor: '#36562200', fontSize: 20, width: '100%', textAlign: 'center' }
                 }}
                 boxLeftText={'确定'}

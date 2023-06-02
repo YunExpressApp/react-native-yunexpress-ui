@@ -2,7 +2,7 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 14:41:06
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-03-01 19:16:13
+ * @LastEditTime: 2023-06-02 11:25:16
  * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\example\src\views\SearchListBoxExample.tsx
  */
 
@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { Color, SearchListBox, SearchListBoxRef, Text, w } from 'react-native-yunexpress-ui'
 
-export default function name(params: any) {
+export default function name(_params: any) {
     let SearchListBoxRef: SearchListBoxRef | null = null
     const dataDefault = [
         { key: 1, value: 'hhhhadd' },
@@ -54,7 +54,7 @@ export default function name(params: any) {
                     text: `搜索设置-直接触发--${selectedItem?.value || ''}`,
                     itemProps: {
                         style: { alignItems: 'center', backgroundColor: Color.blue, padding: 10 * w, marginTop: 20 * w },
-                        titleParentSytle: { flex: 0 },
+                        titleParentStyle: { flex: 0 },
                         titleStyle: { fontSize: 20, color: '#fff' }
                     }
                 }}

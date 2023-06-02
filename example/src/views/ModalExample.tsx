@@ -1,12 +1,12 @@
 /*
  * @Date: 2022-06-06 09:45:24
- * @LastEditors: 1418220302@qq.com 1418220302@qq.com
- * @LastEditTime: 2022-10-20 16:38:02
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-06-02 11:17:49
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\example\src\views\ModalExample.tsx
  */
 import React, { useRef, useState } from 'react'
 import { StyleSheet, Text, View } from "react-native";
-import { ActionSheetItem, ActionSheetRef, w, YTBtns, YTForm, YTModal } from 'react-native-yunexpress-ui';
+import { ActionSheetItem, ActionSheetRef, w, YTBtns, YTModal } from 'react-native-yunexpress-ui';
 export default function ModalExample() {
 
 	const [visible, setVisible] = useState(false);
@@ -50,8 +50,8 @@ export default function ModalExample() {
 					<Text>aaaaaaaaaaaa</Text>
 				</View>
 			</YTModal.Bottom>
-
-			<YTModal.ActionSheet ref={r => actionSheetRef.current = r} />
+			{/**@ts-ignore */}
+			<YTModal.ActionSheet ref={actionSheetRef} />
 		</View>
 	);
 }
