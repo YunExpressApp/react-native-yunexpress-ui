@@ -55,8 +55,8 @@ export type ItemProps = {
     titleTagStyle?: StyleProp<TextStyle>,
     /** 子标题父组件样式 */
     titleTagContentSytle?: StyleProp<ViewStyle>,
-    /** 是否显示红点 */
-    showRedDot?: boolean,
+    /** 标题父组件外层样式 */
+    titleContentStyle?: StyleProp<ViewStyle>,
     /** 标题下面内容 */
     titleBottomText?: string,
     /** 标题下面内容样式 */
@@ -114,7 +114,7 @@ export type ItemProps = {
     /** 总父组件样式 */
     style?: StyleProp<ViewStyle>,
     /** 标题父组件样式 */
-    titleParentSytle?: StyleProp<ViewStyle>,
+    titleParentStyle?: StyleProp<ViewStyle>,
 }
 
 
@@ -178,26 +178,23 @@ export default class Item extends React.Component<ItemProps> {
                 : <Image resizeMode={'contain'} style={[{ width: 22 * w, height: 22 * w, }, this.props.rightIconStyle]} source={this.props.rightIcon || require('../../imgs/common_arrow_right.png')} />
         )
         let title = (
-            <View style={{ flexDirection: 'row' }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Text
-                        fontSize={22 * w}
-                        style={[{ textAlignVertical: 'center', color: '#4d4d4d' }, this.props.titleStyle]}
-                    >{`${this.props.title}`}</Text>
-                    {this.props.subTitle ?
-                        <Text fontSize={22 * w} style={[{ color: this.props.subTitleColor || '#333' }, this.props.subTitleStyle]} >{this.props.subTitle}</Text>
-                        : null
-                    }
-                    {this.props.titleTag ?
-                        <View style={[{ backgroundColor: '#ff823e', marginLeft: 10 * w, borderRadius: 12 * w, paddingLeft: w * 8, paddingRight: w * 8, paddingTop: w * 4, paddingBottom: w * 4 }, this.props.titleTagContentSytle]}>
-                            <Text
-                                fontSize={22 * w}
-                                style={[{ color: '#fff' }, this.props.titleTagStyle]}>{this.props.titleTag}</Text>
-                        </View>
-                        : null
-                    }
-                </View>
-                {this.props.showRedDot ? <Image style={{ left: w * 0.5, width: w * 7.2, height: w * 3.2 }} resizeMode={'contain'} source={require('../../imgs/common_arrow_right.png')} /> : null}
+            <View style={[{ flexDirection: 'row', alignItems: 'center' }, this.props.titleContentStyle]}>
+                <Text
+                    fontSize={22 * w}
+                    style={[{ textAlignVertical: 'center', color: '#4d4d4d' }, this.props.titleStyle]}
+                >{`${this.props.title}`}</Text>
+                {this.props.subTitle ?
+                    <Text fontSize={22 * w} style={[{ color: this.props.subTitleColor || '#333' }, this.props.subTitleStyle]} >{this.props.subTitle}</Text>
+                    : null
+                }
+                {this.props.titleTag ?
+                    <View style={[{ backgroundColor: '#ff823e', marginLeft: 10 * w, borderRadius: 12 * w, paddingLeft: w * 8, paddingRight: w * 8, paddingTop: w * 4, paddingBottom: w * 4 }, this.props.titleTagContentSytle]}>
+                        <Text
+                            fontSize={22 * w}
+                            style={[{ color: '#fff' }, this.props.titleTagStyle]}>{this.props.titleTag}</Text>
+                    </View>
+                    : null
+                }
             </View>)
         let titleBottomContent = this.props.titleBottomText || this.props.titleBottomRightText ? (
             <View style={[{ flexDirection: 'row' }, this.props.titleBottomContentStyle]}>
@@ -284,7 +281,7 @@ export default class Item extends React.Component<ItemProps> {
                 <View style={[{ flexDirection: 'row', alignItems: 'center' }, this.props.leftTopStyle, this.props.showBorder && mStyle.border]}>
                     {leftIcon}
                     {this.props.title || this.props.titleBottomText ? (
-                        <View style={[{ justifyContent: 'center', marginLeft: this.props.leftIcon ? w * 2 : 0, flex: this.props.rightText || this.props.rightText2 ? 0 : 1 }, this.props.titleParentSytle]} >
+                        <View style={[{ justifyContent: 'center', marginLeft: this.props.leftIcon ? w * 2 : 0, flex: this.props.rightText || this.props.rightText2 ? 0 : 1 }, this.props.titleParentStyle]} >
                             {title}
                             {titleBottomContent}
                         </View>)

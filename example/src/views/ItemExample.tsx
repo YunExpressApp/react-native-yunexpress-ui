@@ -2,13 +2,13 @@
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-06-13 10:22:40
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-03-24 16:27:55
+ * @LastEditTime: 2023-06-02 10:20:02
  * @FilePath: \react-native-yunexpress-ui\example\src\views\ButtonExample.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useEffect, useState } from 'react'
-import { Text, View } from "react-native";
-import { Item, w, Theme, CheckBox, Button } from 'react-native-yunexpress-ui'
+import { ScrollView, Text, View } from "react-native";
+import { Item, w, Theme, CheckBox, Button, myAlert } from 'react-native-yunexpress-ui'
 export default function AlertExample() {
 	const [text, setText] = useState('');
 
@@ -16,7 +16,7 @@ export default function AlertExample() {
 		// alert(Theme.locale)
 	}, [])
 
-	return <View>
+	return <ScrollView>
 		<Text style={{ textAlign: 'center', padding: 10 }}>--- {text + '--' + Theme.locale} ---</Text>
 		<Item
 			topTitle={'标题上面'}
@@ -24,8 +24,9 @@ export default function AlertExample() {
 			title={'Item1标题'}
 			subTitle={'Item1子标题'}
 			subTitleStyle={{ fontSize: 15 * w }}
+			titleTagContentSytle={{ borderRadius: 20 * w, paddingLeft: 10 * w, paddingRight: 10 * w }}
 			titleTag={'Item1-Tag'}
-			titleTagStyle={{ fontSize: 15 * w }}
+			titleTagStyle={{ fontSize: 14 * w }}
 			required
 			titleStyle={{ fontSize: 20 * w }}
 			rightText={'右边内容'}
@@ -36,8 +37,9 @@ export default function AlertExample() {
 			titleBottomText={'标题下面内容'}
 			bottomText={'下面内容'}
 			bottomRightText={'下面右边'}
-			bottomLineStyle={{ backgroundColor: '#999' }}
+			bottomLineStyle={{ backgroundColor: '#999', marginBottom: 10 * w }}
 		/>
+		<View style={{ height: 10 * w }} />
 		<Item
 			title={'*'}
 			titleStyle={{ color: 'red' }}
@@ -53,6 +55,8 @@ export default function AlertExample() {
 			}}
 			bottomLineStyle={{ backgroundColor: '#999' }}
 		/>
+		<View style={{ height: 10 * w, backgroundColor: 'white' }} />
+		<View style={{ height: 10 * w }} />
 		<Item
 			style={{ minHeight: 70 * w, paddingTop: 10 * w }}
 			title={'Item3标题'}
@@ -73,7 +77,8 @@ export default function AlertExample() {
 			bottomText={'右边支持自定组件'}
 			bottomLineStyle={{ backgroundColor: '#999' }}
 		/>
-
+		<View style={{ height: 10 * w, backgroundColor: 'white' }} />
+		<View style={{ height: 10 * w }} />
 		<Item
 			style={{ minHeight: 70 * w, paddingTop: 5 * w }}
 			title={'Item4标题'}
@@ -92,12 +97,12 @@ export default function AlertExample() {
 				/>
 			}
 		/>
-
+		<View style={{ height: 10 * w }} />
 		<View style={{ flexDirection: 'row' }}>
 			<Item
-				style={{ flex: 1, alignItems: 'center', paddingRight: 0 * w, paddingLeft: 0 * w }}
+				style={{ flex: 1, alignItems: 'center', paddingRight: 0 * w, paddingLeft: 0 * w, paddingVertical: 10 * w }}
 				title={'Item5'}
-				titleParentSytle={{ alignItems: 'center' }}
+				titleParentStyle={{ alignItems: 'center' }}
 				bottomText={'下面内容'}
 				rightHidden
 				onPress={() => {
@@ -105,9 +110,9 @@ export default function AlertExample() {
 				}}
 			/>
 			<Item
-				style={{ flex: 1, alignItems: 'center', paddingRight: 0 * w, paddingLeft: 0 * w }}
+				style={{ flex: 1, alignItems: 'center', paddingRight: 0 * w, paddingLeft: 0 * w, paddingVertical: 10 * w }}
 				title={'Item6'}
-				titleParentSytle={{ alignItems: 'center' }}
+				titleParentStyle={{ alignItems: 'center' }}
 				bottomText={'下面内容'}
 				rightHidden
 				onPress={() => {
@@ -115,9 +120,9 @@ export default function AlertExample() {
 				}}
 			/>
 			<Item
-				style={{ flex: 1, alignItems: 'center', paddingRight: 0 * w, paddingLeft: 0 * w }}
+				style={{ flex: 1, alignItems: 'center', paddingRight: 0 * w, paddingLeft: 0 * w, paddingVertical: 10 * w }}
 				title={'Item7'}
-				titleParentSytle={{ alignItems: 'center' }}
+				titleParentStyle={{ alignItems: 'center' }}
 				bottomText={'下面内容'}
 				bottomContentStyle={{ alignItems: 'center' }}
 				rightHidden
@@ -126,10 +131,11 @@ export default function AlertExample() {
 				}}
 			/>
 		</View>
+		<View style={{ height: 10 * w }} />
 		<Item
 			style={{ minHeight: 60 * w }}
 			required
-			topTitle={'从大厅开到天空飞车车牌号'}
+			topTitle={'Item8 Top标题，输入换行'}
 			bottomLineStyle={{ marginTop: 6 * w }}
 			rightInput={{
 				style: { textAlign: 'left', padding: 0, /*maxWidth: 300 * w*/flex: 1, fontSize: 22 * w },
@@ -142,5 +148,40 @@ export default function AlertExample() {
 			}}
 			rightHidden
 		/>
-	</View>
+		<View style={{ height: 10 * w, backgroundColor: 'white' }} />
+		<View style={{ height: 10 * w }} />
+		<View style={{ height: 10 * w, backgroundColor: 'white' }} />
+		<Item
+			title={'Item9 标题 上下都有线'}
+			leftTopStyle={{ minHeight: 70 * w, borderTopWidth: 1 * w, borderColor: '#eee' }}
+			bottomLineStyle={{ backgroundColor: '#eee' }}
+			rightIcon={require('../imgs/yellow_close.png')}
+			rightIconOnPress={() => {
+				myAlert('点击删除')
+			}}
+		/>
+		<View style={{ height: 10 * w, backgroundColor: 'white' }} />
+		<Item
+			style={{ marginTop: 10 * w, minHeight: 80 * w }}
+			title='Item10 标题可换行标题可换行标题可换行'
+			rightText='右边的内容'
+			titleParentStyle={{ flex: 1 }}
+			rightContentStyle={{ flex: 0 }}
+			rightHidden
+		/>
+		<View style={{ height: 10 * w }} />
+		<Item
+			style={{ marginTop: 10 * w, minHeight: 90 * w }}
+			title='Item11 标题带标签标题可换行标题可换行'
+			rightText='右边的内容'
+			titleTag='标签'
+			titleParentStyle={{ flex: 1 }}
+			titleContentStyle={{ flex: 1 }}
+			titleStyle={{ flex: 1 }}
+			rightContentStyle={{ flex: 0 }}
+			rightHidden
+			showRedDot
+		/>
+		<View style={{ height: 10 * w }} />
+	</ScrollView>
 }
