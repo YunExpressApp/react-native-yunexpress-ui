@@ -102,19 +102,22 @@ type State = {
 export default class Alert extends Component<AlertProps, State> {
     private outSizeCancelable: boolean = true
     private interval: NodeJS.Timer | undefined;
+    // State默认值
     private defaultState = {
         isVisible: false,
         title: '',
+        titleStyle: null,
         leftText: '',
         rightText: '',
         onLeftPress: () => { },
         onRightPress: () => { },
-        isOneButton: false,
-        isCancelable: true,
-        titleStyle: null,
-        contentStyle: null,
         btnLeftTextStyle: { color: '#303030', fontSize: 24 * w },
         btnRightTextStyle: { color: '#1592A3', fontSize: 24 * w },
+        content: '',
+        contentStyle: null,
+        isOneButton: false,
+        isCancelable: true,
+        key: undefined,
         isChecked: false,
         countdown: 0
     }
@@ -194,7 +197,7 @@ export default class Alert extends Component<AlertProps, State> {
     /**
      * 显示含不再提示弹框
      * @param key key为空不会显示单选按钮
-     * @param props 要传必填项{title: string, onRightPress: Function}
+     * @param props 要传必填项{title: string, onRightPress: Function} 
      */
     showDoNotPromptAgain(key: string, props: State) {
         props.key = key
@@ -248,7 +251,6 @@ export default class Alert extends Component<AlertProps, State> {
             onRightPress: () => { },
             isVisible: true,
             isOneButton: true,
-            isCancelable: this.outSizeCancelable
         });
     }
 

@@ -1,11 +1,11 @@
 /*
  * @Date: 2022-06-02 15:49:40
- * @LastEditors: yanyulin
- * @LastEditTime: 2022-08-25 14:56:41
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2023-06-06 09:55:30
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\remark\RemarkItem.tsx
  */
 import React, { memo, useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, StyleProp, ViewStyle, Modal } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, StyleProp, ViewStyle, Modal, TextStyle } from 'react-native';
 import i18n from '../../i18n'
 import { w } from '../../util/CStyle';
 import RemarkPopup from './RemarkPopup';
@@ -15,12 +15,13 @@ type RemarkItemProps = {
 	value?: string | undefined,
 	label?: string,
 	style?: StyleProp<ViewStyle>,
+	labelStyle?: StyleProp<TextStyle>,
 	onChange?: Function,
 	require?: boolean
 }
 
 const RemarkItem = (props: RemarkItemProps) => {
-	const { label, style, onChange, require } = props;
+	const { label, style, onChange, require, labelStyle } = props;
 	// const [val, setVal] = useState<string | undefined>(value);
 	const [visible, setVisible] = useState(false);
 	return (
@@ -32,7 +33,7 @@ const RemarkItem = (props: RemarkItemProps) => {
 			setVisible(true)
 		}}>
 			<View style={s.left_box}>
-				<Text style={{ color: '#303030', fontSize: 22 * w, marginRight: 5 * w }}>
+				<Text style={[{ color: '#303030', fontSize: 22 * w, marginRight: 5 * w }, labelStyle]}>
 					{require && <Text style={{ color: 'red' }}>*</Text>}
 					{label}
 				</Text>
