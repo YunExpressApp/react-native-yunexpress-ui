@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-06-02 15:49:40
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-06-06 09:55:30
+ * @LastEditTime: 2023-06-27 13:46:37
  * @FilePath: \yunExpresse:\git\react-native-yunexpress-ui\src\components\remark\RemarkItem.tsx
  */
 import React, { memo, useState } from 'react';
@@ -16,12 +16,13 @@ type RemarkItemProps = {
 	label?: string,
 	style?: StyleProp<ViewStyle>,
 	labelStyle?: StyleProp<TextStyle>,
+	valueStyle?: StyleProp<TextStyle>,
 	onChange?: Function,
 	require?: boolean
 }
 
 const RemarkItem = (props: RemarkItemProps) => {
-	const { label, style, onChange, require, labelStyle } = props;
+	const { label, style, onChange, require, labelStyle, valueStyle } = props;
 	// const [val, setVal] = useState<string | undefined>(value);
 	const [visible, setVisible] = useState(false);
 	return (
@@ -41,10 +42,10 @@ const RemarkItem = (props: RemarkItemProps) => {
 			{
 				props.value ? (
 					<View style={{ maxWidth: 300 * w }}>
-						<Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#303030', fontSize: 20 * w }}>{props.value || ""}</Text>
+						<Text numberOfLines={1} ellipsizeMode={'tail'} style={[{ color: '#303030', fontSize: 20 * w }, valueStyle]}>{props.value || ""}</Text>
 					</View>
 				) : (
-					<Text style={{ color: '#CCCCCC', fontSize: 20 * w }}>{i18n.t("InputRemark")}</Text>
+					<Text style={[{ color: '#CCCCCC', fontSize: 20 * w }, valueStyle]}>{i18n.t("InputRemark")}</Text>
 				)
 			}
 			<Modal visible={visible}
