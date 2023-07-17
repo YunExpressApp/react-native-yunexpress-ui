@@ -2,7 +2,7 @@
  * @Author: 袁康乐 yuankangle@yunexpress.cn
  * @Date: 2022-06-13 10:22:40
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-06-02 11:15:33
+ * @LastEditTime: 2023-06-27 17:30:43
  * @FilePath: \react-native-yunexpress-ui\example\src\views\ButtonExample.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -179,6 +179,22 @@ export default function AlertExample() {
 			titleContentStyle={{ flex: 1 }}
 			titleStyle={{ flex: 1 }}
 			rightContentStyle={{ flex: 0 }}
+			rightHidden
+		/>
+		<View style={{ height: 10 * w }} />
+		<Item
+			style={{ marginTop: 10 * w, minHeight: 90 * w }}
+			title='Item12 --- 标题超过最大宽后换行'
+			rightText='右边的内容......................99999999'
+			rightContentStyle={{ backgroundColor: '#d955f1' }}
+			titleParentStyle={{ maxWidth: '40%', backgroundColor: '#56d9dd' }}
+			rightHidden
+		/>
+		<View style={{ height: 10 * w }} />
+		<Item
+			style={{ marginTop: 10 * w, minHeight: 90 * w, borderTopWidth: 1 * w, borderBottomWidth: 1 * w, borderColor: '#f00' }}
+			title='Item13 --- 上下线全屏宽'
+			rightText='右边的内容......................99999999'
 			rightHidden
 		/>
 		<View style={{ height: 10 * w }} />
