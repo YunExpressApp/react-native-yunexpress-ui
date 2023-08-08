@@ -81,7 +81,7 @@ export const Color = {
 	blue: '#1693A4',
 	blue_1693A4: '#1693A4',
 	blue_disable: '#1693A466',
-	orenge: '#EF7E2D',
+	orange: '#EF7E2D',
 	grey: '#999999',
 	greyBtn: '#6d6d6d',
 	black: '#161717',
