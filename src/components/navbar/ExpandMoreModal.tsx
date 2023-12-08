@@ -68,16 +68,19 @@ const s = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		flexWrap: 'wrap',
-		paddingTop: 38 * w,
+		paddingTop: 18 * w,
+		// paddingLeft: 28 * w
 	},
 	item_box: {
 		alignItems: 'center',
-		paddingBottom: 20 * w,
-		minWidth: '25%'
+		// marginRight: 30 * w,
+		// paddingBottom: 20 * w,
+    paddingVertical:20 * w,
+		minWidth: '25%',
 	},
 	item_img: {
-		width: 36 * w,
-		height: 36 * w
+		width: 50 * w,
+		height: 50 * w
 	},
 	item_title: {
 		color: '#303030',
