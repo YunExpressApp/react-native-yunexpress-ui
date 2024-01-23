@@ -15,7 +15,8 @@ type RemarkPopupProps = {
 	onClose?: Function,
 	onConfirm?: Function,
 	// callback: Function,
-	defValue?: string
+	defValue?: string,
+  disable?: boolean
 }
 
 export default class RemarkPopup extends Component<RemarkPopupProps, any> {
@@ -43,7 +44,7 @@ export default class RemarkPopup extends Component<RemarkPopupProps, any> {
 	// }
 
 	render() {
-		let { placeholder, maxLength = 255, onClose, onConfirm } = this.props;
+		let { placeholder, maxLength = 255, onClose, onConfirm, disable } = this.props;
 		let { value } = this.state;
 		return (
 			<ScrollView style={styles.contentView} keyboardShouldPersistTaps="always">
@@ -51,9 +52,15 @@ export default class RemarkPopup extends Component<RemarkPopupProps, any> {
 					<TouchableOpacity activeOpacity={1} onPress={() => { onClose && onClose(); }}>
 						<Text style={styles.hTxt}>{i18n.t("Cancel")}</Text>
 					</TouchableOpacity>
-					<TouchableOpacity activeOpacity={1} onPress={() => { onConfirm && onConfirm(value); }}>
-						<Text style={styles.hTxt}>{i18n.t("Save")}</Text>
-					</TouchableOpacity>
+          {
+            disable && <Text style={styles.hTxt}></Text>
+          } 
+          {
+            !disable && <TouchableOpacity activeOpacity={1} onPress={() => { onConfirm && onConfirm(value); }}>
+              <Text style={styles.hTxt}>{i18n.t("Save")}</Text>
+            </TouchableOpacity>
+          }
+					
 				</View>
 				<Text style={styles.rtip}>{i18n.t("Remarks")}</Text>
 				<View style={styles.line}></View>
@@ -64,6 +71,7 @@ export default class RemarkPopup extends Component<RemarkPopupProps, any> {
 						multiline={true}
 						style={styles.rinput}
 						maxLength={maxLength}
+            editable={!disable}
 						onChangeText={text => this.setState({ value: text })}
 						value={value}
 						defaultValue={value}

@@ -18,7 +18,8 @@ type RemarkItemProps = {
 	labelStyle?: StyleProp<TextStyle>,
 	valueStyle?: StyleProp<TextStyle>,
 	onChange?: Function,
-	require?: boolean
+	require?: boolean,
+  disable?: boolean
 }
 
 const RemarkItem = (props: RemarkItemProps) => {
@@ -58,7 +59,7 @@ const RemarkItem = (props: RemarkItemProps) => {
 					<TouchableOpacity style={{ flex: 1 }} onPress={() => { setVisible(false) }}>
 
 					</TouchableOpacity>
-					<RemarkPopup defValue={props.value || ""} onConfirm={(value: string) => {
+					<RemarkPopup defValue={props.value || ""} disable={props.disable} onConfirm={(value: string) => {
 						onChange && onChange(value);
 						setVisible(false)
 					}} onClose={() => {
