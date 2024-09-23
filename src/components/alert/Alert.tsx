@@ -3,7 +3,7 @@
  * Created by ykl
  * on 16/6/17.
  */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
     StyleSheet,
     View,
@@ -82,6 +82,7 @@ type State = {
     key?: string
     /** 不再提示是否选中 */
     isChecked?: boolean
+    checkBoxText?: string
     /** 倒计时 */
     countdown?: number
 }
@@ -99,7 +100,7 @@ type State = {
  * 
  * 【onRightPress】: Function 右边按钮点击回调 回调返回当前State的值
  */
-export default class Alert extends Component<AlertProps, State> {
+export default class Alert extends PureComponent<AlertProps, State> {
     private outSizeCancelable: boolean = true
     private interval: NodeJS.Timer | undefined;
     // State默认值
@@ -119,6 +120,7 @@ export default class Alert extends Component<AlertProps, State> {
         isCancelable: true,
         key: undefined,
         isChecked: false,
+        checkBoxText: i18n.t('DoNotPromptAgain'),
         countdown: 0
     }
 
@@ -192,6 +194,13 @@ export default class Alert extends Component<AlertProps, State> {
             isOneButton: false,
             isCancelable: this.outSizeCancelable
         });
+    }
+
+    /**
+     * 自定义属性显示弹框
+     */
+    showByObj(props: State) {
+        this.setState(props)
     }
 
     /**
@@ -313,7 +322,7 @@ export default class Alert extends Component<AlertProps, State> {
                                 )
                             }
                         </View>
-                        <Text >{i18n.t('DoNotPromptAgain')}</Text>
+                        <Text >{this.state.checkBoxText || i18n.t('DoNotPromptAgain')}</Text>
                     </TouchableOpacity> : null}
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={1} style={{ flex: 1 }} />

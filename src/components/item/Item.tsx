@@ -226,7 +226,7 @@ export default class Item extends React.Component<ItemProps> {
                 {this.props.bottomRightText ?
                     <Text
                         fontSize={22 * w}
-                        style={this.props.bottomRightStyle || { color: '#EF5322', fontWeight: '700', flex: 1, textAlign: 'right' }}
+                        style={[{ color: '#EF5322', fontWeight: '700', flex: 1, textAlign: 'right' }, this.props.bottomRightStyle]}
                     >{`${this.props.bottomRightText}`}</Text>
                     : null
                 }
