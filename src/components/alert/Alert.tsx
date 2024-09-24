@@ -316,7 +316,6 @@ export default class Alert extends PureComponent<AlertProps, State> {
                             marginRight: 5, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'
                         }}>
                             {
-
                                 this.state.isChecked && (
                                     <View style={{ height: 12 * w, width: 12 * w, backgroundColor: Color.blue }} />
                                 )
@@ -331,9 +330,10 @@ export default class Alert extends PureComponent<AlertProps, State> {
                     buttonRightText={this.state.rightText || this.props.rightText || /**"确认"*/i18n.t('Confirm')}
                     isBorder={false}
                     onLeftPress={() => {
-                        if ((this.props.onLeftPress && !this.props.onLeftPress()))
+                        if ((this.props.onLeftPress && !this.props.onLeftPress(this.state))){
                             this.closeModal()
-                        else if ((!this.props.onLeftPress && this.state.onLeftPress && !this.state.onLeftPress()) || !this.state.onLeftPress || !this.props.onLeftPress) {
+                        }
+                        else if ((!this.props.onLeftPress && this.state.onLeftPress && !this.state.onLeftPress(this.state)) || !this.state.onLeftPress || !this.props.onLeftPress) {
                             this.closeModal()
                         }
                     }}
@@ -341,8 +341,9 @@ export default class Alert extends PureComponent<AlertProps, State> {
                         if (this.props.onRightPress && !this.props.onRightPress(this.state)) {
                             this.closeModal()
                         }
-                        else if (!this.props.onRightPress && this.state.onRightPress && !this.state.onRightPress(this.state))
+                        else if (!this.props.onRightPress && this.state.onRightPress && !this.state.onRightPress(this.state)) {
                             this.closeModal()
+                        }
                     }}
                     btnLeftTextStyle={[{ color: '#303030', fontSize: 24 * w }, this.state.btnLeftTextStyle || this.props.btnLeftTextStyle]}
                     btnRightTextStyle={[{ color: '#1592A3', fontSize: 24 * w }, this.state.btnRightTextStyle || this.props.btnRightTextStyle]}
