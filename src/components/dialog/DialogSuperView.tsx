@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import ReactNative, { StyleSheet, Animated, View, PanResponder, Platform } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+
 // import KeyboardSpace from '../KeyboardSpace/KeyboardSpace';
 
 export default class DialogSuperView extends Component<any, any> {
@@ -166,20 +166,16 @@ export default class DialogSuperView extends Component<any, any> {
 
 	render() {
 		return (
-			<SafeAreaProvider>
-				<SafeAreaView style={{ flex: 1 }}>
-					<View style={styles.screen} pointerEvents={this.overlayPointerEvents}>
-						<Animated.View
-							style={[styles.screen, { backgroundColor: '#000', opacity: this.state.overlayOpacity }]}
-							{...this.panResponder.panHandlers}
-						/>
-						<View style={this.buildStyle()} pointerEvents='box-none'>
-							{this.renderContent()}
-						</View>
-						{/* {autoKeyboardInsets ? <KeyboardSpace /> : null} */}
-					</View>
-				</SafeAreaView>
-			</SafeAreaProvider>
+			<View style={styles.screen} pointerEvents={this.overlayPointerEvents}>
+				<Animated.View
+					style={[styles.screen, { backgroundColor: '#000', opacity: this.state.overlayOpacity }]}
+					{...this.panResponder.panHandlers}
+				/>
+				<View style={this.buildStyle()} pointerEvents='box-none'>
+					{this.renderContent()}
+				</View>
+				{/* {autoKeyboardInsets ? <KeyboardSpace /> : null} */}
+			</View>
 		);
 	}
 
