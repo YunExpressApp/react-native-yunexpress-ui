@@ -5,6 +5,7 @@ import { Animated } from 'react-native';
 import Theme from '../../themes/Theme';
 import DialogView from './DialogView';
 import DialogSuperView from './DialogSuperView';
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default class DialogPullView extends DialogSuperView {
 
@@ -166,9 +167,13 @@ export default class DialogPullView extends DialogSuperView {
 		}].concat(containerStyle).concat(contentStyle);
 
 		return (
-			<Animated.View style={containerStyle} onLayout={(e: any) => this.onLayout(e)}>
-				{content ? content : children}
-			</Animated.View>
+			<SafeAreaProvider>
+				<SafeAreaView style={{ flex: 1 }}>
+					<Animated.View style={containerStyle} onLayout={(e: any) => this.onLayout(e)}>
+						{content ? content : children}
+					</Animated.View>
+				</SafeAreaView>
+			</SafeAreaProvider>
 			// <View style={{ width: 200, height: 300, backgroundColor: 'red' }}></View>
 		);
 	}

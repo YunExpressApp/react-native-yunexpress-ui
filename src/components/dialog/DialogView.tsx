@@ -1,6 +1,7 @@
 import React, { Component, PureComponent } from "react";
 import { StyleSheet, AppRegistry, DeviceEventEmitter, View, Animated } from 'react-native';
 import PropTypes from 'prop-types';
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import Theme from '../../themes/Theme';
 let keyValue = 0;
@@ -223,20 +224,24 @@ export default class DialogView extends Component<any, any> {
 		let { elements, translateX, translateY, scaleX, scaleY } = this.state;
 		let transform = [{ translateX }, { translateY }, { scaleX }, { scaleY }];
 		return (
-			<View style={{ backgroundColor: Theme.screenColor, flex: 1 }}>
-				<Animated.View style={{ flex: 1, transform: transform }}>
-					<PureView>
-						{this.props.children}
-					</PureView>
-				</Animated.View>
-				{elements.map((item: { key: string; element: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
-					return (
-						<View key={'topView' + item.key} style={styles.overlay} pointerEvents='box-none'>
-							{item.element}
-						</View>
-					);
-				})}
-			</View>
+			<SafeAreaProvider>
+				<SafeAreaView style={{ flex: 1 }}>
+					<View style={{ backgroundColor: Theme.screenColor, flex: 1 }}>
+						<Animated.View style={{ flex: 1, transform: transform }}>
+							<PureView>
+								{this.props.children}
+							</PureView>
+						</Animated.View>
+						{elements.map((item: { key: string; element: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
+							return (
+								<View key={'topView' + item.key} style={styles.overlay} pointerEvents='box-none'>
+									{item.element}
+								</View>
+							);
+						})}
+					</View>
+				</SafeAreaView>
+			</SafeAreaProvider>
 		);
 	}
 
