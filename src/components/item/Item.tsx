@@ -16,7 +16,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { w } from '../../util/CStyle';
 import Text from '../text';
-import { ItemProps } from './type';
+import type { ItemProps } from './type';
 import TextInput from '../textInput';
 
 

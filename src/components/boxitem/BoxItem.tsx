@@ -2,7 +2,7 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 11:17:01
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2023-03-01 14:28:45
+ * @LastEditTime: 2024-11-28 14:44:48
  * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\src\components\boxitem\BoxItem.tsx
  */
 
@@ -11,7 +11,7 @@ import { StyleProp, TouchableOpacity, View, ViewStyle } from "react-native"
 import { w } from "../../util/CStyle"
 import Item from "../item"
 import PanelModal from "../panelmodal"
-import type { ItemProps } from "../item/Item"
+import type { ItemProps } from "../item/type"
 import Text from "../text"
 import i18n from "../../i18n"
 

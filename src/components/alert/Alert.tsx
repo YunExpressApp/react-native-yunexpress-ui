@@ -2,7 +2,7 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2022-06-13 09:31:56
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2024-11-28 13:54:09
+ * @LastEditTime: 2024-11-28 14:44:01
  * @FilePath: \react-native-yunexpress-ui\src\components\alert\Alert.tsx
  * 自定义弹框控件
  */
@@ -25,7 +25,7 @@ import i18n from '../../i18n';
 import { Color, w } from '../../util/CStyle';
 import Button from '../button';
 import Text from '../text';
-import { AlertProps, AlertState } from './type';
+import type { AlertProps, AlertState } from './type';
 
 
 /**
