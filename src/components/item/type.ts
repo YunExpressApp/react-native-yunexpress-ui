@@ -1,5 +1,4 @@
-import { ImageStyle, StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native"
-
+import type { StyleProp, ViewStyle, TextStyle, TextInputProps, ImageStyle } from "react-native"
 /** Item属性 */
 export type ItemProps = {
     /** 左边图标 */

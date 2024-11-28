@@ -1,4 +1,4 @@
-import { StyleProp, TextStyle } from "react-native"
+import type { StyleProp, TextStyle } from "react-native"
 
 /**
  * 弹框属性

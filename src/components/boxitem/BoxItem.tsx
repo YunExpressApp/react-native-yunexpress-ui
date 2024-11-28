@@ -2,12 +2,13 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2023-02-17 11:17:01
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2024-11-28 14:44:48
+ * @LastEditTime: 2024-11-28 14:47:43
  * @FilePath: \ops_pdae:\git\react-native-yunexpress-ui\src\components\boxitem\BoxItem.tsx
  */
 
 import React, { forwardRef, Ref, useImperativeHandle } from "react"
-import { StyleProp, TouchableOpacity, View, ViewStyle } from "react-native"
+import { TouchableOpacity, View } from "react-native"
+import type { StyleProp, ViewStyle } from "react-native"
 import { w } from "../../util/CStyle"
 import Item from "../item"
 import PanelModal from "../panelmodal"
