@@ -2,15 +2,15 @@
  * @Author: 康乐 yuankangle@yunexpress.cn
  * @Date: 2024-11-28 13:46:20
  * @LastEditors: 康乐 yuankangle@yunexpress.cn
- * @LastEditTime: 2024-11-28 14:14:28
+ * @LastEditTime: 2024-11-28 17:45:58
  * @FilePath: \react-native-yunexpress-ui\src\components\textInput\TextInput.tsx
  */
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { forwardRef, Ref, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import { TextInput as RnTextInput, TextInputProps as RnTextInputProps } from 'react-native'
 import { w } from '../../util/CStyle';
 import Theme from '../../themes/Theme';
 
-interface TextProps extends RnTextInputProps {
+export interface TextInputProps extends RnTextInputProps {
     /** 
      * 优先取style里面的fontSize,style里面没有再取这个
      * 文本大小，中文是原大小，其他语言文本大小 = 文本大小 * 0.8 
@@ -46,12 +46,16 @@ interface TextProps extends RnTextInputProps {
  * 
  * @param props 
  */
-export default function TextInput(props: TextProps) {
+const TextInput = (props: TextInputProps, ref: Ref<RnTextInput | null>) => {
 
     // style样式中的文本大小
     const [fontSize, setFontSize] = useState(0);
     // 文本大小变化基数
     const baseNum = (props.locale || Theme.locale) !== 'zh' && !props.isFixed ? 0.8 : 1
+
+    const inputRef = useRef<RnTextInput>(null)
+    
+    useImperativeHandle(ref, () => inputRef.current)
 
     useMemo(() => {
         // console.log('========1==========' + props.children)
@@ -82,6 +86,7 @@ export default function TextInput(props: TextProps) {
 
     return (
         <RnTextInput
+            ref={inputRef}
             {...props}
             allowFontScaling={false}
             style={[props.style, fontSize ? { fontSize: fontSize * baseNum } : null]}
@@ -89,3 +94,5 @@ export default function TextInput(props: TextProps) {
     )
 
 }
+
+export default forwardRef<any, TextInputProps>(TextInput)
