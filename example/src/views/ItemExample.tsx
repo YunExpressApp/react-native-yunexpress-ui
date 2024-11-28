@@ -83,7 +83,7 @@ export default function AlertExample() {
 			style={{ minHeight: 70 * w, paddingTop: 5 * w }}
 			title={'Item4标题'}
 			showBorder
-			leftTopStyle={{ minHeight: 50 * w }}
+			midContentStyle={{ minHeight: 50 * w }}
 			onPress={() => {
 				setText('Item4点击')
 			}}
@@ -153,7 +153,7 @@ export default function AlertExample() {
 		<View style={{ height: 10 * w, backgroundColor: 'white' }} />
 		<Item
 			title={'Item9 标题 上下都有线'}
-			leftTopStyle={{ minHeight: 70 * w, borderTopWidth: 1 * w, borderColor: '#eee' }}
+			midContentStyle={{ minHeight: 70 * w, borderTopWidth: 1 * w, borderColor: '#eee' }}
 			bottomLineStyle={{ backgroundColor: '#eee' }}
 			rightIcon={require('../imgs/yellow_close.png')}
 			rightIconOnPress={() => {

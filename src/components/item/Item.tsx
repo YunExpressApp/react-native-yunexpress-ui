@@ -10,112 +10,14 @@ import {
     Image,
     TouchableOpacity,
     StyleSheet,
-    TextInput,
     ActivityIndicator,
-    TextStyle,
-    ImageStyle,
-    ViewStyle,
-    TextInputProps,
-    StyleProp,
 } from 'react-native'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { w } from '../../util/CStyle';
 import Text from '../text';
-
-/** Item属性 */
-export type ItemProps = {
-    /** 左边图标 */
-    leftIcon?: any,
-    /** 左边图标样式 */
-    leftIconStyle?: StyleProp<ImageStyle>,
-    /** 是否显示右边图标，默认显示右指向的箭头小图标 */
-    rightHidden?: boolean,
-    /** 右边图标 */
-    rightIcon?: any,
-    /** 右边图标样式 */
-    rightIconStyle?: StyleProp<ImageStyle>,
-    /** 右边图标点击事件 */
-    rightIconOnPress?: Function,
-    /** 是否显示菊花 */
-    showLoading?: boolean,
-    /** 标题 */
-    title?: string,
-    /** 标题样式 */
-    titleStyle?: StyleProp<TextStyle>,
-    /** 子标题 */
-    subTitle?: string,
-    /** 子标题颜色 */
-    subTitleColor?: string,
-    /** 子标题样式 */
-    subTitleStyle?: StyleProp<TextStyle>,
-    /** 子标题右边内容 */
-    titleTag?: string,
-    /** 子标题右边内容样式 */
-    titleTagStyle?: StyleProp<TextStyle>,
-    /** 子标题父组件样式 */
-    titleTagContentSytle?: StyleProp<ViewStyle>,
-    /** 标题父组件外层样式 */
-    titleContentStyle?: StyleProp<ViewStyle>,
-    /** 标题下面内容 */
-    titleBottomText?: string,
-    /** 标题下面内容样式 */
-    titleBottomStyle?: StyleProp<TextStyle>,
-    /** 标题下面右边内容 */
-    titleBottomRightText?: string,
-    /** 标题下面右边内容样式 */
-    titleBottomRightStyle?: StyleProp<TextStyle>,
-    /** 标题下面父组件样式 */
-    titleBottomContentStyle?: StyleProp<ViewStyle>,
-    /** 最下面内容 */
-    bottomText?: string,
-    /** 最下面内容样式 */
-    bottomStyle?: StyleProp<TextStyle>,
-    /** 最下面右边内容 */
-    bottomRightText?: string,
-    /** 最下面右边内容样式 */
-    bottomRightStyle?: StyleProp<TextStyle>,
-    /** 最下面右边父组件样式 */
-    bottomContentStyle?: StyleProp<ViewStyle>,
-    /** 最下面线条样式 */
-    bottomLineStyle?: StyleProp<ViewStyle>,
-    /** 标题右边父组件样式 */
-    rightContentStyle?: StyleProp<ViewStyle>,
-    /** 标题右边内容 */
-    rightText?: string,
-    /** 标题右边内容样式 */
-    rightTextStyle?: StyleProp<TextStyle>,
-    /** 标题右边的右边内容 */
-    rightText2?: string,
-    /** 标题右边的右边内容样式 */
-    rightText2Style?: StyleProp<TextStyle>,
-    /** 标题右边输入框属性 */
-    rightInput?: TextInputProps,
-    /** 标题右边自定义组件 */
-    rightCustomView?: any,
-    /** 是否可以点击 */
-    disabled?: boolean,
-    /** 点击效果 */
-    activeOpacity?: number,
-    /** 标题上面内容 */
-    topTitle?: string,
-    /** 标题上面内容样式 */
-    topTitleStyle?: StyleProp<TextStyle>,
-    /** 点击事件 */
-    onPress?: Function,
-    /** 长按事件 */
-    onLongPress?: Function,
-    /** 核心部位样式 */
-    leftTopStyle?: StyleProp<ViewStyle>,
-    /** 是否显示边框 */
-    showBorder?: boolean,
-    /** topTitle是否有必填的红色星号 */
-    required?: boolean,
-    /** 总父组件样式 */
-    style?: StyleProp<ViewStyle>,
-    /** 标题父组件样式 */
-    titleParentStyle?: StyleProp<ViewStyle>,
-}
+import { ItemProps } from './type';
+import TextInput from '../textInput';
 
 
 /**
@@ -157,6 +59,7 @@ export default class Item extends React.Component<ItemProps> {
     static defaultProps = {
         rightHidden: false,     //是否隐藏右边图标
         showBorder: false,      //是否显示边框
+        isFixed: false,         //是否固定字体大小
     };
 
     constructor(props: ItemProps) {
@@ -166,8 +69,8 @@ export default class Item extends React.Component<ItemProps> {
     }
 
     render() {
-        let leftIcon = this.props.leftIcon ? (<Image resizeMode={'contain'} style={[{ width: 40 * w, height: 40 * w }, this.props.leftIconStyle]} source={this.props.leftIcon} />) : null
-        let rightIcon = this.props.rightHidden || this.props.showLoading ? null : (
+        const leftIcon = this.props.leftIcon ? (<Image resizeMode={'contain'} style={[{ width: 40 * w, height: 40 * w }, this.props.leftIconStyle]} source={this.props.leftIcon} />) : null
+        const rightIcon = this.props.rightHidden || this.props.showLoading ? null : (
             this.props.rightIconOnPress
                 ? <TouchableOpacity activeOpacity={0.5} style={{ height: 50 * w, justifyContent: 'center', alignItems: 'flex-end' }}
                     onPress={() => {
@@ -177,30 +80,33 @@ export default class Item extends React.Component<ItemProps> {
                 </TouchableOpacity>
                 : <Image resizeMode={'contain'} style={[{ width: 22 * w, height: 22 * w, }, this.props.rightIconStyle]} source={this.props.rightIcon || require('../../imgs/common_arrow_right.png')} />
         )
-        let title = (
+        const title = (
             <View style={[{ flexDirection: 'row', alignItems: 'center' }, this.props.titleContentStyle]}>
                 <Text
                     fontSize={22 * w}
+                    isFixed={this.props.isFixed}
                     style={[{ textAlignVertical: 'center', color: '#4d4d4d' }, this.props.titleStyle]}
                 >{`${this.props.title}`}</Text>
                 {this.props.subTitle ?
-                    <Text fontSize={22 * w} style={[{ color: this.props.subTitleColor || '#333' }, this.props.subTitleStyle]} >{this.props.subTitle}</Text>
+                    <Text fontSize={22 * w} isFixed={this.props.isFixed} style={[{ color: this.props.subTitleColor || '#333' }, this.props.subTitleStyle]} >{this.props.subTitle}</Text>
                     : null
                 }
                 {this.props.titleTag ?
                     <View style={[{ backgroundColor: '#ff823e', marginLeft: 10 * w, borderRadius: 12 * w, paddingLeft: w * 8, paddingRight: w * 8, paddingTop: w * 4, paddingBottom: w * 4 }, this.props.titleTagContentSytle]}>
                         <Text
                             fontSize={22 * w}
+                            isFixed={this.props.isFixed}
                             style={[{ color: '#fff' }, this.props.titleTagStyle]}>{this.props.titleTag}</Text>
                     </View>
                     : null
                 }
             </View>)
-        let titleBottomContent = this.props.titleBottomText || this.props.titleBottomRightText ? (
+        const titleBottomContent = this.props.titleBottomText || this.props.titleBottomRightText ? (
             <View style={[{ flexDirection: 'row' }, this.props.titleBottomContentStyle]}>
                 {!!this.props.titleBottomText ?
                     <Text
                         fontSize={22 * w}
+                        isFixed={this.props.isFixed}
                         style={[{ marginTop: w * 1.1, marginBottom: 0.4 * w, color: '#808080' }, this.props.titleBottomStyle]}
                     >{`${this.props.titleBottomText}`}</Text>
                     : null
@@ -208,17 +114,19 @@ export default class Item extends React.Component<ItemProps> {
                 {!!this.props.titleBottomRightText ?
                     <Text
                         fontSize={22 * w}
+                        isFixed={this.props.isFixed}
                         style={[{ marginTop: w * 1.1, marginBottom: 0.4 * w, color: '#808080' }, this.props.titleBottomRightStyle]}
                     >{`${this.props.titleBottomRightText}`}</Text>
                     : null
                 }
             </View>
         ) : null
-        let bottomContent = this.props.bottomText || this.props.bottomRightText ? (
+        const bottomContent = this.props.bottomText || this.props.bottomRightText ? (
             <View style={[{ flexDirection: 'row', alignItems: 'center', minHeight: 28 * w, backgroundColor: '#fff' }, this.props.bottomContentStyle]}>
                 {this.props.bottomText ?
                     <Text
                         fontSize={22 * w}
+                        isFixed={this.props.isFixed}
                         style={[{ color: '#808080', marginTop: w * 1.4 }, this.props.bottomStyle]}
                     >{`${this.props.bottomText}`}</Text>
                     : null
@@ -226,25 +134,27 @@ export default class Item extends React.Component<ItemProps> {
                 {this.props.bottomRightText ?
                     <Text
                         fontSize={22 * w}
+                        isFixed={this.props.isFixed}
                         style={[{ color: '#EF5322', fontWeight: '700', flex: 1, textAlign: 'right' }, this.props.bottomRightStyle]}
                     >{`${this.props.bottomRightText}`}</Text>
                     : null
                 }
             </View>
         ) : null
-        let bottomLine = this.props.bottomLineStyle ?
+        const bottomLine = this.props.bottomLineStyle ?
             <View style={[{
                 height: StyleSheet.hairlineWidth,
                 backgroundColor: '#ddd'
             }, this.props.bottomLineStyle]} />
             : null
         {/** rightParentStyle 可让右边方案置顶配置 alignItems: "flex-start", flexDirection: "column" */ }
-        let rightContent =
+        const rightContent =
             this.props.rightText || this.props.rightText2
                 ? <View style={[{ flexDirection: 'row', alignItems: 'center' }, { flex: 1, marginLeft: w * 5, justifyContent: 'flex-end' }, this.props.rightContentStyle]}>
                     {this.props.rightText ?
                         <Text
                             fontSize={22 * w}
+                            isFixed={this.props.isFixed}
                             style={[mStyle.text, { color: '#303030', textAlign: 'right' }, this.props.rightTextStyle]}
                         >{`${this.props.rightText}`}</Text>
                         : null
@@ -252,33 +162,37 @@ export default class Item extends React.Component<ItemProps> {
                     {this.props.rightText2 ?
                         <Text
                             fontSize={22 * w}
+                            isFixed={this.props.isFixed}
                             style={this.props.rightText2Style || { color: '#EF5322', fontWeight: '700' }}
                         >{`${this.props.rightText2}`}</Text>
                         : null
                     }
                 </View> : null
-        let rightInput = this.props.rightInput ?
+        const rightInput = this.props.rightInput ?
             <TextInput
+                isFixed={this.props.isFixed}
                 {...this.props.rightInput}
             />
             : null
-        let rightCustomView = this.props.rightCustomView ? this.props.rightCustomView : null
-        let loadingView = !this.props.showLoading ? null : (
+        const rightCustomView = this.props.rightCustomView ? this.props.rightCustomView : null
+        const loadingView = !this.props.showLoading ? null : (
             <ActivityIndicator size='small' style={{ marginLeft: w }} />
         )
+
+        const topTitle = this.props.topTitle ?
+            <Text fontSize={22 * w} isFixed={this.props.isFixed} style={[mStyle.text, { marginTop: 10 * w, marginBottom: 10 * w }, this.props.topTitleStyle]}>
+                <Text fontSize={22 * w} isFixed={this.props.isFixed} style={{ color: 'red' }}>{this.props.required ? '*' : ''}</Text>{this.props.topTitle}</Text>
+            : null
 
         return (
             <TouchableOpacity
                 style={[{ backgroundColor: '#fff', paddingLeft: w * 30, paddingRight: w * 30, marginTop: 0, marginBottom: 0, justifyContent: this.props.topTitle || this.props.bottomText || this.props.bottomRightText ? 'flex-start' : 'center' }, this.props.style]}
                 activeOpacity={this.props.disabled ? 1 : this.props.activeOpacity ? this.props.activeOpacity : (this.props.onPress ? 0.5 : 1)}
                 onPress={() => !this.props.disabled && this.props.onPress && this.props.onPress()}
-                onLongPress={() => this.props.onLongPress && this.props.onLongPress()}>
-                {this.props.topTitle ?
-                    <Text fontSize={22 * w} style={[mStyle.text, { marginTop: 10 * w, marginBottom: 10 * w }, this.props.topTitleStyle]}>
-                        <Text fontSize={22 * w} style={{ color: 'red' }}>{this.props.required ? '*' : ''}</Text>{this.props.topTitle}</Text>
-                    : null
-                }
-                <View style={[{ flexDirection: 'row', alignItems: 'center' }, this.props.leftTopStyle, this.props.showBorder && mStyle.border]}>
+                onLongPress={() => this.props.onLongPress && this.props.onLongPress()}
+            >
+                {topTitle}
+                <View style={[{ flexDirection: 'row', alignItems: 'center' }, this.props.midContentStyle, this.props.showBorder && mStyle.border]}>
                     {leftIcon}
                     {this.props.title || this.props.titleBottomText ? (
                         <View style={[{ justifyContent: 'center', marginLeft: this.props.leftIcon ? w * 2 : 0, flex: this.props.rightText || this.props.rightText2 ? 0 : 1 }, this.props.titleParentStyle]} >

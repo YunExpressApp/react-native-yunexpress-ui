@@ -17,6 +17,7 @@ import NavBarExample from "./NavBarExample";
 import BtnsExample from "./BtnsExample";
 import ModalExample from "./ModalExample";
 import TextExample from "./TextExample";
+import TextInputExample from "./TextInputExample";
 import ItemExample from "./ItemExample";
 import ChangeLanguagePage from "./ChangeLanguagePage";
 import TipExample from "./TipExample"
@@ -95,6 +96,11 @@ export default [
 		page: TextExample,
 		name: 'Text',
 		descr: "Text文本"
+	},
+	{
+		page: TextInputExample,
+		name: 'TextInput',
+		descr: "TextInput文本输入框"
 	},
 	{
 		page: ItemExample,

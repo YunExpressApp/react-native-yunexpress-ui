@@ -20,7 +20,7 @@ export default function BoxItemExample() {
                 boxStyle={{ paddingTop: 200 * w }}
                 text='测试'
                 itemProps={{
-                    leftTopStyle: { flex: 1 },
+                    midContentStyle: { flex: 1 },
                     titleParentStyle: { flex: 0 },
                     titleStyle: { color: '#fff', backgroundColor: '#36562200', fontSize: 20, width: '100%', textAlign: 'center' }
                 }}

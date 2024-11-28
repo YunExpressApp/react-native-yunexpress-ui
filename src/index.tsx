@@ -26,6 +26,10 @@ export { default as YTDatePicker } from './components/picker';
  */
 export { default as Text } from './components/text/index'
 /**
+ * 文本输入框
+ */
+export { default as TextInput } from './components/textInput/index'
+/**
  * 按钮
  */
 export { default as Button } from './components/button/index'
@@ -34,10 +38,14 @@ export { default as Button } from './components/button/index'
  */
 export { default as Alert } from './components/alert/index'
 
+export { AlertProps, AlertState } from './components/alert/type'
+
 /**
  * 子项组件
  */
 export { default as Item } from './components/item/index'
+
+export { ItemProps } from './components/item/type'
 
 /** 
  * 公共样式

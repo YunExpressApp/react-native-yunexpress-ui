@@ -1,3 +1,11 @@
+/*
+ * @Author: 康乐 yuankangle@yunexpress.cn
+ * @Date: 2022-06-13 09:31:56
+ * @LastEditors: 康乐 yuankangle@yunexpress.cn
+ * @LastEditTime: 2024-11-28 13:54:09
+ * @FilePath: \react-native-yunexpress-ui\src\components\alert\Alert.tsx
+ * 自定义弹框控件
+ */
 /**
  * 自定义弹框控件
  * Created by ykl
@@ -17,75 +25,8 @@ import i18n from '../../i18n';
 import { Color, w } from '../../util/CStyle';
 import Button from '../button';
 import Text from '../text';
+import { AlertProps, AlertState } from './type';
 
-/**
- * 弹框属性
- */
-type AlertProps = {
-    /** 是否显示弹框 */
-    show?: boolean,
-    /** 弹框关闭时回调，必加属性，关闭后设为不显示 */
-    onClose?: Function,
-    /** 弹框标题 */
-    title?: string,
-    /** 左边按钮点击回调 */
-    onLeftPress?: Function,
-    /** 右边按钮点击回调 回调返回当前State的值 */
-    onRightPress?: Function,
-    /** 子组件 */
-    children?: any,
-    /** 弹框文字样式 */
-    titleStyle?: StyleProp<TextStyle>,
-    /** 弹框按钮左边文字 */
-    leftText?: string | undefined,
-    /** 弹框按钮右边文字 */
-    rightText?: string | undefined,
-    /** 弹框按钮左边文字样式 */
-    btnLeftTextStyle?: StyleProp<TextStyle>,
-    /** 弹框按钮右边文字样式 */
-    btnRightTextStyle?: StyleProp<TextStyle>,
-    /** 弹框内容 */
-    content?: string | undefined,
-    /** 弹框内容样式 */
-    contentStyle?: StyleProp<TextStyle>,
-    /** 点旁边是否关闭 */
-    isCancelable?: boolean
-    /** 是否固定文本大小 */
-    isFixed?: boolean
-    /** 弹框key 用来显示不再提示功能 */
-    key?: string
-    /** 倒计时 */
-    countdown?: number
-}
-
-/**
- * 操作可刷新属性
- */
-type State = {
-    /** 是否显示 */
-    isVisible?: boolean,
-    /** 弹框标题 */
-    title: string,
-    titleStyle?: StyleProp<TextStyle>,
-    leftText?: string | undefined,
-    rightText?: string | undefined,
-    onLeftPress?: Function | undefined,
-    onRightPress: Function,
-    btnLeftTextStyle?: StyleProp<TextStyle>,
-    btnRightTextStyle?: StyleProp<TextStyle>,
-    /** 弹框内容 */
-    content?: string | undefined,
-    contentStyle?: StyleProp<TextStyle>,
-    /** 是否只有一个按钮 */
-    isOneButton?: boolean,
-    isCancelable?: boolean
-    key?: string
-    /** 不再提示是否选中 */
-    isChecked?: boolean
-    checkBoxText?: string
-    /** 倒计时 */
-    countdown?: number
-}
 
 /**
  * === 自定义弹框 ===
@@ -100,7 +41,7 @@ type State = {
  * 
  * 【onRightPress】: Function 右边按钮点击回调 回调返回当前State的值
  */
-export default class Alert extends PureComponent<AlertProps, State> {
+export default class Alert extends PureComponent<AlertProps, AlertState> {
     private outSizeCancelable: boolean = true
     private interval: NodeJS.Timer | undefined;
     // State默认值
@@ -134,7 +75,7 @@ export default class Alert extends PureComponent<AlertProps, State> {
      * @param nextProps 
      * @param prevState 
      */
-    static getDerivedStateFromProps(nextProps: AlertProps, prevState: State) {
+    static getDerivedStateFromProps(nextProps: AlertProps, prevState: AlertState) {
         // myAlert(nextProps.show + '===' + prevState.isVisible)
         if (nextProps.show != undefined && nextProps.show != prevState.isVisible) {
             return { isVisible: nextProps.show }
@@ -199,7 +140,7 @@ export default class Alert extends PureComponent<AlertProps, State> {
     /**
      * 自定义属性显示弹框
      */
-    showByObj(props: State) {
+    showByObj(props: AlertState) {
         this.setState(props)
     }
 
@@ -208,7 +149,7 @@ export default class Alert extends PureComponent<AlertProps, State> {
      * @param key key为空不会显示单选按钮
      * @param props 要传必填项{title: string, onRightPress: Function} 
      */
-    showDoNotPromptAgain(key: string, props: State) {
+    showDoNotPromptAgain(key: string, props: AlertState) {
         props.key = key
         props.isVisible = true
         props.isCancelable = this.outSizeCancelable
